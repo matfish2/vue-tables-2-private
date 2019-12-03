@@ -60,7 +60,7 @@ or [here](https://jsfiddle.net/matfish2/js4bmdbL/) for a rudimentary server comp
 npm install vue-tables-2@git+https://<access-token>@git.xscode.com/matfish2/vue-tables-2.git --save
 ```
 
-where <access-token> is the token recieved from xscode when purchasing the subscription
+where `access-token` is the token recieved from xscode when purchasing the subscription
 
 Require the script:
 
