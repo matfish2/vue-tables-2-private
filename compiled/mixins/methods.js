@@ -18,7 +18,6 @@ module.exports = {
   setFilter: require('../methods/set-filter'),
   setPage: require('../methods/set-page'),
   setOrder: require('../methods/set-order'),
-  initPagination: require('../methods/init-pagination'),
   filterable: require('../methods/filterable'),
   isTextFilter: require('../methods/is-text-filter'),
   isDateFilter: require('../methods/is-date-filter'),
@@ -26,7 +25,6 @@ module.exports = {
   highlightMatch: require('../filters/highlight-matches'),
   formatDate: require('../filters/format-date'),
   hasDateFilters: require('../methods/has-date-filters'),
-  applyFilters: require('../methods/apply-filters'),
   optionText: require('../filters/option-text'),
   render: require('../methods/render'),
   rowWasClicked: require('../methods/row-was-clicked'),
@@ -59,5 +57,10 @@ module.exports = {
   _setColumnsDropdownCloseListener: require('../methods/set-columns-dropdown-close-listener'),
   _getValue: require('../methods/get-value'),
   _getColumnName: require('../methods/get-column-name'),
-  _shouldShowColumnOnInit: require('../methods/should-show-column-on-init')
+  _shouldShowColumnOnInit: require('../methods/should-show-column-on-init'),
+  _setEditingCell: require('../methods/set-editing-cell'),
+  _revertValue: require('../methods/revert-value'),
+  _updateValue: require('../methods/update-value'),
+  _filterType: require('../methods/filter-type'),
+  _search: require('../methods/search')
 };

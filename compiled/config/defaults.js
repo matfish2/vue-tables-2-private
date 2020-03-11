@@ -110,6 +110,8 @@ module.exports = function () {
     visibleColumns: false,
     hiddenColumns: false,
     resizableColumns: true,
-    editableColumns: []
+    editableColumns: [],
+    tabbable: true,
+    componentsOverride: {}
   };
 };

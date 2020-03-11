@@ -1,7 +1,5 @@
 "use strict";
 
-var _vuePagination = require("vue-pagination-2");
-
 var _vuex = _interopRequireDefault(require("./state/vuex"));
 
 var _normal = _interopRequireDefault(require("./state/normal"));
@@ -14,24 +12,30 @@ var _data2 = _interopRequireDefault(require("./state/data"));
 
 var _resizeableColumns = _interopRequireDefault(require("./helpers/resizeable-columns"));
 
+var _VtClientTable = _interopRequireDefault(require("./components/VtClientTable"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
 
 var _created = require("./mixins/created");
 
-var templateCompiler = require("./template-compiler");
+var provide = require("./mixins/provide");
+
+var themes = {
+  bootstrap3: require('./themes/bootstrap3')(),
+  bootstrap4: require('./themes/bootstrap4')(),
+  bulma: require('./themes/bulma')()
+};
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
-  var template = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "default";
+  var componentsOverride = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
 
   var client = _merge["default"].recursive(true, (0, _table["default"])(), {
-    name: "client-table",
-    components: {
-      Pagination: _vuePagination.Pagination
-    },
-    render: templateCompiler.call(this, template, theme),
+    name: "r-l-client-table",
+    render: require('./components/renderless/RLDataTable'),
+    provide: provide,
     props: {
       columns: {
         type: Array,
@@ -65,14 +69,14 @@ exports.install = function (Vue, globalOptions, useVuex) {
       }
     },
     mounted: function mounted() {
+      var _this = this;
+
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
-        var removeResizableListeners = (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst, this.opts.resizableColumns);
-        this.$once('hook:beforeDestroy', removeResizableListeners);
-      }
+        (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst);
+      } // this._setColumnsDropdownCloseListener();
 
-      this._setColumnsDropdownCloseListener();
 
       if (!this.vuex) {
         this.registerClientFilters();
@@ -87,7 +91,15 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
       if (this.hasDateFilters()) {
         this.initDateFilters();
-      }
+      } // listen for data being removed
+      // and nav to last page if current page is greater than total pages
+
+
+      this.$watch('data', function () {
+        if (_this.page > _this.totalPages) {
+          _this.setPage(_this.totalPages);
+        }
+      });
     },
     model: {
       prop: "data"
@@ -95,7 +107,9 @@ exports.install = function (Vue, globalOptions, useVuex) {
     data: function data() {
       return _merge["default"].recursive(_data(), {
         source: "client",
+        theme: typeof theme === 'string' ? themes[theme] : theme(),
         globalOptions: globalOptions,
+        componentsOverride: componentsOverride,
         currentlySorting: {},
         time: Date.now()
       }, (0, _data2["default"])(useVuex, "client", this.options.initialPage));
@@ -163,6 +177,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
   var state = useVuex ? (0, _vuex["default"])() : (0, _normal["default"])();
   client = _merge["default"].recursive(client, state);
-  Vue.component("v-client-table", client);
-  return client;
+  Vue.component("r-l-client-table", client);
+  Vue.component("v-client-table", _VtClientTable["default"]);
+  return _VtClientTable["default"];
 };

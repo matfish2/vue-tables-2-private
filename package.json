@@ -1,7 +1,7 @@
 {
   "name": "vue-tables-2",
   "description": "Vue.js 2 grid components",
-  "version": "1.6.25",
+  "version": "2.0.7",
   "keywords": [
     "vue2",
     "vuex",
@@ -24,7 +24,7 @@
     "debounce": "^1.1",
     "merge": "^1.2.0",
     "vue": "^2.6.10",
-    "vue-pagination-2": "^1.6.3"
+    "vue-pagination-2": "^2.0"
   },
   "scripts": {
     "build": "babel lib -d compiled",
@@ -40,7 +40,6 @@
   },
   "license": "MIT",
   "main": "compiled/index.js",
-  "homepage": "https://matfish2.github.io/vue-tables-2-site/",
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",

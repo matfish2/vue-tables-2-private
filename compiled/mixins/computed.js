@@ -12,11 +12,15 @@ module.exports = {
   hasChildRow: require('../computed/has-child-row'),
   colspan: require('../computed/colspan'),
   hasGenericFilter: require('../computed/has-generic-filter'),
+  perPageValues: require('../computed/per-page-values'),
   stateKey: function stateKey() {
     var key = this.name ? this.name : this.id;
     return 'vuetables_' + key;
   },
   Page: function Page() {
     return this.page;
+  },
+  tabIndex: function tabIndex() {
+    return this.opts.tabbable ? 0 : -1;
   }
 };

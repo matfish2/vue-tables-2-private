@@ -17,7 +17,6 @@ module.exports = function (table, hasChildRow, isChildRowTogglerFirst, resizeabl
   var tableHeight = table.offsetHeight;
   var i = hasChildRow && isChildRowTogglerFirst ? 1 : 0;
   var till = hasChildRow && !isChildRowTogglerFirst ? cols.length - 2 : cols.length;
-  var documentListeners = [];
 
   for (; i < till; i++) {
     var div = createDiv(tableHeight);
@@ -45,16 +44,14 @@ module.exports = function (table, hasChildRow, isChildRowTogglerFirst, resizeabl
     div.addEventListener("mouseout", function (e) {
       e.target.style.borderRight = "";
     });
-
-    function onMouseMove(e) {
+    document.addEventListener("mousemove", function (e) {
       if (curCol) {
         var diffX = e.pageX - pageX;
         if (nxtCol) nxtCol.style.width = nxtColWidth - diffX + "px";
         curCol.style.width = curColWidth + diffX + "px";
       }
-    }
-
-    function onMouseUp(e) {
+    });
+    document.addEventListener("mouseup", function (e) {
       if (e.target.nodeName === 'INPUT') return;
       e.preventDefault();
       e.stopPropagation();
@@ -63,16 +60,6 @@ module.exports = function (table, hasChildRow, isChildRowTogglerFirst, resizeabl
       pageX = undefined;
       nxtColWidth = undefined;
       curColWidth = undefined;
-    }
-
-    document.addEventListener("mousemove", onMouseMove);
-    document.addEventListener("mouseup", onMouseUp);
-    documentListeners.push({
-      event: "mousemove",
-      handler: onMouseMove
-    }, {
-      event: "mouseup",
-      handler: onMouseUp
     });
   }
 
@@ -101,12 +88,4 @@ module.exports = function (table, hasChildRow, isChildRowTogglerFirst, resizeabl
   function getStyleVal(elm, css) {
     return window.getComputedStyle(elm, null).getPropertyValue(css);
   }
-
-  function removeDocumentListeners() {
-    documentListeners.forEach(function (listener) {
-      document.removeEventListener(listener.event, listener.handler);
-    });
-  }
-
-  return removeDocumentListeners;
 };
