@@ -44,11 +44,17 @@ export default {
         set(val) {
           this.$refs.table.customQueries = val;
         }
-      }
+      },
+        data() {
+          return this.$refs.table.tableData
+        }
     },
     methods: {
         refresh() {
           this.$refs.table.refresh();
+        },
+        getData() {
+          return this.$refs.table.getData();
         },
         setFilter(val) {
             this.$refs.table.setFilter(val);

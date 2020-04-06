@@ -58,11 +58,17 @@ var _default2 = {
       set: function set(val) {
         this.$refs.table.customQueries = val;
       }
+    },
+    data: function data() {
+      return this.$refs.table.tableData;
     }
   },
   methods: {
     refresh: function refresh() {
       this.$refs.table.refresh();
+    },
+    getData: function getData() {
+      return this.$refs.table.getData();
     },
     setFilter: function setFilter(val) {
       this.$refs.table.setFilter(val);
