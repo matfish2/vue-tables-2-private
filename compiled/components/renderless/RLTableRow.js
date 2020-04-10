@@ -46,7 +46,7 @@ var _default = {
       }
 
       if (this.opts().pagination.infinite) {
-        cls += " index-".concat(this.index + 1);
+        cls += " index-".concat(this.index);
       }
 
       return cls;

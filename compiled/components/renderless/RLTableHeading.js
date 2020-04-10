@@ -19,6 +19,7 @@ var _default = {
     return this.$scopedSlots["default"]({
       thAttrs: {
         "class": this.sortableClass(this.column),
+        stickyHeader: this.opts().pagination.infinite,
         tabIndex: this.tabIndex()
       },
       thEvents: {

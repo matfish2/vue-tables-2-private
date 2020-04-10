@@ -34,7 +34,8 @@ var _default2 = {
             "class": props.tableAttrs["class"],
             attrs: {
               summary: props.tableAttrs.summary
-            }
+            },
+            style: 'border-collapse: collapse; width:100%'
           }, [caption, h("vt-table-head"), props.slots.beforeBody, h("vt-table-body", {
             ref: "vt_table_body"
           }), props.slots.afterBody]);

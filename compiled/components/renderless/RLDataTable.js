@@ -8,6 +8,7 @@ module.exports = function () {
     perPageValues: this.perPageValues,
     totalPages: this.totalPages,
     slots: this.$parent.$slots,
+    stickyHeader: this.opts.pagination.infinite,
     override: this.componentsOverride.dataTable
   });
 };

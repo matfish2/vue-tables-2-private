@@ -88,7 +88,7 @@ export default {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {props.perPageValues.length > 1 ? <div class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
+                                {props.perPageValues.length > 1 && !props.opts.pagination.infinite ? <div class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
                                     {props.slots.beforeLimit}
                                     <vt-per-page-selector/>
                                     {props.slots.afterLimit}
@@ -108,7 +108,7 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive">
+                        <div class="table-responsive" style={props.stickyHeader ? 'overflow-y:auto; height:500px;':''}>
                             <vt-table ref="vt_table"/>
                         </div>
                         {props.slots.afterTable}

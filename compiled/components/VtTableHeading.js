@@ -38,7 +38,8 @@ var _default2 = {
             "class": props.thAttrs["class"],
             attrs: {
               tabindex: props.thAttrs.tabIndex
-            }
+            },
+            style: props.thAttrs.stickyHeader ? 'position:sticky; top:0px;background:white' : ''
           }, [h("span", {
             "class": "VueTables__heading",
             attrs: {

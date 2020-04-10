@@ -73,6 +73,20 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
       if (this.opts.pagination.infinite) {
         this.lastRecord = this.limit;
+        this.$watch('query', function () {
+          _this.lastRecord = _this.limit;
+
+          _this.applyInfiniteScroll();
+        }, {
+          deep: true
+        });
+        this.$watch('orderBy', function () {
+          _this.lastRecord = _this.limit;
+
+          _this.applyInfiniteScroll();
+        }, {
+          deep: true
+        });
         this.applyInfiniteScroll();
       }
 
@@ -137,6 +151,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
           var observer = new IntersectionObserver(function (entries) {
             entries.forEach(function (e) {
               if (e.isIntersecting) {
+                console.log("intersection");
                 _this2.lastRecord = _this2.lastRecord + _this2.limit;
                 observer.unobserve(_this2.$el.querySelector(_this2.currentTarget));
 
@@ -144,11 +159,16 @@ exports.install = function (Vue, globalOptions, useVuex) {
               }
             });
           }, {
-            root: _this2.$el.querySelector('tbody'),
+            root: _this2.$el.querySelector('.table-responsive'),
             rootMargin: '0px',
             threshold: 1.0
           });
-          observer.observe(_this2.$el.querySelector(_this2.currentTarget));
+
+          var el = _this2.$el.querySelector(_this2.currentTarget);
+
+          if (el) {
+            observer.observe(el);
+          }
         });
       },
       transformDateStringsToMoment: require("./methods/transform-date-strings-to-moment"),

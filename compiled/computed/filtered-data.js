@@ -24,7 +24,10 @@ module.exports = function () {
   this.allFilteredData = JSON.parse(JSON.stringify(data));
 
   if (this.opts.pagination.infinite) {
-    return data.splice(0, this.lastRecord);
+    console.log(this.limit);
+    var start = this.lastRecord - this.limit * 2 > 0 ? this.lastRecord - this.limit * 2 : 0;
+    console.log(start, this.lastRecord);
+    return data.splice(start, this.lastRecord);
   }
 
   var offset = (this.page - 1) * this.limit;
