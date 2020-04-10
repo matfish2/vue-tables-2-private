@@ -3,6 +3,10 @@
 module.exports = function () {
   return {
     id: makeId(),
+    currentTarget: '',
+    // used for infinite scroll
+    lastRecord: 0,
+    // used for infinite scroll
     allFilteredData: [],
     openChildRows: [],
     windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,

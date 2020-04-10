@@ -41,7 +41,7 @@
   "license": "MIT",
   "main": "compiled/index.js",
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.6.4",
     "@babel/helper-module-imports": "^7.0.0",
     "@babel/plugin-syntax-jsx": "^7.2.0",

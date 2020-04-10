@@ -25,7 +25,7 @@ var _default = {
       opts: this.opts(),
       rowId: this.row[this.opts().uniqueKey],
       rowAttrs: {
-        "class": this.opts().rowClassCallback ? this.opts().rowClassCallback(this.row) : '',
+        "class": this.getClass(),
         attrs: this.opts().rowAttributesCallback ? this.opts().rowAttributesCallback(this.row) : {}
       },
       rowEvents: {
@@ -36,6 +36,21 @@ var _default = {
       childRowTogglerLast: this.hasChildRow() && this.opts().showChildRowToggler && !this.opts().childRowTogglerFirst,
       override: this.componentsOverride.tableRow
     });
+  },
+  methods: {
+    getClass: function getClass() {
+      var cls = '';
+
+      if (this.opts().rowClassCallback) {
+        cls += this.opts().rowClassCallback(this.row);
+      }
+
+      if (this.opts().pagination.infinite) {
+        cls += " index-".concat(this.index + 1);
+      }
+
+      return cls;
+    }
   }
 };
 exports["default"] = _default;
