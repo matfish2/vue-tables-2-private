@@ -45,10 +45,6 @@ var _default = {
         cls += this.opts().rowClassCallback(this.row);
       }
 
-      if (this.opts().pagination.infinite) {
-        cls += " index-".concat(this.index + 1);
-      }
-
       return cls;
     }
   }

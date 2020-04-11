@@ -71,11 +71,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
     mounted: function mounted() {
       var _this = this;
 
-      if (this.opts.pagination.infinite) {
-        this.lastRecord = this.limit;
-        this.applyInfiniteScroll();
-      }
-
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
@@ -129,28 +124,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
       }
     },
     methods: {
-      applyInfiniteScroll: function applyInfiniteScroll() {
-        var _this2 = this;
-
-        this.currentTarget = ".VueTables__row.index-".concat(this.lastRecord);
-        this.$nextTick(function () {
-          var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) {
-                _this2.lastRecord = _this2.lastRecord + _this2.limit;
-                observer.unobserve(_this2.$el.querySelector(_this2.currentTarget));
-
-                _this2.applyInfiniteScroll();
-              }
-            });
-          }, {
-            root: _this2.$el.querySelector('tbody'),
-            rootMargin: '0px',
-            threshold: 1.0
-          });
-          observer.observe(_this2.$el.querySelector(_this2.currentTarget));
-        });
-      },
       transformDateStringsToMoment: require("./methods/transform-date-strings-to-moment"),
       registerClientFilters: require("./methods/register-client-filters"),
       search: require("./methods/client-search"),

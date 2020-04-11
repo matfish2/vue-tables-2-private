@@ -71,7 +71,6 @@ module.exports = function () {
     headingsTooltips: {},
     pagination: {
       dropdown: false,
-      infinite: false,
       chunk: 10,
       edge: false,
       align: "center",
