@@ -108,7 +108,7 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive">
+                        <div class="table-responsive" style={props.opts.stickyHeader ? 'overflow-x:unset;':''}>
                             <vt-table ref="vt_table"/>
                         </div>
                         {props.slots.afterTable}

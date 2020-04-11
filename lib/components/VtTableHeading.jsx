@@ -14,6 +14,7 @@ export default {
                         on-click={props.thEvents.click}
                         class={props.thAttrs.class}
                         tabindex={props.thAttrs.tabIndex}
+                        style={props.thAttrs.style}
                     >
             <span
                 class="VueTables__heading"
