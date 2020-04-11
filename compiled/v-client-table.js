@@ -71,25 +71,24 @@ exports.install = function (Vue, globalOptions, useVuex) {
     mounted: function mounted() {
       var _this = this;
 
-      if (this.opts.pagination.infinite) {
-        this.lastRecord = this.limit;
-        this.$watch('query', function () {
-          _this.lastRecord = _this.limit;
-
-          _this.applyInfiniteScroll();
-        }, {
-          deep: true
-        });
-        this.$watch('orderBy', function () {
-          _this.lastRecord = _this.limit;
-
-          _this.applyInfiniteScroll();
-        }, {
-          deep: true
-        });
-        this.applyInfiniteScroll();
-      }
-
+      // if (this.opts.pagination.infinite) {
+      //     this.lastRecord = this.limit
+      //     this.$watch('query', () => {
+      //         this.lastRecord = this.limit
+      //         this.applyInfiniteScroll();
+      //     }, {
+      //         deep: true
+      //     });
+      //
+      //     this.$watch('orderBy', () => {
+      //         this.lastRecord = this.limit
+      //         this.applyInfiniteScroll();
+      //     }, {
+      //         deep: true
+      //     });
+      //
+      //     this.applyInfiniteScroll();
+      // }
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
@@ -146,16 +145,46 @@ exports.install = function (Vue, globalOptions, useVuex) {
       applyInfiniteScroll: function applyInfiniteScroll() {
         var _this2 = this;
 
-        this.currentTarget = ".VueTables__row.index-".concat(this.lastRecord);
+        var lastTime = new Date().getTime();
+        this.currentTarget = this.$el.querySelector('tbody').lastElementChild;
+        var first = this.$el.querySelector('tbody').firstElementChild;
         this.$nextTick(function () {
-          var observer = new IntersectionObserver(function (entries) {
+          var nextObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting && new Date().getTime() - lastTime > 10) {
+                _this2.setPage(_this2.page + 1);
+
+                lastTime = new Date();
+                console.log("intersection" + _this2.page);
+
+                _this2.$nextTick(function () {
+                  nextObserver.unobserve(_this2.currentTarget);
+
+                  _this2.applyInfiniteScroll();
+                });
+              } else {
+                console.log("no interseciton");
+              }
+            });
+          }, {
+            root: _this2.$el.querySelector('.table-responsive') // rootMargin: '-30px',
+            // threshold: 1.0
+
+          });
+          var prevObserver = new IntersectionObserver(function (entries) {
             entries.forEach(function (e) {
               if (e.isIntersecting) {
                 console.log("intersection");
-                _this2.lastRecord = _this2.lastRecord + _this2.limit;
-                observer.unobserve(_this2.$el.querySelector(_this2.currentTarget));
 
-                _this2.applyInfiniteScroll();
+                _this2.setPage(_this2.page - 1);
+
+                _this2.$nextTick(function () {
+                  prevObserver.unobserve(first);
+
+                  _this2.applyInfiniteScroll();
+                });
+              } else {
+                console.log("no interseciton");
               }
             });
           }, {
@@ -164,11 +193,13 @@ exports.install = function (Vue, globalOptions, useVuex) {
             threshold: 1.0
           });
 
-          var el = _this2.$el.querySelector(_this2.currentTarget);
+          _this2.$nextTick(function () {
+            if (_this2.currentTarget) {
+              nextObserver.observe(_this2.currentTarget);
+            }
 
-          if (el) {
-            observer.observe(el);
-          }
+            prevObserver.observe(first);
+          });
         });
       },
       transformDateStringsToMoment: require("./methods/transform-date-strings-to-moment"),

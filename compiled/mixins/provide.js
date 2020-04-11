@@ -35,6 +35,9 @@ module.exports = function () {
     sortable: this.sortable,
     sortableChevronClass: this.sortableChevronClass,
     orderByColumn: this.orderByColumn,
+    allFilteredData: function allFilteredData() {
+      return _this.allFilteredData;
+    },
     filteredData: function filteredData() {
       return _this.filteredData;
     },

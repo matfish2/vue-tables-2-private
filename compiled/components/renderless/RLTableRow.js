@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTableRow',
   props: ['row', 'index'],
-  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride'],
+  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride', 'page', 'limit'],
   provide: function provide() {
     var _this = this;
 
@@ -43,10 +43,6 @@ var _default = {
 
       if (this.opts().rowClassCallback) {
         cls += this.opts().rowClassCallback(this.row);
-      }
-
-      if (this.opts().pagination.infinite) {
-        cls += " index-".concat(this.index);
       }
 
       return cls;
