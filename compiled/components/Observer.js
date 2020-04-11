@@ -39,17 +39,9 @@ var _default = {
           entry = _ref2[0];
 
       if (entry && entry.isIntersecting) {
-        if ((_this.next || !_this.justIntersected) && !(!_this.next && _this.$parent.$parent.$refs.nextObserver.justIntersected)) {
-          _this.justIntersected = true;
-          console.log('INTERSECT', _this.next);
-          document.querySelector('.table-responsive').scrollBy(0, _this.next ? -1 : 1);
+        document.querySelector('.table-responsive').scrollBy(0, _this.next ? -1 : 1);
 
-          _this.$emit("intersect");
-        }
-
-        setTimeout(function () {
-          _this.justIntersected = false;
-        }, 100);
+        _this.$emit("intersect");
       }
     }, {
       root: document.querySelector('.table-responsive') // rootMargin:'30px'
