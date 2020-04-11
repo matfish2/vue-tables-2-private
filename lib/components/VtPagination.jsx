@@ -8,7 +8,12 @@ export default {
         return <r-l-pagination scopedSlots={
             {
                 default: function (props) {
-                    let pagination = props.options.infinite ? '': <pagination
+                    return props.override ? h(
+                        props.override,
+                        {
+                            attrs: {props}
+                        }
+                    ) : <pagination
                         options={props.optionsObj}
                         for={props.name}
                         vuex={props.vuex}
@@ -17,13 +22,6 @@ export default {
                         page={props.page}
                         onPaginate={page => props.setPage(page)}>
                     </pagination>
-
-                    return props.override ? h(
-                        props.override,
-                        {
-                            attrs: {props}
-                        }
-                    ) : pagination
                 }
             }
         }

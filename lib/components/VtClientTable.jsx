@@ -112,14 +112,14 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive" style={props.stickyHeader ? 'overflow-y:auto; height:500px;':''}>
-                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page-1)}/> : ''}
+                        <div class="table-responsive" style={props.stickyHeader ? 'overflow-x:unset; overflow-y:scroll; max-height:500px;':''}>
+                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page-1)} ref="prevObserver"/> : ''}
                             <vt-table ref="vt_table"/>
-                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page+1)} next/> : ''}
+                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page+1)} next ref="nextObserver"/> : ''}
                         </div>
                         {props.slots.afterTable}
 
-                        <vt-pagination/>
+                        {props.opts.pagination.infinite ? '' : <vt-pagination/> }
                         {props.opts.pagination.infinite || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
                     </div>
                 }

@@ -21,7 +21,11 @@ var _default2 = {
     return h("r-l-pagination", {
       scopedSlots: {
         "default": function _default(props) {
-          var pagination = props.options.infinite ? '' : h("pagination", {
+          return props.override ? h(props.override, {
+            attrs: {
+              props: props
+            }
+          }) : h("pagination", {
             attrs: {
               options: props.optionsObj,
               "for": props.name,
@@ -36,11 +40,6 @@ var _default2 = {
               }
             }
           });
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : pagination;
         }
       }
     });

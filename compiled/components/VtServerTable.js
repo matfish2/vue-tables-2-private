@@ -137,7 +137,8 @@ var _default2 = {
           }, [h("vt-dropdown-pagination")])]) : '', props.opts.columnsDropdown ? h("div", {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
-            "class": "table-responsive"
+            "class": "table-responsive",
+            style: props.opts.stickyHeader ? 'overflow-x:unset;' : ''
           }, [h("vt-table", {
             ref: "vt_table"
           })]), props.slots.afterTable, h("vt-pagination")]);

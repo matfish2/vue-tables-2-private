@@ -69,9 +69,9 @@ module.exports = function () {
     footerHeadings: false,
     headings: {},
     headingsTooltips: {},
+    stickyHeader: false,
     pagination: {
       dropdown: false,
-      infinite: false,
       chunk: 10,
       edge: false,
       align: "center",

@@ -16,7 +16,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var _default = {
   data: function data() {
     return {
-      observer: null
+      observer: null,
+      justIntersected: false
     };
   },
   props: {
@@ -38,12 +39,20 @@ var _default = {
           entry = _ref2[0];
 
       if (entry && entry.isIntersecting) {
-        document.querySelector('.table-responsive').scrollBy(0, _this.next ? -1 : 1);
+        if ((_this.next || !_this.justIntersected) && !(!_this.next && _this.$parent.$parent.$refs.nextObserver.justIntersected)) {
+          _this.justIntersected = true;
+          console.log('INTERSECT', _this.next);
+          document.querySelector('.table-responsive').scrollBy(0, _this.next ? -1 : 1);
 
-        _this.$emit("intersect");
+          _this.$emit("intersect");
+        }
+
+        setTimeout(function () {
+          _this.justIntersected = false;
+        }, 100);
       }
     }, {
-      root: document.querySelector('.table-responsive') // rootMargin:'-20px'
+      root: document.querySelector('.table-responsive') // rootMargin:'30px'
 
     });
     this.observer.observe(this.$el);

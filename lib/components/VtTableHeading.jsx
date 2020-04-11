@@ -14,7 +14,7 @@ export default {
                         on-click={props.thEvents.click}
                         class={props.thAttrs.class}
                         tabindex={props.thAttrs.tabIndex}
-                        style={props.thAttrs.stickyHeader ? 'position:sticky; top:0px;background:white':''}
+                        style={props.thAttrs.style}
                     >
             <span
                 class="VueTables__heading"

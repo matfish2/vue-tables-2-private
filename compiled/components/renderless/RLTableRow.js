@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTableRow',
   props: ['row', 'index'],
-  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride', 'page', 'limit'],
+  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride'],
   provide: function provide() {
     var _this = this;
 

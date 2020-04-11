@@ -21,12 +21,7 @@ module.exports = function () {
     this.count = data.length;
   }
 
-  this.allFilteredData = JSON.parse(JSON.stringify(data)); // if (this.opts.pagination.infinite) {
-  //
-  //     var start = ((this.page-1) * this.limit) + this.limit
-  //     return data.splice(start, this.limit)
-  // }
-
+  this.allFilteredData = JSON.parse(JSON.stringify(data));
   var offset = (this.page - 1) * this.limit;
   return data.splice(offset, this.limit);
 };

@@ -19,8 +19,8 @@ var _default = {
     return this.$scopedSlots["default"]({
       thAttrs: {
         "class": this.sortableClass(this.column),
-        stickyHeader: this.opts().pagination.infinite,
-        tabIndex: this.tabIndex()
+        tabIndex: this.tabIndex(),
+        style: this.opts().stickyHeader || this.opts().pagination.infinite ? 'position:sticky; top:0; background:white;' : ''
       },
       thEvents: {
         keypress: function keypress(e) {

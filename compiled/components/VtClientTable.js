@@ -130,13 +130,14 @@ var _default2 = {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
             "class": "table-responsive",
-            style: props.stickyHeader ? 'overflow-y:auto; height:500px;' : ''
+            style: props.stickyHeader ? 'overflow-x:unset; overflow-y:scroll; max-height:500px;' : ''
           }, [props.opts.pagination.infinite ? h("observer", {
             on: {
               "intersect": function intersect() {
                 return props.setPage(props.page - 1);
               }
-            }
+            },
+            ref: "prevObserver"
           }) : '', h("vt-table", {
             ref: "vt_table"
           }), props.opts.pagination.infinite ? h("observer", {
@@ -147,8 +148,9 @@ var _default2 = {
             },
             attrs: {
               next: true
-            }
-          }) : '']), props.slots.afterTable, h("vt-pagination"), props.opts.pagination.infinite || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
+            },
+            ref: "nextObserver"
+          }) : '']), props.slots.afterTable, props.opts.pagination.infinite ? '' : h("vt-pagination"), props.opts.pagination.infinite || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
         }
       }
     });
