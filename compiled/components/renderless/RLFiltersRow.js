@@ -16,7 +16,8 @@ var _default = {
       slots: this.slots(),
       columnClass: this.columnClass,
       hasChildRow: this.hasChildRow(),
-      override: this.componentsOverride.filtersRow
+      override: this.componentsOverride.filtersRow,
+      theme: this.theme
     });
   }
 };

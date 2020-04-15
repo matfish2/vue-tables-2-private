@@ -14,6 +14,8 @@ var _resizeableColumns = _interopRequireDefault(require("./helpers/resizeable-co
 
 var _VtClientTable = _interopRequireDefault(require("./components/VtClientTable"));
 
+var _themes = _interopRequireDefault(require("./themes/themes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -21,12 +23,6 @@ var _data = require("./mixins/data");
 var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
-
-var themes = {
-  bootstrap3: require('./themes/bootstrap3')(),
-  bootstrap4: require('./themes/bootstrap4')(),
-  bulma: require('./themes/bulma')()
-};
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
@@ -107,7 +103,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
     data: function data() {
       return _merge["default"].recursive(_data(), {
         source: "client",
-        theme: typeof theme === 'string' ? themes[theme] : theme(),
+        theme: typeof theme === 'string' ? _themes["default"][theme] : theme(),
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
         currentlySorting: {},

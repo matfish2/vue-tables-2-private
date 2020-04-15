@@ -18,7 +18,7 @@ var _default = {
 
     return this.$scopedSlots["default"]({
       thAttrs: {
-        "class": this.sortableClass(this.column),
+        "class": this.sortableClass(this.column) + ' ' + this.theme.th,
         tabIndex: this.tabIndex(),
         style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : ''
       },

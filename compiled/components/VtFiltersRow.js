@@ -48,7 +48,7 @@ var _default2 = {
             }
 
             filters.push(h("th", {
-              "class": props.columnClass(column)
+              "class": "".concat(props.columnClass(column), " ").concat(props.theme.th)
             }, [!!filter ? h("div", _defineProperty({
               "class": "VueTables__column-filter"
             }, "class", 'VueTables__' + column + '-filter-wrapper'), [filter]) : '']));
@@ -59,7 +59,7 @@ var _default2 = {
               props: props
             }
           }) : h("tr", {
-            "class": "VueTables__filters-row"
+            "class": "VueTables__filters-row ".concat(props.theme.tr)
           }, [filters]);
         }
       }

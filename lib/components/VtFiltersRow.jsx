@@ -32,7 +32,7 @@ export default {
                             filter = filter ? <div>{filter}{props.slots[`filter__${column}`]}</div> : props.slots[`filter__${column}`];
                         }
 
-                        filters.push(<th class={props.columnClass(column)}>
+                        filters.push(<th class={`${props.columnClass(column)} ${props.theme.th}`}>
                             {!!filter ? <div class="VueTables__column-filter" class={'VueTables__' + column + '-filter-wrapper'}>
                                 {filter}
                             </div> : ''}
@@ -45,7 +45,7 @@ export default {
 
                     return props.override ? h(props.override, {
                             attrs: { props }
-                        }) : <tr class="VueTables__filters-row">
+                        }) : <tr class={`VueTables__filters-row ${props.theme.tr}`}>
                         {filters}
                     </tr>
 

@@ -21,9 +21,10 @@ export default {
                                      href="#"
                                      onClick={() => props.toggleColumn(column)}>
                             <input type="checkbox" value={column}
+                                   class={props.theme.dropdown.checkbox}
                                    disabled={props.onlyColumn(column)}
                                    checked={props.columns.includes(column)}/>
-                            {props.getHeading(column)}
+                            <span class={props.theme.dropdown.text}>{props.getHeading(column)}</span>
                         </a>;
 
                         return props.theme.framework === 'bulma' ? content : <li>
