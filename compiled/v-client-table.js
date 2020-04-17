@@ -18,8 +18,6 @@ var _themes = _interopRequireDefault(require("./themes/themes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 var _data = require("./mixins/data");
 
 var _created = require("./mixins/created");
@@ -76,13 +74,14 @@ exports.install = function (Vue, globalOptions, useVuex) {
       } // this._setColumnsDropdownCloseListener();
 
 
-      if (this.opts.groupBy && _typeof(this.opts.groupBy) === 'object') {
-        console.log(this.opts.groupBy);
+      if (this.groupBy && this.groupBy.length > 1) {
         this.options.multiSorting = {};
-        this.options.multiSorting[this.opts.groupBy[0]] = [{
-          column: this.opts.groupBy[1],
+        this.options.multiSorting[this.groupBy[0]] = [{
+          column: this.groupBy[1],
           matchDir: true
-        }];
+        }]; // force compilation of this.opts
+
+        Vue.set(this.options, this.options);
       }
 
       if (!this.vuex) {
@@ -90,8 +89,8 @@ exports.install = function (Vue, globalOptions, useVuex) {
         if (this.options.initialPage) this.setPage(this.options.initialPage);
       }
 
-      if (this.opts.groupBy && !this.opts.orderBy) {
-        this.orderBy.column = this.opts.groupBy;
+      if (this.groupBy && !this.orderBy) {
+        this.orderBy.column = this.groupBy[0];
       }
 
       this.loadState();
@@ -126,6 +125,9 @@ exports.install = function (Vue, globalOptions, useVuex) {
       customQ: require("./computed/custom-q"),
       totalPages: require("./computed/total-pages"),
       filteredData: require("./computed/filtered-data"),
+      groupBy: function groupBy() {
+        return typeof this.opts.groupBy === 'string' ? [this.opts.groupBy] : this.opts.groupBy;
+      },
       hasMultiSort: function hasMultiSort() {
         return this.opts.clientMultiSorting;
       }

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLTableBody',
-  inject: ['opts', 'theme', 'source', 'filteredData', 'tableData', 'colspan', 'openChildRows', 'collapsedGroups', 'scopedSlots', 'slots', 'componentsOverride', 'page', 'limit'],
+  inject: ['opts', 'theme', 'source', 'filteredData', 'tableData', 'colspan', 'openChildRows', 'collapsedGroups', 'scopedSlots', 'slots', 'componentsOverride', 'page', 'limit', 'groupBy'],
   render: function render() {
     return this.$scopedSlots["default"]({
       source: this.source,
@@ -18,7 +18,7 @@ var _default = {
       hasChildRow: this.opts().childRow || this.scopedSlots()['child_row'],
       openChildRows: this.openChildRows(),
       uniqueRowId: this.opts().uniqueKey,
-      groupBy: this.opts().groupBy,
+      groupBy: this.groupBy,
       slots: this.slots(),
       override: this.componentsOverride.tableBody,
       initialIndex: (this.page() - 1) * this.limit()

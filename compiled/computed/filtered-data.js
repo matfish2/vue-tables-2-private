@@ -10,9 +10,9 @@ module.exports = function () {
   if (column) {
     // dummy var to force compilation
     if (this.time) this.time = this.time;
-    data = this.opts.sortingAlgorithm.call(this, data, column ? column : this.opts.groupBy);
-  } else if (this.opts.groupBy) {
-    data = this.opts.sortingAlgorithm.call(this, data, this.opts.groupBy[0]);
+    data = this.opts.sortingAlgorithm.call(this, data, column);
+  } else if (this.groupBy) {
+    data = this.opts.sortingAlgorithm.call(this, data, this.groupBy[0]);
   }
 
   if (this.vuex) {
@@ -23,5 +23,46 @@ module.exports = function () {
 
   this.allFilteredData = JSON.parse(JSON.stringify(data));
   var offset = (this.page - 1) * this.limit;
-  return data.splice(offset, this.limit);
+  var res = data.splice(offset, this.limit);
+
+  if (this.groupBy) {
+    return toArray(groupData(res, JSON.parse(JSON.stringify(this.groupBy))), this.groupBy);
+  }
+
+  return res;
 };
+
+function groupData(data, keys) {
+  var i = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var key;
+  var result = data.reduce(function (r, a) {
+    key = a[keys[i]];
+    r[key] = r[key] || [];
+    r[key].push(a);
+    return r;
+  }, Object.create(null));
+  i++;
+
+  if (typeof keys[i] === 'string') {
+    for (var k in result) {
+      result[k] = groupData(result[k], keys, i);
+    }
+  }
+
+  return result;
+}
+
+function toArray(data, groupBy) {
+  var i = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+  var res = [];
+
+  for (var item in data) {
+    res.push({
+      value: item,
+      type: groupBy[i],
+      data: typeof groupBy[i + 1] === 'undefined' ? data[item] : toArray(data[item], groupBy, i + 1)
+    });
+  }
+
+  return res;
+}

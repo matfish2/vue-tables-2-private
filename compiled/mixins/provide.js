@@ -9,6 +9,7 @@ module.exports = function () {
     },
     rowWasClicked: this.rowWasClicked,
     render: this.render,
+    groupBy: this.groupBy,
     opts: function opts() {
       return _this.opts;
     },

@@ -12,29 +12,50 @@ export default {
             {
                 default: function (props) {
                     var rows = [];
-                    var currentGroup;
 
-                    props.data.forEach((row, index) => {
-                        if (props.groupBy && props.source === 'client' && row[props.groupBy[0]] !== currentGroup) {
-                            rows.push(<vt-group-row row={row}/>)
-                            currentGroup = row[props.groupBy[0]]
+                    if (props.groupBy) {
+
+                        function addRows(data, rows = [], level = 1) {
+                            data.forEach(group => {
+                                rows.push(<vt-group-row level={level} type={group.type} value={group.value}/>)
+                                if (level === props.groupBy.length) {
+                                    if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                                        group.data.forEach((row, index) => {
+                                            rows.push(<vt-table-row row={row} index={props.initialIndex + index + 1}/>)
+                                            if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                                                rows.push(<vt-child-row row={row}
+                                                                        index={props.initialIndex + index + 1}/>)
+                                            }
+                                        })
+                                    }
+                                } else {
+                                    if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                                        addRows(group.data, rows, level + 1)
+                                    }
+                                }
+                            })
+
+                            return rows
                         }
 
-                        if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {
-                            return;
-                        }
+                        rows = addRows(props.data);
 
-                        rows.push(<vt-table-row row={row} index={props.initialIndex + index + 1}/>)
-                        if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
-                            rows.push(<vt-child-row row={row} index={props.initialIndex + index + 1}/>)
-                        }
-                    });
+
+                    } else {
+                        props.data.forEach((row, index) => {
+                            rows.push(<vt-table-row row={row} index={props.initialIndex + index + 1}/>)
+                            if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                                rows.push(<vt-child-row row={row} index={props.initialIndex + index + 1}/>)
+                            }
+                        })
+                    }
+
 
                     return props.override ? h(props.override, {
                         attrs: {props}
                     }) : <tbody>
                     {props.slots.prependBody}
-                    {props.data.length===0 ? <vt-no-results-row/> : ''}
+                    {props.data.length === 0 ? <vt-no-results-row/> : ''}
                     {rows}
                     {props.slots.appendBody}
                     </tbody>

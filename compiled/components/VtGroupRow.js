@@ -14,12 +14,14 @@ var _default2 = {
   components: {
     RLGroupRow: _RLGroupRow["default"]
   },
-  props: ['row'],
+  props: ['level', 'value', 'type'],
   render: function render() {
     var h = arguments[0];
     return h("r-l-group-row", {
       attrs: {
-        row: this.row
+        level: this.level,
+        value: this.value,
+        type: this.type
       },
       scopedSlots: {
         "default": function _default(props) {
@@ -28,7 +30,7 @@ var _default2 = {
               props: props
             }
           }) : h("tr", {
-            "class": props.theme.groupTr,
+            "class": "VueTables__group-row VueTables__group-row--".concat(props.level),
             on: {
               "click": props.toggleGroupDirection
             }
