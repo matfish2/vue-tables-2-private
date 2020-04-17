@@ -18,6 +18,8 @@ var _themes = _interopRequireDefault(require("./themes/themes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var _data = require("./mixins/data");
 
 var _created = require("./mixins/created");
@@ -73,6 +75,15 @@ exports.install = function (Vue, globalOptions, useVuex) {
         (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst);
       } // this._setColumnsDropdownCloseListener();
 
+
+      if (this.opts.groupBy && _typeof(this.opts.groupBy) === 'object') {
+        console.log(this.opts.groupBy);
+        this.options.multiSorting = {};
+        this.options.multiSorting[this.opts.groupBy[0]] = [{
+          column: this.opts.groupBy[1],
+          matchDir: true
+        }];
+      }
 
       if (!this.vuex) {
         this.registerClientFilters();

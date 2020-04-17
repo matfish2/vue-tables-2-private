@@ -12,7 +12,7 @@ module.exports = function () {
     if (this.time) this.time = this.time;
     data = this.opts.sortingAlgorithm.call(this, data, column ? column : this.opts.groupBy);
   } else if (this.opts.groupBy) {
-    data = this.opts.sortingAlgorithm.call(this, data, this.opts.groupBy);
+    data = this.opts.sortingAlgorithm.call(this, data, this.opts.groupBy[0]);
   }
 
   if (this.vuex) {

@@ -15,9 +15,9 @@ export default {
                     var currentGroup;
 
                     props.data.forEach((row, index) => {
-                        if (props.groupBy && props.source === 'client' && row[props.groupBy] !== currentGroup) {
+                        if (props.groupBy && props.source === 'client' && row[props.groupBy[0]] !== currentGroup) {
                             rows.push(<vt-group-row row={row}/>)
-                            currentGroup = row[props.groupBy]
+                            currentGroup = row[props.groupBy[0]]
                         }
 
                         if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {

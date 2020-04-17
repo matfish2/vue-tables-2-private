@@ -34,13 +34,13 @@ var _default2 = {
           var rows = [];
           var currentGroup;
           props.data.forEach(function (row, index) {
-            if (props.groupBy && props.source === 'client' && row[props.groupBy] !== currentGroup) {
+            if (props.groupBy && props.source === 'client' && row[props.groupBy[0]] !== currentGroup) {
               rows.push(h("vt-group-row", {
                 attrs: {
                   row: row
                 }
               }));
-              currentGroup = row[props.groupBy];
+              currentGroup = row[props.groupBy[0]];
             }
 
             if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {
