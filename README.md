@@ -12,3 +12,13 @@ or [here](https://jsfiddle.net/matfish2/js4bmdbL/) for a rudimentary server comp
 
 Please click [here](https://matanya.gitbook.io/vue-tables-2/) for GitBook documentation
 
+# Premium Features
+
+In addition to the permissive MIT License premium features will be added for subscribers.
+The list below will update with any new feature developed. 
+Subscribers are welcome to send new feature requests and I will consider adding them.
+
+* Tailwind theme
+* stickyHeaders option
+
+Coming soon: Data-level grouping + grouping by multiple columns.
