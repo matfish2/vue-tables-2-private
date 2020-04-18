@@ -104,6 +104,12 @@ module.exports = function () {
     formatDate: this.formatDate,
     tabIndex: function tabIndex() {
       return _this.tabIndex;
+    },
+    loading: function loading() {
+      return _this.loading;
+    },
+    loadingError: function loadingError() {
+      return _this.loadingError;
     }
   };
 };

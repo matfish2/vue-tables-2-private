@@ -29,6 +29,7 @@ module.exports = function (promiseOnly) {
   return promise.then(function (response) {
     if (typeof response !== 'undefined') {
       this.loading = false;
+      this.loadingError = false;
       return this.setData(response);
     } else {
       return false;

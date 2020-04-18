@@ -7,10 +7,10 @@ export default {
         return <r-l-no-results-row scopedSlots={
             {
                 default: function (props) {
-                    return props.override ? h(props.override, {attrs:{props}}) : <tr class="VueTables__no-results">
+                    return props.override ? h(props.override, {attrs:{props}}) : <tr class={props.class}>
                         <td class="text-center" tabindex={props.tabIndex}
                             colspan={props.colspan}>
-                            {props.display(props.loading ? 'loading' : 'noResults')}
+                            {props.message}
                         </td>
                     </tr>
                 }

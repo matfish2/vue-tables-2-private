@@ -46,7 +46,8 @@ module.exports = function () {
       filterBy: "Filter by {column}",
       loading: "Loading...",
       defaultOption: "Select {column}",
-      columns: "Columns"
+      columns: "Columns",
+      loadingError: "Error loading results"
     },
     sortIcon: {
       is: "glyphicon-sort",
