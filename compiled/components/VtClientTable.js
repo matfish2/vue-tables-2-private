@@ -72,6 +72,9 @@ var _default2 = {
     getOpenChildRows: function getOpenChildRows() {
       var rows = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       return this.$refs.table.getOpenChildRows(rows);
+    },
+    resetQuery: function resetQuery() {
+      this.$refs.table.resetQuery();
     }
   },
   computed: {
@@ -120,7 +123,7 @@ var _default2 = {
             "class": props.theme.column
           }, [!props.opts.filterByColumn && props.opts.filterable ? h("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.left, " VueTables__search")
-          }, [props.slots.beforeFilter, h("vt-generic-filter"), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, props.perPageValues.length > 1 && !props.opts.pagination.infinite ? h("div", {
+          }, [props.slots.beforeFilter, h("vt-generic-filter"), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, props.perPageValues.length > 1 && !props.opts.pagination.virtual ? h("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.right, " VueTables__limit")
           }, [props.slots.beforeLimit, h("vt-per-page-selector"), props.slots.afterLimit]) : '', props.opts.pagination.dropdown && props.totalPages > 1 ? h("div", {
             "class": "VueTables__pagination-wrapper"
@@ -129,28 +132,17 @@ var _default2 = {
           }, [h("vt-dropdown-pagination")])]) : '', props.opts.columnsDropdown ? h("div", {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
-            "class": "table-responsive",
-            style: props.stickyHeader ? 'overflow-x:unset; overflow-y:scroll; max-height:500px;' : ''
-          }, [props.opts.pagination.infinite ? h("observer", {
-            on: {
-              "intersect": function intersect() {
-                return props.setPage(props.page - 1);
-              }
-            },
-            ref: "prevObserver"
-          }) : '', h("vt-table", {
+            "class": "table-responsive VueTables__wrapper",
+            style: props.virtualPagination ? 'overflow-x:unset; overflow-y:scroll;' : ''
+          }, [h("vt-table", {
             ref: "vt_table"
-          }), props.opts.pagination.infinite ? h("observer", {
+          }), props.opts.pagination.virtual ? h("observer", {
             on: {
               "intersect": function intersect() {
                 return props.setPage(props.page + 1);
               }
-            },
-            attrs: {
-              next: true
-            },
-            ref: "nextObserver"
-          }) : '']), props.slots.afterTable, props.opts.pagination.infinite ? '' : h("vt-pagination"), props.opts.pagination.infinite || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
+            }
+          }) : '']), props.slots.afterTable, props.opts.pagination.virtual ? '' : h("vt-pagination"), props.opts.pagination.virtual || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
         }
       }
     });

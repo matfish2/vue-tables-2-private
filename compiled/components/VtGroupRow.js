@@ -14,12 +14,13 @@ var _default2 = {
   components: {
     RLGroupRow: _RLGroupRow["default"]
   },
-  props: ['row'],
+  props: ['level', 'value'],
   render: function render() {
     var h = arguments[0];
     return h("r-l-group-row", {
       attrs: {
-        row: this.row
+        level: this.level,
+        value: this.value
       },
       scopedSlots: {
         "default": function _default(props) {
@@ -28,7 +29,7 @@ var _default2 = {
               props: props
             }
           }) : h("tr", {
-            "class": props.theme.groupTr,
+            "class": "VueTables__group-row VueTables__group-row--".concat(props.level),
             on: {
               "click": props.toggleGroupDirection
             }
@@ -42,7 +43,7 @@ var _default2 = {
               "click": props.toggleGroup.bind(this, props.groupValue)
             }
           }, [props.groupValue, h("span", {
-            "class": props.groupToggleIcon(props.groupValue)
+            "class": "VueTables__group-toggler ".concat(props.groupToggleIcon(props.groupValue))
           })]) : '', !props.canToggleGroup ? h("span", [props.groupValue]) : '', props.slot])]);
         }
       }

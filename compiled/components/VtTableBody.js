@@ -32,37 +32,70 @@ var _default2 = {
       scopedSlots: {
         "default": function _default(props) {
           var rows = [];
-          var currentGroup;
-          props.data.forEach(function (row, index) {
-            if (props.groupBy && props.source === 'client' && row[props.groupBy] !== currentGroup) {
-              rows.push(h("vt-group-row", {
-                attrs: {
-                  row: row
+
+          if (props.groupBy) {
+            var addRows = function addRows(data) {
+              var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+              var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+              data.forEach(function (group) {
+                rows.push(h("vt-group-row", {
+                  attrs: {
+                    level: level,
+                    type: group.type,
+                    value: group.value
+                  }
+                }));
+
+                if (level === props.groupBy.length) {
+                  if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                    group.data.forEach(function (row, index) {
+                      rows.push(h("vt-table-row", {
+                        attrs: {
+                          row: row,
+                          index: props.initialIndex + index + 1
+                        }
+                      }));
+
+                      if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                        rows.push(h("vt-child-row", {
+                          attrs: {
+                            row: row,
+                            index: props.initialIndex + index + 1
+                          }
+                        }));
+                      }
+                    });
+                  }
+                } else {
+                  if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                    addRows(group.data, rows, level + 1);
+                  }
                 }
-              }));
-              currentGroup = row[props.groupBy];
-            }
+              });
+              return rows;
+            };
 
-            if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {
-              return;
-            }
-
-            rows.push(h("vt-table-row", {
-              attrs: {
-                row: row,
-                index: props.initialIndex + index + 1
-              }
-            }));
-
-            if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
-              rows.push(h("vt-child-row", {
+            rows = addRows(props.data);
+          } else {
+            props.data.forEach(function (row, index) {
+              rows.push(h("vt-table-row", {
                 attrs: {
                   row: row,
                   index: props.initialIndex + index + 1
                 }
               }));
-            }
-          });
+
+              if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                rows.push(h("vt-child-row", {
+                  attrs: {
+                    row: row,
+                    index: props.initialIndex + index + 1
+                  }
+                }));
+              }
+            });
+          }
+
           return props.override ? h(props.override, {
             attrs: {
               props: props

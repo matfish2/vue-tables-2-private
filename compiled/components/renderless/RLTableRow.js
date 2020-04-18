@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTableRow',
   props: ['row', 'index'],
-  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride'],
+  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'theme', 'componentsOverride'],
   provide: function provide() {
     var _this = this;
 
@@ -39,13 +39,21 @@ var _default = {
   },
   methods: {
     getClass: function getClass() {
-      var cls = '';
+      var cls = [];
 
       if (this.opts().rowClassCallback) {
-        cls += this.opts().rowClassCallback(this.row);
+        cls.push(this.opts().rowClassCallback(this.row));
       }
 
-      return cls;
+      cls.push(this.theme.tr);
+
+      if (this.index % 2 === 0) {
+        cls.push(this.theme.trEven);
+      } else {
+        cls.push(this.theme.trOdd);
+      }
+
+      return cls.join(' ');
     }
   }
 };

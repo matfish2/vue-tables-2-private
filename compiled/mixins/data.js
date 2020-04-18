@@ -7,7 +7,8 @@ module.exports = function () {
     openChildRows: [],
     windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
     userMultiSorting: {},
-    editing: []
+    editing: [],
+    loadingError: false
   };
 };
 

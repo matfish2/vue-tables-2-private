@@ -10,7 +10,7 @@ module.exports = function () {
     slots: this.$parent.$slots,
     page: this.page,
     setPage: this.setPage,
-    stickyHeader: this.opts.pagination.infinite,
+    virtualPagination: this.opts.pagination.virtual,
     override: this.componentsOverride.dataTable
   });
 };

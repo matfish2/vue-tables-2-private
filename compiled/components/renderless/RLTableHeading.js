@@ -20,7 +20,8 @@ var _default = {
       thAttrs: {
         "class": this.sortableClass(this.column),
         tabIndex: this.tabIndex(),
-        style: this.opts().stickyHeader || this.opts().pagination.infinite ? 'position:sticky; top:0; background:white;' : ''
+        style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : '',
+        title: this.getHeadingTooltip(this.column)
       },
       thEvents: {
         keypress: function keypress(e) {

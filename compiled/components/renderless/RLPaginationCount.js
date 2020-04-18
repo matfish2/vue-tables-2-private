@@ -5,10 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 var _default = {
-  inject: ['page', 'limit', 'allFilteredData'],
+  inject: ['page', 'limit', 'opts', 'allFilteredData'],
   render: function render() {
     return this.$scopedSlots["default"]({
-      from: (this.page() - 1) * this.limit() + 1,
+      from: this.opts().pagination.virtual ? 1 : (this.page() - 1) * this.limit() + 1,
       to: this.page() * this.limit() > this.allFilteredData().length ? this.allFilteredData().length : this.page() * this.limit(),
       total: this.allFilteredData().length
     });

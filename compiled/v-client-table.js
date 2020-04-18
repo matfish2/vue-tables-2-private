@@ -14,6 +14,8 @@ var _resizeableColumns = _interopRequireDefault(require("./helpers/resizeable-co
 
 var _VtClientTable = _interopRequireDefault(require("./components/VtClientTable"));
 
+var _themes = _interopRequireDefault(require("./themes/themes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -21,12 +23,6 @@ var _data = require("./mixins/data");
 var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
-
-var themes = {
-  bootstrap3: require('./themes/bootstrap3')(),
-  bootstrap4: require('./themes/bootstrap4')(),
-  bulma: require('./themes/bulma')()
-};
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
@@ -78,13 +74,23 @@ exports.install = function (Vue, globalOptions, useVuex) {
       } // this._setColumnsDropdownCloseListener();
 
 
+      if (this.groupBy && this.groupBy.length > 1) {
+        this.options.multiSorting = {};
+        this.options.multiSorting[this.groupBy[0]] = [{
+          column: this.groupBy[1],
+          matchDir: true
+        }]; // force compilation of this.opts
+
+        Vue.set(this.options, this.options);
+      }
+
       if (!this.vuex) {
         this.registerClientFilters();
         if (this.options.initialPage) this.setPage(this.options.initialPage);
       }
 
-      if (this.opts.groupBy && !this.opts.orderBy) {
-        this.orderBy.column = this.opts.groupBy;
+      if (this.groupBy && !this.orderBy) {
+        this.orderBy.column = this.groupBy[0];
       }
 
       this.loadState();
@@ -107,7 +113,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
     data: function data() {
       return _merge["default"].recursive(_data(), {
         source: "client",
-        theme: typeof theme === 'string' ? themes[theme] : theme(),
+        theme: typeof theme === 'string' ? _themes["default"][theme] : theme(),
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
         currentlySorting: {},
@@ -119,6 +125,9 @@ exports.install = function (Vue, globalOptions, useVuex) {
       customQ: require("./computed/custom-q"),
       totalPages: require("./computed/total-pages"),
       filteredData: require("./computed/filtered-data"),
+      groupBy: function groupBy() {
+        return typeof this.opts.groupBy === 'string' ? [this.opts.groupBy] : this.opts.groupBy;
+      },
       hasMultiSort: function hasMultiSort() {
         return this.opts.clientMultiSorting;
       }

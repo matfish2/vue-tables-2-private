@@ -55,6 +55,9 @@ export default {
         },
         getOpenChildRows(rows = null) {
             return this.$refs.table.getOpenChildRows(rows);
+        },
+        resetQuery() {
+            this.$refs.table.resetQuery()
         }
     },
     computed: {
@@ -92,7 +95,7 @@ export default {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {props.perPageValues.length > 1 && !props.opts.pagination.infinite ? <div class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
+                                {props.perPageValues.length > 1 && !props.opts.pagination.virtual ? <div class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
                                     {props.slots.beforeLimit}
                                     <vt-per-page-selector/>
                                     {props.slots.afterLimit}
@@ -112,15 +115,14 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive" style={props.stickyHeader ? 'overflow-x:unset; overflow-y:scroll; max-height:500px;':''}>
-                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page-1)} ref="prevObserver"/> : ''}
+                        <div class="table-responsive VueTables__wrapper" style={props.virtualPagination ? 'overflow-x:unset; overflow-y:scroll;':''}>
                             <vt-table ref="vt_table"/>
-                            {props.opts.pagination.infinite ? <observer onIntersect={()=>props.setPage(props.page+1)} next ref="nextObserver"/> : ''}
+                            {props.opts.pagination.virtual ? <observer onIntersect={()=>props.setPage(props.page+1)}/> : ''}
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.infinite ? '' : <vt-pagination/> }
-                        {props.opts.pagination.infinite || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
+                        {props.opts.pagination.virtual ? '' : <vt-pagination/> }
+                        {props.opts.pagination.virtual || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
                     </div>
                 }
             }
