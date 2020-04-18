@@ -77,6 +77,9 @@ var _default2 = {
     },
     allFilteredData: function allFilteredData() {
       return this.$refs.table.allFilteredData;
+    },
+    selectedRows: function selectedRows() {
+      return this.$refs.table.selectedRows;
     }
   },
   provide: function provide() {

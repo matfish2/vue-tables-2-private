@@ -24,6 +24,18 @@ var _default2 = {
         "default": function _default(props) {
           var headings = [];
 
+          if (props.selectable) {
+            var checkbox = props.selectable === 'single' ? '' : h("input", {
+              attrs: {
+                type: "checkbox"
+              },
+              on: {
+                "click": props.selectAll
+              }
+            });
+            headings.push(h("th", [checkbox]));
+          }
+
           if (props.childRowTogglerFirst) {
             headings.push(h("th"));
           }

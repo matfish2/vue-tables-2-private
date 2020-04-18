@@ -61,6 +61,9 @@ var _default2 = {
     },
     data: function data() {
       return this.$refs.table.tableData;
+    },
+    selectedRows: function selectedRows() {
+      return this.$refs.table.selectedRows;
     }
   },
   methods: {

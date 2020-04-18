@@ -104,6 +104,9 @@ module.exports = function () {
     formatDate: this.formatDate,
     tabIndex: function tabIndex() {
       return _this.tabIndex;
-    }
+    },
+    selectRow: this.selectRow,
+    selectAll: this.selectAll,
+    isRowSelected: this.isRowSelected
   };
 };

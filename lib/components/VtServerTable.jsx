@@ -47,6 +47,9 @@ export default {
         },
         data() {
             return this.$refs.table.tableData
+        },
+        selectedRows() {
+            return this.$refs.table.selectedRows
         }
     },
     methods: {

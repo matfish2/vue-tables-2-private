@@ -11,6 +11,13 @@ export default {
 
                     var headings = [];
 
+                    if (props.selectable) {
+                        var checkbox = props.selectable === 'single' ? '' : <input type="checkbox" onClick={props.selectAll}/>
+                        headings.push(<th>
+                            {checkbox}
+                        </th>)
+                    }
+
                     if (props.childRowTogglerFirst) {
                         headings.push(<th/>);
                     }

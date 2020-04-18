@@ -23,7 +23,10 @@ var _default = {
       columns: this.allColumns(),
       hasChildRow: this.hasChildRow(),
       opts: this.opts(),
+      selectable: this.opts().selectable.type,
+      selectableCallback: this.opts().selectable.callback,
       rowId: this.row[this.opts().uniqueKey],
+      row: this.row,
       rowAttrs: {
         "class": this.getClass(),
         attrs: this.opts().rowAttributesCallback ? this.opts().rowAttributesCallback(this.row) : {}

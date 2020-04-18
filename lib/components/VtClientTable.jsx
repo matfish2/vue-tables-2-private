@@ -38,19 +38,19 @@ export default {
     },
     methods: {
         setFilter(val) {
-            this.$refs.table.setFilter(val);
+            this.$refs.table.setFilter(val)
         },
         setPage(val) {
-            this.$refs.table.setPage(val);
+            this.$refs.table.setPage(val)
         },
         setOrder(column, asc) {
-            this.$refs.table.setOrder(column, asc);
+            this.$refs.table.setOrder(column, asc)
         },
         toggleChildRow(rowId) {
-            this.$refs.table.toggleChildRow(rowId);
+            this.$refs.table.toggleChildRow(rowId)
         },
         getOpenChildRows(rows = null) {
-            return this.$refs.table.getOpenChildRows(rows);
+            return this.$refs.table.getOpenChildRows(rows)
         },
         resetQuery() {
             this.$refs.table.resetQuery()
@@ -62,6 +62,9 @@ export default {
         },
         allFilteredData() {
             return this.$refs.table.allFilteredData
+        },
+        selectedRows() {
+            return this.$refs.table.selectedRows
         }
     },
     provide() {

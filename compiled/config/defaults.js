@@ -70,6 +70,7 @@ module.exports = function () {
     headings: {},
     headingsTooltips: {},
     stickyHeader: false,
+    selectable: {},
     pagination: {
       dropdown: false,
       chunk: 10,

@@ -62,5 +62,8 @@ module.exports = {
   _revertValue: require('../methods/revert-value'),
   _updateValue: require('../methods/update-value'),
   _filterType: require('../methods/filter-type'),
-  _search: require('../methods/search')
+  _search: require('../methods/search'),
+  selectRow: require('../methods/select-row'),
+  isRowSelected: require('../methods/is-row-selected'),
+  selectAll: require('../methods/select-all')
 };

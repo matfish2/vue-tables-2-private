@@ -1,5 +1,8 @@
 "use strict";
 
 module.exports = function () {
-  return this.hasChildRow ? this.allColumns.length + 1 : this.allColumns.length;
+  var span = this.allColumns.length;
+  if (this.hasChildRow) span++;
+  if (this.opts.selectable.type) span++;
+  return span;
 };
