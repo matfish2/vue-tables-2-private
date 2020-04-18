@@ -20,5 +20,4 @@ Subscribers are welcome to send new feature requests and I will consider adding 
 
 * Tailwind theme
 * stickyHeaders option
-
-Coming soon: Data-level grouping + grouping by multiple columns.
+* Data-level multiple-level grouping
