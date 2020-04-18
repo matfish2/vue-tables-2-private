@@ -44,7 +44,7 @@ var _default2 = {
               "click": props.toggleGroup.bind(this, props.groupValue)
             }
           }, [props.groupValue, h("span", {
-            "class": props.groupToggleIcon(props.groupValue)
+            "class": "VueTables__group-toggler ".concat(props.groupToggleIcon(props.groupValue))
           })]) : '', !props.canToggleGroup ? h("span", [props.groupValue]) : '', props.slot])]);
         }
       }

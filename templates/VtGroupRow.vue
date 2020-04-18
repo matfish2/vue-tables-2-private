@@ -1,11 +1,12 @@
 <template>
-    <tr :class="props.theme.groupTr" @click="props.toggleGroupDirection">
+    <tr :class="`VueTables__group-row VueTables__group-row--${props.level}`"
+        @click="props.toggleGroupDirection">
         <td :colspan="props.colspan">
             <!-- Togglable group (toggleGroups: true)-->
             <button v-if="props.canToggleGroup"
                     :class="props.theme.button"
                     @click="props.toggleGroup.bind(this, props.groupValue)">{{props.groupValue}}
-                <span :class="props.groupToggleIcon(props.groupValue)"></span>
+                <span :class="`VueTables__group-toggler ${props.groupToggleIcon(props.groupValue)}`"></span>
             </button>
             <!--  Non-togglable group (toggleGroups: false) -->
             <span v-else>{{props.groupValue}}</span>

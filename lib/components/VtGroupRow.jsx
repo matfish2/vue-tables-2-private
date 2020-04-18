@@ -3,9 +3,9 @@ import RLGroupRow from "./renderless/RLGroupRow";
 export default {
     name: 'VtGroupRow',
     components: {RLGroupRow},
-    props: ['level', 'value', 'type'],
+    props: ['level', 'value'],
     render() {
-        return <r-l-group-row level={this.level} value={this.value} type={this.type} scopedSlots={
+        return <r-l-group-row level={this.level} value={this.value} scopedSlots={
             {
                 default: function (props) {
                     return props.override ? h(props.override, {attrs: {props}}) :
@@ -15,7 +15,7 @@ export default {
                                 {props.canToggleGroup ? <button
                                     class={props.theme.button}
                                     on-click={props.toggleGroup.bind(this, props.groupValue)}>{props.groupValue}<span
-                                    class={props.groupToggleIcon(props.groupValue)}></span></button> : ''}
+                                    class={`VueTables__group-toggler ${props.groupToggleIcon(props.groupValue)}`}></span></button> : ''}
                                 {!props.canToggleGroup ? <span>{props.groupValue}</span> : ''}
                                 {props.slot}
                             </td>
