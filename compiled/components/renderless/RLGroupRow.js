@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLGroupRow',
-  props: ['value', 'type', 'level'],
+  props: ['value', 'level'],
   inject: ['colspan', 'opts', 'theme', 'toggleGroupDirection', 'toggleGroup', 'groupToggleIcon', 'getGroupSlot', 'groupBy', 'componentsOverride'],
   render: function render() {
     return this.$scopedSlots["default"]({
@@ -16,7 +16,6 @@ var _default = {
       canToggleGroup: this.opts().toggleGroups,
       toggleGroup: this.toggleGroup,
       groupValue: this.value,
-      type: this.type,
       level: this.level,
       groupToggleIcon: this.groupToggleIcon,
       slot: this.getGroupSlot(this.value),

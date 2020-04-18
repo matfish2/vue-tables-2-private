@@ -14,14 +14,13 @@ var _default2 = {
   components: {
     RLGroupRow: _RLGroupRow["default"]
   },
-  props: ['level', 'value', 'type'],
+  props: ['level', 'value'],
   render: function render() {
     var h = arguments[0];
     return h("r-l-group-row", {
       attrs: {
         level: this.level,
-        value: this.value,
-        type: this.type
+        value: this.value
       },
       scopedSlots: {
         "default": function _default(props) {
