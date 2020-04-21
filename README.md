@@ -21,3 +21,6 @@ Subscribers are welcome to send new feature requests and I will consider adding 
 * Tailwind theme
 * stickyHeaders option
 * Data-level multiple-level grouping
+* Server table: Loading error message
+* Virtual Pagination
+* Coming soon: Selectable rows

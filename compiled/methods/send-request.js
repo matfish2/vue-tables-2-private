@@ -9,6 +9,7 @@ module.exports = function (data) {
     params: data
   })["catch"](function (e) {
     this.dispatch('error', e);
+    this.loadingError = true;
   }.bind(this));
   if (typeof this.$http !== 'undefined') return this.$http.get(this.url, {
     params: data
@@ -16,9 +17,11 @@ module.exports = function (data) {
     return data.json();
   }.bind(this), function (e) {
     this.dispatch('error', e);
+    this.loadingError = true;
   }.bind(this));
   if (typeof $ != 'undefined') return $.getJSON(this.url, data).fail(function (e) {
     this.dispatch('error', e);
+    this.loadingError = true;
   }.bind(this));
   throw "vue-tables: No supported ajax library was found. (jQuery, axios or vue-resource). To use a different library you can write your own request function (see the `requestFunction` option)";
 };

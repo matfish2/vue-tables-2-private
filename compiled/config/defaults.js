@@ -46,7 +46,8 @@ module.exports = function () {
       filterBy: "Filter by {column}",
       loading: "Loading...",
       defaultOption: "Select {column}",
-      columns: "Columns"
+      columns: "Columns",
+      loadingError: "Error loading results"
     },
     sortIcon: {
       is: "glyphicon-sort",
@@ -72,7 +73,9 @@ module.exports = function () {
     stickyHeader: false,
     selectable: {},
     pagination: {
+      show: true,
       dropdown: false,
+      virtual: false,
       chunk: 10,
       edge: false,
       align: "center",
@@ -114,7 +117,6 @@ module.exports = function () {
     resizableColumns: true,
     editableColumns: [],
     tabbable: true,
-    infiniteScroll: false,
     componentsOverride: {}
   };
 };

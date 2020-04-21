@@ -147,7 +147,7 @@ var _default2 = {
             style: props.opts.stickyHeader ? 'overflow-x:unset;' : ''
           }, [h("vt-table", {
             ref: "vt_table"
-          })]), props.slots.afterTable, h("vt-pagination")]);
+          })]), props.slots.afterTable, props.opts.pagination.show ? h("vt-pagination") : '']);
         }
       }
     });

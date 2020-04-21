@@ -16,7 +16,7 @@ var _default = {
     return this.$scopedSlots["default"]({
       setPage: this.setPage,
       options: this.opts().pagination,
-      infiniteScroll: this.opts().infiniteScroll,
+      virtualScroll: this.opts().virtualScroll,
       page: this.page(),
       records: this.count(),
       perPage: parseInt(this.limit()),

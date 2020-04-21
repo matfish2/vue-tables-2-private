@@ -22,8 +22,9 @@ module.exports = function () {
   }
 
   this.allFilteredData = JSON.parse(JSON.stringify(data));
-  var offset = (this.page - 1) * this.limit;
-  var res = data.splice(offset, this.limit);
+  var offset = this.opts.pagination.virtual ? 0 : (this.page - 1) * this.limit;
+  var limit = this.opts.pagination.virtual ? this.limit * this.page : this.limit;
+  var res = data.splice(offset, limit);
 
   if (this.groupBy) {
     return toArray(groupData(res, JSON.parse(JSON.stringify(this.groupBy))), this.groupBy);

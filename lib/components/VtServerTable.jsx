@@ -138,7 +138,8 @@ export default {
                         </div>
                         {props.slots.afterTable}
 
-                        <vt-pagination/>
+                        {props.opts.pagination.show ? <vt-pagination/> : ''}
+
                     </div>
                 }
             }

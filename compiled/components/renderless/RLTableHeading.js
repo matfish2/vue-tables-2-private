@@ -18,9 +18,10 @@ var _default = {
 
     return this.$scopedSlots["default"]({
       thAttrs: {
-        "class": this.sortableClass(this.column) + ' ' + this.theme.th,
+        "class": this.sortableClass(this.column),
         tabIndex: this.tabIndex(),
-        style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : ''
+        style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : '',
+        title: this.getHeadingTooltip(this.column)
       },
       thEvents: {
         keypress: function keypress(e) {

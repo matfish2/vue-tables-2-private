@@ -16,6 +16,7 @@ export default {
                         <table
                             class={props.tableAttrs.class}
                             summary={props.tableAttrs.summary}
+                            style={'border-collapse: collapse; width:100%'}
                         >
                             {caption}
                             <vt-table-head/>

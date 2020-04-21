@@ -36,6 +36,9 @@ module.exports = function () {
     sortable: this.sortable,
     sortableChevronClass: this.sortableChevronClass,
     orderByColumn: this.orderByColumn,
+    allFilteredData: function allFilteredData() {
+      return _this.allFilteredData;
+    },
     filteredData: function filteredData() {
       return _this.filteredData;
     },
@@ -107,6 +110,12 @@ module.exports = function () {
     },
     selectRow: this.selectRow,
     selectAll: this.selectAll,
-    isRowSelected: this.isRowSelected
+    isRowSelected: this.isRowSelected,
+    loading: function loading() {
+      return _this.loading;
+    },
+    loadingError: function loadingError() {
+      return _this.loadingError;
+    }
   };
 };
