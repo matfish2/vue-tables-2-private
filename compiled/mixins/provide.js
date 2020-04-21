@@ -108,8 +108,8 @@ module.exports = function () {
     tabIndex: function tabIndex() {
       return _this.tabIndex;
     },
-    selectRow: this.selectRow,
-    selectAll: this.selectAll,
+    toggleRowSelection: this.toggleRowSelection,
+    toggleAllRows: this.toggleAllRows,
     isRowSelected: this.isRowSelected,
     loading: function loading() {
       return _this.loading;

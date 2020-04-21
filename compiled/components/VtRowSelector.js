@@ -14,29 +14,28 @@ var _default2 = {
   components: {
     RLRowSelector: _RLRowSelector["default"]
   },
-  props: ['row'],
   render: function render() {
     var h = arguments[0];
     return h("r-l-row-selector", {
-      attrs: {
-        row: this.row
-      },
       scopedSlots: {
         "default": function _default(props) {
           return props.override ? h(props.override, {
             attrs: {
               props: props
             }
-          }) : h("td", [h("input", {
+          }) : h("td", {
+            "class": "VueTables__select-row VueTables__select-single"
+          }, [h("input", {
             attrs: {
-              type: "checkbox"
+              type: "checkbox",
+              disabled: props.disabled
             },
             domProps: {
-              "checked": props.isRowSelected(props.row)
+              "checked": props.selected
             },
             on: {
-              "change": function change() {
-                return props.selectRow(props.row);
+              "click": function click(e) {
+                return props.toggleRow(e, props.row, props.index);
               }
             }
           })]);

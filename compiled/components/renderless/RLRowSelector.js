@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLRowSelector',
-  inject: ['opts', 'theme', 'colspan', 'slots', 'selectRow', 'isRowSelected', 'componentsOverride'],
-  props: ['row'],
+  inject: ['opts', 'theme', 'colspan', 'slots', 'toggleRowSelection', 'isRowSelected', 'componentsOverride', 'row', 'index'],
   render: function render() {
     return this.$scopedSlots["default"]({
       type: this.opts().selectable.type,
-      callback: this.opts().selectable.callback,
-      row: this.row,
-      selectRow: this.selectRow,
-      isRowSelected: this.isRowSelected,
+      row: this.row(),
+      index: this.index,
+      toggleRow: this.toggleRowSelection,
+      selected: this.isRowSelected(this.row),
+      disabled: this.opts().selectable.only && !this.opts().selectable.only(this.row()),
       override: this.componentsOverride.rowSelector
     });
   }

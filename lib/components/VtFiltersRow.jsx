@@ -13,6 +13,10 @@ export default {
 
                     var filters = [];
 
+                    if (props.opts.selectable.type) {
+                        filters.push(<th class="VueTables__select-row"></th>)
+                    }
+
                     if (props.hasChildRow && props.opts.childRowTogglerFirst && props.opts.showChildRowToggler)
                         filters.push(<th></th>);
 

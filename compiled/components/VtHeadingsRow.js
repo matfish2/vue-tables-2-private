@@ -30,10 +30,12 @@ var _default2 = {
                 type: "checkbox"
               },
               on: {
-                "click": props.selectAll
+                "click": props.toggleAll
               }
             });
-            headings.push(h("th", [checkbox]));
+            headings.push(h("th", {
+              "class": "VueTables__select-row VueTables__select-all"
+            }, [checkbox]));
           }
 
           if (props.childRowTogglerFirst) {

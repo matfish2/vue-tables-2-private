@@ -8,6 +8,7 @@ module.exports = function () {
     windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
     userMultiSorting: {},
     editing: [],
+    selectedIndex: false,
     loadingError: false
   };
 };

@@ -47,11 +47,7 @@ var _default2 = {
             on: {
               "click": props.rowEvents.click
             }
-          }]), [props.selectable ? h("vt-row-selector", {
-            attrs: {
-              row: props.row
-            }
-          }) : '', props.childRowTogglerFirst ? h("vt-child-row-toggler", {
+          }]), [props.selectable ? h("vt-row-selector") : '', props.childRowTogglerFirst ? h("vt-child-row-toggler", {
             attrs: {
               "row-id": props.rowId
             }

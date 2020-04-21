@@ -31,6 +31,13 @@ var _default2 = {
       scopedSlots: {
         "default": function _default(props) {
           var filters = [];
+
+          if (props.opts.selectable.type) {
+            filters.push(h("th", {
+              "class": "VueTables__select-row"
+            }));
+          }
+
           if (props.hasChildRow && props.opts.childRowTogglerFirst && props.opts.showChildRowToggler) filters.push(h("th"));
           props.columns.map(function (column) {
             var filter = '';

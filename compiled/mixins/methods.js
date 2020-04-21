@@ -63,7 +63,7 @@ module.exports = {
   _updateValue: require('../methods/update-value'),
   _filterType: require('../methods/filter-type'),
   _search: require('../methods/search'),
-  selectRow: require('../methods/select-row'),
+  toggleRowSelection: require('../methods/toggle-row-selection'),
   isRowSelected: require('../methods/is-row-selected'),
-  selectAll: require('../methods/select-all')
+  toggleAllRows: require('../methods/toggle-all-rows')
 };

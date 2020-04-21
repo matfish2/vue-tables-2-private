@@ -3,15 +3,17 @@ import RLRowSelector from "./renderless/RLRowSelector";
 export default {
     name: 'VtRowSelector',
     components: {RLRowSelector},
-    props: ['row'],
     render() {
-        return <r-l-row-selector row={this.row} scopedSlots={
+        return <r-l-row-selector scopedSlots={
             {
                 default: function (props) {
                     return props.override ? h(props.override, {attrs: {props}}) :
-                        <td><input type="checkbox"
-                               checked={props.isRowSelected(props.row)}
-                               onChange={() => props.selectRow(props.row)}/></td>
+                        <td class="VueTables__select-row VueTables__select-single">
+                            <input type="checkbox"
+                                   disabled={props.disabled}
+                                   checked={props.selected}
+                                   onClick={(e) => props.toggleRow(e, props.row, props.index)}/>
+                        </td>
                 }
             }
         }

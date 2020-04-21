@@ -23,4 +23,4 @@ Subscribers are welcome to send new feature requests and I will consider adding 
 * Data-level multiple-level grouping
 * Server table: Loading error message
 * Virtual Pagination
-* Coming soon: Selectable rows
+* Selectable rows
