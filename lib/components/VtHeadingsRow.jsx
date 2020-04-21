@@ -12,7 +12,7 @@ export default {
                     var headings = [];
 
                     if (props.selectable) {
-                        var checkbox = props.selectable === 'single' ? '' : <input type="checkbox" onClick={props.toggleAll}/>
+                        var checkbox = props.selectable === 'single' ? '' : <input type="checkbox" onClick={e=>props.toggleAll(e)}/>
                         headings.push(<th class="VueTables__select-row VueTables__select-all">
                             {checkbox}
                         </th>)

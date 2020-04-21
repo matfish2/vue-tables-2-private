@@ -27,7 +27,8 @@ var _default2 = {
             "class": "VueTables__select-row VueTables__select-single"
           }, [h("input", {
             attrs: {
-              type: "checkbox",
+              type: props.type,
+              name: "selected_row[]",
               disabled: props.disabled
             },
             domProps: {

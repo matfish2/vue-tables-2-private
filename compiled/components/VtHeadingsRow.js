@@ -30,7 +30,9 @@ var _default2 = {
                 type: "checkbox"
               },
               on: {
-                "click": props.toggleAll
+                "click": function click(e) {
+                  return props.toggleAll(e);
+                }
               }
             });
             headings.push(h("th", {
