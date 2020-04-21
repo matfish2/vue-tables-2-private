@@ -1,6 +1,8 @@
 "use strict";
 
 module.exports = function (e, row, index) {
+  var _this = this;
+
   var id = this.opts.uniqueKey;
 
   if (this.opts.selectable.mode === 'single') {
@@ -16,7 +18,9 @@ module.exports = function (e, row, index) {
       // of the clicked checkbox.
 
       var toggleFn = e.target.checked ? addCheckedSubset : removeCheckedSubset;
-      this.selectedRows = toggleFn(this.selectedRows, subset);
+      this.selectedRows = toggleFn(this.selectedRows, subset).filter(function (row) {
+        return !_this.opts.selectable.only || _this.opts.selectable.only(row);
+      });
     } else {
       if (e.target.checked) {
         this.selectedRows.push(row);
