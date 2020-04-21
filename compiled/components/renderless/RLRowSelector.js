@@ -9,7 +9,7 @@ var _default = {
   inject: ['opts', 'theme', 'colspan', 'slots', 'toggleRowSelection', 'isRowSelected', 'componentsOverride', 'row', 'index'],
   render: function render() {
     return this.$scopedSlots["default"]({
-      type: this.opts().selectable.type,
+      type: this.opts().selectable.mode,
       row: this.row(),
       index: this.index,
       toggleRow: this.toggleRowSelection,

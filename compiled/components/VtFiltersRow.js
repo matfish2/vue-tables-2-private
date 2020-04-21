@@ -32,7 +32,7 @@ var _default2 = {
         "default": function _default(props) {
           var filters = [];
 
-          if (props.opts.selectable.type) {
+          if (props.opts.selectable.mode) {
             filters.push(h("th", {
               "class": "VueTables__select-row"
             }));

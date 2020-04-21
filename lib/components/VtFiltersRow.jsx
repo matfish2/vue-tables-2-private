@@ -13,7 +13,7 @@ export default {
 
                     var filters = [];
 
-                    if (props.opts.selectable.type) {
+                    if (props.opts.selectable.mode) {
                         filters.push(<th class="VueTables__select-row"></th>)
                     }
 

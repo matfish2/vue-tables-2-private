@@ -3,7 +3,7 @@
 module.exports = function (e, row, index) {
   var id = this.opts.uniqueKey;
 
-  if (this.opts.selectable.type === 'single') {
+  if (this.opts.selectable.mode === 'single') {
     this.selectedRows = e.target.checked ? [row] : [];
   } else {
     var prevIndex = this.selectedIndex;
