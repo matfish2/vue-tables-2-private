@@ -4,6 +4,18 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 module.exports = function (response) {
   var data = this.opts.responseAdapter.call(this, response);
+
+  if (this.opts.useDrawCounter) {
+    if (typeof data.draw === 'undefined') {
+      console.error("Cannot find `draw` property in response. This response parameter is required when useDrawCounter is set to true");
+      return;
+    }
+
+    if (this.drawCounter !== data.draw) {
+      return;
+    }
+  }
+
   this.data = data.data;
 
   if (isNaN(data.count)) {

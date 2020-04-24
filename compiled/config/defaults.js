@@ -86,6 +86,7 @@ module.exports = function () {
     showChildRowToggler: true,
     uniqueKey: "id",
     requestFunction: false,
+    useDrawCounter: false,
     requestAdapter: function requestAdapter(data) {
       return data;
     },
@@ -102,7 +103,8 @@ module.exports = function () {
       orderBy: "orderBy",
       ascending: "ascending",
       page: "page",
-      byColumn: "byColumn"
+      byColumn: "byColumn",
+      draw: "draw"
     },
     rowClassCallback: false,
     preserveState: false,
