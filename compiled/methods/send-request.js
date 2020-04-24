@@ -5,9 +5,16 @@ module.exports = function (data) {
     return this.opts.requestFunction.call(this, data);
   }
 
-  if (typeof axios !== 'undefined') return axios.get(this.url, {
-    params: data
+  if (typeof axios !== 'undefined') if (this.cancelToken) {
+    // cancel prev request
+    this.cancelToken.cancel();
+  }
+  this.cancelToken = axios.CancelToken.source();
+  return axios.get(this.url, {
+    params: data,
+    cancelToken: this.cancelToken.token
   })["catch"](function (e) {
+    this.cancelToken = null;
     this.dispatch('error', e);
     this.loadingError = true;
   }.bind(this));

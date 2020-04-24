@@ -9,7 +9,8 @@ module.exports = function () {
     userMultiSorting: {},
     editing: [],
     selectedIndex: false,
-    loadingError: false
+    loadingError: false,
+    cancelToken: null
   };
 };
 

@@ -24,3 +24,4 @@ Subscribers are welcome to send new feature requests and I will consider adding 
 * Server table: Loading error message
 * Virtual Pagination
 * Selectable rows
+* Axios: Automatically Cancel pending requests
