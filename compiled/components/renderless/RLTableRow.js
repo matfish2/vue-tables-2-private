@@ -20,9 +20,9 @@ var _default = {
   },
   render: function render() {
     return this.$scopedSlots["default"]({
+      opts: this.opts(),
       columns: this.allColumns(),
       hasChildRow: this.hasChildRow(),
-      opts: this.opts(),
       selectable: this.opts().selectable.mode,
       rowId: this.row[this.opts().uniqueKey],
       row: this.row,

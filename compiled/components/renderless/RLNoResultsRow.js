@@ -6,9 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLNoResultsRow',
-  inject: ['colspan', 'display', 'componentsOverride', 'tabIndex', 'loading', 'loadingError'],
+  inject: ['colspan', 'display', 'componentsOverride', 'loading', 'loadingError', 'tabIndex', 'opts'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      opts: this.opts(),
       colspan: this.colspan(),
       loading: this.loading(),
       loadingError: this.loadingError(),

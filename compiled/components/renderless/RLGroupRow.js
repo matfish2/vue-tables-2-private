@@ -10,6 +10,7 @@ var _default = {
   inject: ['colspan', 'opts', 'theme', 'toggleGroupDirection', 'toggleGroup', 'groupToggleIcon', 'getGroupSlot', 'groupBy', 'componentsOverride'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      opts: this.opts(),
       theme: this.theme,
       colspan: this.colspan(),
       toggleGroupDirection: this.level === 1 ? this.toggleGroupDirection : function () {},

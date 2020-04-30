@@ -9,6 +9,7 @@ var _default = {
   inject: ['opts', 'theme', 'source', 'filteredData', 'tableData', 'colspan', 'openChildRows', 'collapsedGroups', 'scopedSlots', 'slots', 'componentsOverride', 'page', 'limit', 'groupBy'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      opts: this.opts(),
       source: this.source,
       canToggleGroups: this.opts().toggleGroups,
       collapsedGroups: this.collapsedGroups(),
