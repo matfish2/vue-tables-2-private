@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTableRow',
   props: ['row', 'index'],
-  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'theme', 'componentsOverride'],
+  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'theme', 'componentsOverride', 'isRowSelected'],
   provide: function provide() {
     var _this = this;
 
@@ -53,6 +53,10 @@ var _default = {
         cls.push(this.theme.trEven);
       } else {
         cls.push(this.theme.trOdd);
+      }
+
+      if (this.opts().selectable.mode && this.isRowSelected(this.row)) {
+        cls.push('VueTables__row--selected');
       }
 
       return cls.join(' ');
