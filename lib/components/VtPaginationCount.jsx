@@ -7,7 +7,7 @@ export default {
         return <r-l-pagination-count scopedSlots={
             {
                 default: function (props) {
-                    return <p>Showing records {props.from} to {props.to} out of {props.total}</p>
+                    return <p v-show={props.total}>Showing records {props.from} to {props.to} out of {props.total}</p>
                 }
             }
         }/>

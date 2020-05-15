@@ -19,7 +19,12 @@ var _default2 = {
     return h("r-l-pagination-count", {
       scopedSlots: {
         "default": function _default(props) {
-          return h("p", ["Showing records ", props.from, " to ", props.to, " out of ", props.total]);
+          return h("p", {
+            directives: [{
+              name: "show",
+              value: props.total
+            }]
+          }, ["Showing records ", props.from, " to ", props.to, " out of ", props.total]);
         }
       }
     });
