@@ -136,7 +136,7 @@ var _default2 = {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
             "class": "table-responsive VueTables__wrapper",
-            style: props.virtualPagination ? 'overflow-x:unset; overflow-y:scroll;' : ''
+            style: props.styles()
           }, [h("vt-table", {
             ref: "vt_table"
           }), props.opts.pagination.virtual ? h("observer", {
@@ -145,7 +145,7 @@ var _default2 = {
                 return props.setPage(props.page + 1);
               }
             }
-          }) : '']), props.slots.afterTable, props.opts.pagination.virtual ? '' : h("vt-pagination"), props.opts.pagination.virtual || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
+          }) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? '' : h("vt-pagination"), props.opts.pagination.virtual || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
         }
       }
     });

@@ -16,7 +16,11 @@ module.exports = function (response) {
     }
   }
 
-  this.data = data.data;
+  if (this.opts.pagination.virtual) {
+    this.data = this.data.concat(data.data);
+  } else {
+    this.data = data.data;
+  }
 
   if (isNaN(data.count)) {
     console.error("vue-tables-2: invalid 'count' property. Expected number, got ".concat(_typeof(data.count)));

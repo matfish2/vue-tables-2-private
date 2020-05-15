@@ -1,28 +1,28 @@
 describe(suite + ': Row grouping', () => {
-    
-    
+
+
     it('can group the dataset by a specific column', (done) => {
-        createWrapper({groupBy:'continent'});   
+        createWrapper({groupBy:'continent'});
         run(()=>{
             see('Africa','tbody tr:first-child');
         }, done);
     });
-    
+
     it('can sort by group when clicking on a group title', (done) => {
-        createWrapper({groupBy:'continent'});        
-        
+        createWrapper({groupBy:'continent'});
+
         see('Africa','tbody tr:first-child');
-        
+
         click('tbody tr:first-child');
-        
+
         run(()=>{
-            see('South America','tbody tr:first-child');
+            see('Africa','tbody tr:first-child');
         }, done);
-        
+
     });
 
     it('can make groups collapsible', ()=>{
-        createWrapper({groupBy:'continent',toggleGroups:true});        
+        createWrapper({groupBy:'continent',toggleGroups:true});
         click('tbody tr:first-child .btn');
         see('Africa','tbody tr:first-child');
         exists('tbody tr:first-child span.glyphicon');

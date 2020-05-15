@@ -4,6 +4,8 @@ import VtPagination from "./VtPagination";
 import VtDropdownPagination from "./VtDropdownPagination";
 import VtGenericFilter from "./VtGenericFilter";
 import VtColumnsDropdown from "./VtColumnsDropdown";
+import Observer from "./Observer";
+import VtPaginationCount from "./VtPaginationCount";
 
 export default {
     name: 'VtServerTable',
@@ -13,7 +15,9 @@ export default {
         VtPagination,
         VtDropdownPagination,
         VtColumnsDropdown,
-        VtGenericFilter
+        VtGenericFilter,
+        VtPaginationCount,
+        Observer
     },
     props: {
         columns: {
@@ -133,12 +137,16 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive" style={props.opts.stickyHeader ? 'overflow-x:unset;':''}>
+                        <div class="table-responsive" style={props.styles()}>
                             <vt-table ref="vt_table"/>
+                            {props.opts.pagination.virtual ?
+                                <observer onIntersect={() => props.setPage(props.page + 1)}/> : ''}
+
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.show ? <vt-pagination/> : ''}
+                        {props.opts.pagination.virtual || !props.opts.pagination.show ? '' : <vt-pagination/>}
+                        {props.opts.pagination.virtual || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
 
                     </div>
                 }

@@ -17,6 +17,10 @@ var _VtGenericFilter = _interopRequireDefault(require("./VtGenericFilter"));
 
 var _VtColumnsDropdown = _interopRequireDefault(require("./VtColumnsDropdown"));
 
+var _Observer = _interopRequireDefault(require("./Observer"));
+
+var _VtPaginationCount = _interopRequireDefault(require("./VtPaginationCount"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default2 = {
@@ -27,7 +31,9 @@ var _default2 = {
     VtPagination: _VtPagination["default"],
     VtDropdownPagination: _VtDropdownPagination["default"],
     VtColumnsDropdown: _VtColumnsDropdown["default"],
-    VtGenericFilter: _VtGenericFilter["default"]
+    VtGenericFilter: _VtGenericFilter["default"],
+    VtPaginationCount: _VtPaginationCount["default"],
+    Observer: _Observer["default"]
   },
   props: {
     columns: {
@@ -144,10 +150,16 @@ var _default2 = {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
             "class": "table-responsive",
-            style: props.opts.stickyHeader ? 'overflow-x:unset;' : ''
+            style: props.styles()
           }, [h("vt-table", {
             ref: "vt_table"
-          })]), props.slots.afterTable, props.opts.pagination.show ? h("vt-pagination") : '']);
+          }), props.opts.pagination.virtual ? h("observer", {
+            on: {
+              "intersect": function intersect() {
+                return props.setPage(props.page + 1);
+              }
+            }
+          }) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? '' : h("vt-pagination"), props.opts.pagination.virtual || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
         }
       }
     });

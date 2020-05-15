@@ -118,13 +118,13 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive VueTables__wrapper" style={props.virtualPagination ? 'overflow-x:unset; overflow-y:scroll;':''}>
+                        <div class="table-responsive VueTables__wrapper" style={props.styles()}>
                             <vt-table ref="vt_table"/>
                             {props.opts.pagination.virtual ? <observer onIntersect={()=>props.setPage(props.page+1)}/> : ''}
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.virtual ? '' : <vt-pagination/> }
+                        {props.opts.pagination.virtual || !props.opts.pagination.show ? '' : <vt-pagination/> }
                         {props.opts.pagination.virtual || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
                     </div>
                 }
