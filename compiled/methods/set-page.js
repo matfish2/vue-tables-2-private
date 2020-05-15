@@ -7,6 +7,10 @@ module.exports = function (page, preventRequest) {
     page = 1;
   }
 
+  if (page > this.totalPages && this.opts.pagination.virtual) {
+    return;
+  }
+
   if (page > this.totalPages) {
     page = this.totalPages;
   }

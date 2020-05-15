@@ -16,7 +16,7 @@ module.exports = function (response) {
     }
   }
 
-  if (this.opts.pagination.virtual) {
+  if (this.opts.pagination.virtual && this.page !== 1) {
     this.data = this.data.concat(data.data);
   } else {
     this.data = data.data;
