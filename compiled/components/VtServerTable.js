@@ -153,7 +153,7 @@ var _default2 = {
             style: props.styles()
           }, [h("vt-table", {
             ref: "vt_table"
-          }), props.opts.pagination.virtual ? h("observer", {
+          }), props.opts.pagination.virtual && !props.loading ? h("observer", {
             on: {
               "intersect": function intersect() {
                 return props.setPage(props.page + 1);

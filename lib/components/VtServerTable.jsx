@@ -139,7 +139,7 @@ export default {
                         {props.slots.beforeTable}
                         <div class="table-responsive" style={props.styles()}>
                             <vt-table ref="vt_table"/>
-                            {props.opts.pagination.virtual ?
+                            {props.opts.pagination.virtual && !props.loading ?
                                 <observer onIntersect={() => props.setPage(props.page + 1)}/> : ''}
 
                         </div>

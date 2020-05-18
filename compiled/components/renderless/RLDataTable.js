@@ -13,6 +13,7 @@ module.exports = function () {
     page: this.page,
     setPage: this.setPage,
     virtualPagination: this.opts.pagination.virtual,
+    loading: this.loading,
     override: this.componentsOverride.dataTable,
     styles: function styles() {
       var cls = [];
