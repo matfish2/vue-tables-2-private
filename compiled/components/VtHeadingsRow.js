@@ -36,12 +36,14 @@ var _default2 = {
               }
             });
             headings.push(h("th", {
-              "class": "VueTables__select-row VueTables__select-all"
+              "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th)
             }, [checkbox]));
           }
 
           if (props.childRowTogglerFirst) {
-            headings.push(h("th"));
+            headings.push(h("th", {
+              "class": props.theme.th
+            }));
           }
 
           props.columns.map(function (column) {
@@ -53,7 +55,9 @@ var _default2 = {
           });
 
           if (props.childRowTogglerLast) {
-            headings.push(h("th"));
+            headings.push(h("th", {
+              "class": props.theme.th
+            }));
           }
 
           return h("tr", [headings]);

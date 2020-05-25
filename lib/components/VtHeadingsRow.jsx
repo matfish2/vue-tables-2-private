@@ -13,13 +13,13 @@ export default {
 
                     if (props.selectable) {
                         var checkbox = props.selectable === 'single' ? '' : <input type="checkbox" onClick={e=>props.toggleAll(e)}/>
-                        headings.push(<th class="VueTables__select-row VueTables__select-all">
+                        headings.push(<th class={`VueTables__select-row VueTables__select-all ${props.theme.th}`}>
                             {checkbox}
                         </th>)
                     }
 
                     if (props.childRowTogglerFirst) {
-                        headings.push(<th/>);
+                        headings.push(<th class={props.theme.th}/>);
                     }
 
                     props.columns.map(function (column) {
@@ -29,7 +29,7 @@ export default {
                     });
 
                     if (props.childRowTogglerLast) {
-                        headings.push(<th/>);
+                        headings.push(<th class={props.theme.th}/>);
                     }
 
                     return <tr>

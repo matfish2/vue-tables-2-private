@@ -9,6 +9,7 @@ var _default = {
   inject: ['opts', 'theme', 'hasChildRow', 'allColumns', 'toggleAllRows'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      theme: this.theme,
       opts: this.opts(),
       columns: this.allColumns(),
       selectable: this.opts().selectable.mode,

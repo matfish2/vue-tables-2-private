@@ -12,7 +12,7 @@ export default {
                     return props.override ? h(props.override, {attrs: {props}}) : <thead>
                     {props.slots.prependHead}
                     <vt-headings-row/>
-                    {props.slots.beforeFilters}
+                {props.slots.beforeFilters}
                     {props.opts.filterByColumn && props.opts.filterable ? <vt-filters-row/> : ''}
                     {props.slots.afterFilters}
                     </thead>

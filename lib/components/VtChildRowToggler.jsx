@@ -10,7 +10,9 @@ export default {
                 default: function (props) {
                     return props.override ? h(props.override, {
                         attrs: { props }
-                    }) : <td tabindex={props.tabIndex} on-keypress={(e) => {
+                    }) : <td tabindex={props.tabIndex}
+                             class={props.theme.td}
+                             on-keypress={(e) => {
                         if (e.key === 'Enter') {
                             props.toggle();
                         }
