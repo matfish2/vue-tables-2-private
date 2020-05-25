@@ -19,7 +19,7 @@ var _default = {
     return this.$scopedSlots["default"]({
       opts: this.opts(),
       thAttrs: {
-        "class": this.sortableClass(this.column),
+        "class": "".concat(this.sortableClass(this.column), " ").concat(this.theme.th).trim(),
         tabIndex: this.tabIndex(),
         style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : '',
         title: this.getHeadingTooltip(this.column)
