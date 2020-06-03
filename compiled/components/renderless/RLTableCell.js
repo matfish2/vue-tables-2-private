@@ -17,6 +17,7 @@ var _default = {
     return this.$scopedSlots["default"]({
       opts: this.opts(),
       row: this.Row,
+      column: this.column,
       content: this.content(h),
       classes: "".concat(this.columnClass(this.column), " ").concat(this.cellClasses(this.column, this.Row), " ").concat(this.theme.td).trim(),
       tabIndex: this.tabIndex(),
