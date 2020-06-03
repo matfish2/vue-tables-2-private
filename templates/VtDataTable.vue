@@ -36,10 +36,12 @@
         <vnodes :vnodes="props.slots.beforeTable"/>
         <div class="table-responsive">
             <vt-table ref="vt_table"/>
+            <observer v-if="props.opts.pagination.virtual && !props.loading" @intersect="props.setPage(props.page + 1)"/>
         </div>
         <vnodes :vnodes="props.slots.afterTable"/>
 
-        <vt-pagination/>
+        <vt-pagination v-if="!props.opts.pagination.virtual && props.opts.pagination.show"/>
+        <vt-pagination-count v-if="props.opts.pagination.virtual || props.opts.pagination.dropdown"/>
 
     </div>
 </template>
@@ -48,9 +50,11 @@
     import VtColumnsDropdown from 'vue-tables-2/compiled/components/VtColumnsDropdown'
     import VtDropdownPagination from 'vue-tables-2/compiled/components/VtDropdownPagination'
     import VtGenericFilter from 'vue-tables-2/compiled/components/VtGenericFilter'
-    import VtPerPageSelector from 'vue-tables-2/compiled/components/VtPerPageSelector';
+    import VtPerPageSelector from 'vue-tables-2/compiled/components/VtPerPageSelector'
     import VtPagination from 'vue-tables-2/compiled/components/VtPagination'
-    import VtTable from 'vue-tables-2/compiled/components/VtTable';
+    import VtPaginationCount from 'vue-tables-2/compiled/components/VtPaginationCount'
+    import VtTable from 'vue-tables-2/compiled/components/VtTable'
+    import Observer from 'vue-tables-2/compiled/components/Observer'
 
     export default {
         name: "MyDataTable",
@@ -62,6 +66,8 @@
             VtDropdownPagination,
             VtTable,
             VtPagination,
+            VtPaginationCount,
+            Observer,
             vnodes: {
                 functional: true,
                 render: (h, ctx) => ctx.props.vnodes
