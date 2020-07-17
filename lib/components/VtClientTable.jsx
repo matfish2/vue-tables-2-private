@@ -61,6 +61,9 @@ export default {
         },
         resetQuery() {
             this.$refs.table.resetQuery()
+        },
+        resetSelectedRows() {
+            this.$refs.table.resetSelectedRows()
         }
     },
     computed: {

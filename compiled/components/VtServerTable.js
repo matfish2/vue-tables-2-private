@@ -103,6 +103,9 @@ var _default2 = {
     },
     resetQuery: function resetQuery() {
       this.$refs.table.resetQuery();
+    },
+    resetSelectedRows: function resetSelectedRows() {
+      this.$refs.table.resetSelectedRows();
     }
   },
   provide: function provide() {
