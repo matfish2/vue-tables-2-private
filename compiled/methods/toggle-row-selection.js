@@ -3,6 +3,7 @@
 module.exports = function (e, row, index) {
   var _this = this;
 
+  e.stopPropagation();
   var id = this.opts.uniqueKey;
 
   if (this.opts.selectable.mode === 'single') {
