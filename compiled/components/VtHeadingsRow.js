@@ -27,6 +27,7 @@ var _default2 = {
           if (props.selectable) {
             var checkbox = props.selectable === 'single' ? '' : h("input", {
               attrs: {
+                id: "vt-toggle-all",
                 type: "checkbox"
               },
               on: {
