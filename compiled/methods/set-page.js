@@ -11,7 +11,7 @@ module.exports = function (page, preventRequest) {
     return;
   }
 
-  if (page > this.totalPages) {
+  if (this.totalPages > 0 && page > this.totalPages) {
     page = this.totalPages;
   }
 

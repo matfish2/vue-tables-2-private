@@ -1739,7 +1739,7 @@ eval("\n\nmodule.exports = function (column, ascending) {\n  this.orderBy.column
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nmodule.exports = function (page, preventRequest) {\n  page = parseInt(page);\n\n  if (page < 1) {\n    page = 1;\n  }\n\n  if (page > this.totalPages && this.opts.pagination.virtual) {\n    return;\n  }\n\n  if (page > this.totalPages) {\n    page = this.totalPages;\n  }\n\n  this.page = page;\n  this.updateState('page', page);\n  this.dispatch('pagination', page);\n  if (this.source == 'server' && !preventRequest) this.getData();\n};\n\n//# sourceURL=webpack://VueTables/./lib/methods/set-page.js?");
+eval("\n\nmodule.exports = function (page, preventRequest) {\n  page = parseInt(page);\n\n  if (page < 1) {\n    page = 1;\n  }\n\n  if (page > this.totalPages && this.opts.pagination.virtual) {\n    return;\n  }\n\n  if (this.totalPages > 0 && page > this.totalPages) {\n    page = this.totalPages;\n  }\n\n  this.page = page;\n  this.updateState('page', page);\n  this.dispatch('pagination', page);\n  if (this.source == 'server' && !preventRequest) this.getData();\n};\n\n//# sourceURL=webpack://VueTables/./lib/methods/set-page.js?");
 
 /***/ }),
 
