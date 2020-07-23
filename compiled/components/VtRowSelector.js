@@ -24,20 +24,21 @@ var _default2 = {
               props: props
             }
           }) : h("td", {
-            "class": "VueTables__select-row VueTables__select-single"
+            "class": "VueTables__select-row VueTables__select-single",
+            on: {
+              "click": function click(e) {
+                return props.toggleRow(e, props.row, props.index, props.disabled);
+              }
+            }
           }, [h("input", {
             attrs: {
               type: props.type,
               name: "selected_row[]",
               disabled: props.disabled
             },
+            "class": "vt-select-row",
             domProps: {
               "checked": props.selected
-            },
-            on: {
-              "click": function click(e) {
-                return props.toggleRow(e, props.row, props.index);
-              }
             }
           })]);
         }

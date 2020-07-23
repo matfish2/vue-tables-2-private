@@ -8,12 +8,14 @@ export default {
             {
                 default: function (props) {
                     return props.override ? h(props.override, {attrs: {props}}) :
-                        <td class="VueTables__select-row VueTables__select-single">
+                        <td class="VueTables__select-row VueTables__select-single"
+                            onClick={(e) => props.toggleRow(e, props.row, props.index, props.disabled)}>
                             <input type={props.type}
                                    name="selected_row[]"
+                                   class="vt-select-row"
                                    disabled={props.disabled}
                                    checked={props.selected}
-                                   onClick={(e) => props.toggleRow(e, props.row, props.index)}/>
+                                   />
                         </td>
                 }
             }

@@ -1,13 +1,14 @@
 "use strict";
 
-module.exports = function (e, row, index) {
+module.exports = function (e, row, index, disabled) {
   var _this = this;
 
   e.stopPropagation();
+  if (disabled) return;
   var id = this.opts.uniqueKey;
 
   if (this.opts.selectable.mode === 'single') {
-    this.selectedRows = e.target.checked ? [row] : [];
+    this.selectedRows = !this.isRowSelected(row) ? [row] : [];
   } else {
     var prevIndex = this.selectedIndex;
     this.selectedIndex = index; // Handle multiple select via Shift+Click
@@ -18,12 +19,12 @@ module.exports = function (e, row, index) {
       var subset = this.filteredData.slice(Math.min(prevIndex, this.selectedIndex), Math.max(prevIndex, this.selectedIndex)); // Determine the operation based on the checked state
       // of the clicked checkbox.
 
-      var toggleFn = e.target.checked ? addCheckedSubset : removeCheckedSubset;
+      var toggleFn = !this.isRowSelected(row) ? addCheckedSubset : removeCheckedSubset;
       this.selectedRows = toggleFn(this.selectedRows, subset).filter(function (row) {
         return !_this.opts.selectable.only || _this.opts.selectable.only(row);
       });
     } else {
-      if (e.target.checked) {
+      if (!this.isRowSelected(row)) {
         this.selectedRows.push(row);
       } else {
         this.selectedRows = this.selectedRows.filter(function (R) {
