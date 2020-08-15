@@ -24,7 +24,7 @@ var _default2 = {
               props: props
             }
           }) : h("td", {
-            "class": "VueTables__select-row VueTables__select-single",
+            "class": "VueTables__select-row VueTables__select-single ".concat(props.tdClass),
             on: {
               "click": function click(e) {
                 return props.toggleRow(e, props.row, props.index, props.disabled);

@@ -9,6 +9,7 @@ var _default = {
   inject: ['opts', 'theme', 'colspan', 'slots', 'toggleRowSelection', 'isRowSelected', 'componentsOverride', 'row', 'index'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      tdClass: this.theme.td,
       mode: this.opts().selectable.mode,
       type: this.opts().selectable.mode === 'single' ? 'radio' : 'checkbox',
       row: this.row(),
