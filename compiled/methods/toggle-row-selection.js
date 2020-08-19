@@ -28,7 +28,7 @@ module.exports = function (e, row, index, disabled) {
         this.selectedRows.push(row);
       } else {
         this.selectedRows = this.selectedRows.filter(function (R) {
-          return R[id] !== row.id;
+          return R[id] !== row[id];
         });
       }
     }
