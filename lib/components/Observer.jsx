@@ -11,7 +11,7 @@ export default {
                 this.$emit("intersect");
             }
         }, {
-            root: document.querySelector('.table-responsive'),
+            root: this.$parent.$el.querySelector('.table-responsive'),
         });
 
         this.observer.observe(this.$el);
