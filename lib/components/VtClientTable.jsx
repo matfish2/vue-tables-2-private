@@ -41,6 +41,9 @@ export default {
         }
     },
     methods: {
+        setLoadingState(isLoading) {
+            this.$refs.table.loading = isLoading
+        },
         setFilter(val) {
             this.$refs.table.setFilter(val)
         },

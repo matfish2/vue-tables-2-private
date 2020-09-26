@@ -3,6 +3,7 @@
 var clone = require('clone');
 
 module.exports = function () {
+  this.dispatch('loading');
   var data = clone(this.tableData);
   var column = this.orderBy.column;
   data = this.search(data);
@@ -30,6 +31,7 @@ module.exports = function () {
     return toArray(groupData(res, JSON.parse(JSON.stringify(this.groupBy))), this.groupBy);
   }
 
+  this.dispatch('loaded');
   return res;
 };
 

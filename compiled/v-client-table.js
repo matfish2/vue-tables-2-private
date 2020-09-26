@@ -114,6 +114,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
       return _merge["default"].recursive(_data(), {
         source: "client",
         theme: typeof theme === 'string' ? _themes["default"][theme] : theme(),
+        loading: false,
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
         currentlySorting: {},
