@@ -37,7 +37,8 @@ var _default2 = {
               }
             });
             headings.push(h("th", {
-              "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th)
+              "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th),
+              style: props.opts.stickyHeader ? 'position:sticky; top:0; background:white;' : ''
             }, [checkbox]));
           }
 

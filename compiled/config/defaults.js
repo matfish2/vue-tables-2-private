@@ -72,7 +72,9 @@ module.exports = function () {
     headings: {},
     headingsTooltips: {},
     stickyHeader: false,
-    selectable: {},
+    selectable: {
+      selectAllMode: 'all'
+    },
     pagination: {
       show: true,
       dropdown: false,
