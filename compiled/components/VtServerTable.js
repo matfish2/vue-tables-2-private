@@ -106,6 +106,18 @@ var _default2 = {
     },
     resetSelectedRows: function resetSelectedRows() {
       this.$refs.table.resetSelectedRows();
+    },
+    selectRow: function selectRow(id) {
+      return this.$refs.table.selectRow(id);
+    },
+    unselectRow: function unselectRow(id) {
+      return this.$refs.table.unselectRow(id);
+    },
+    selectRows: function selectRows(ids) {
+      return this.$refs.table.selectRows(ids);
+    },
+    unselectRows: function unselectRows(ids) {
+      return this.$refs.table.unselectRows(ids);
     }
   },
   provide: function provide() {

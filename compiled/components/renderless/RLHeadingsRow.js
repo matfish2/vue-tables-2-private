@@ -13,7 +13,7 @@ var _default = {
       theme: this.theme,
       opts: this.opts(),
       columns: this.allColumns(),
-      selectable: this.opts().selectable.mode,
+      selectable: this.opts().selectable.mode && !this.opts().selectable.programmatic,
       toggleAll: this.toggleAllRows,
       hasChildRow: this.hasChildRow,
       childRowTogglerFirst: this.hasChildRow() && this.opts().showChildRowToggler && this.opts().childRowTogglerFirst,

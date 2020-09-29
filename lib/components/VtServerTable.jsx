@@ -89,6 +89,18 @@ export default {
         },
         resetSelectedRows() {
             this.$refs.table.resetSelectedRows()
+        },
+        selectRow(id) {
+            return this.$refs.table.selectRow(id)
+        },
+        unselectRow(id) {
+            return this.$refs.table.unselectRow(id)
+        },
+        selectRows(ids) {
+            return this.$refs.table.selectRows(ids)
+        },
+        unselectRows(ids) {
+            return this.$refs.table.unselectRows(ids)
         }
     },
     provide() {

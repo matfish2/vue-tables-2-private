@@ -12,7 +12,7 @@
                 </div>
                 <vnodes :vnodes="props.slots.afterFilterWrapper"/>
 
-                <div v-if="props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect"
+                <div v-if="(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual"
                      :class="`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`">
                     <vnodes :vnodes="props.slots.beforeLimit"/>
                     <vt-per-page-selector/>

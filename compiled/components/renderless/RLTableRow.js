@@ -23,7 +23,7 @@ var _default = {
       opts: this.opts(),
       columns: this.allColumns(),
       hasChildRow: this.hasChildRow(),
-      selectable: this.opts().selectable.mode,
+      selectable: this.opts().selectable.mode && !this.opts().selectable.programmatic,
       rowId: this.row[this.opts().uniqueKey],
       row: this.row,
       rowAttrs: {
