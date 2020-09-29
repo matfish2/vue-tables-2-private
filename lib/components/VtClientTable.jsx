@@ -79,6 +79,12 @@ export default {
         },
         unselectRows(ids) {
             return this.$refs.table.unselectRows(ids)
+        },
+        toggleRow(id) {
+            return this.$refs.table.toggleRow(id)
+        },
+        selectAllRows() {
+            return this.$refs.table.selectAllRows()
         }
     },
     computed: {

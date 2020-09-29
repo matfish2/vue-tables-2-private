@@ -72,7 +72,7 @@ export default {
         setOrder(column, asc) {
             this.$refs.table.setOrder(column, asc);
         },
-         setLimit(limit) {
+        setLimit(limit) {
             this.$refs.table.setLimit(limit);
         },
         toggleChildRow(rowId) {
@@ -101,6 +101,12 @@ export default {
         },
         unselectRows(ids) {
             return this.$refs.table.unselectRows(ids)
+        },
+        toggleRow(id) {
+            return this.$refs.table.toggleRow(id)
+        },
+        selectAllRows() {
+            return this.$refs.table.selectAllRows()
         }
     },
     provide() {
@@ -132,12 +138,13 @@ export default {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ? <div
-                                    class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
-                                    {props.slots.beforeLimit}
-                                    <vt-per-page-selector/>
-                                    {props.slots.afterLimit}
-                                </div> : ''}
+                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ?
+                                    <div
+                                        class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
+                                        {props.slots.beforeLimit}
+                                        <vt-per-page-selector/>
+                                        {props.slots.afterLimit}
+                                    </div> : ''}
 
                                 {props.opts.pagination.dropdown && props.totalPages > 1 ?
                                     <div class="VueTables__pagination-wrapper">

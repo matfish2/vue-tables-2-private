@@ -70,5 +70,7 @@ module.exports = {
   selectRow: require('../methods/select-row'),
   selectRows: require('../methods/select-rows'),
   unselectRow: require('../methods/unselect-row'),
-  unselectRows: require('../methods/unselect-rows')
+  unselectRows: require('../methods/unselect-rows'),
+  toggleRow: require('../methods/toggle-row'),
+  selectAllRows: require('../methods/select-all-rows')
 };

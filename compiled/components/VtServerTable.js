@@ -118,6 +118,12 @@ var _default2 = {
     },
     unselectRows: function unselectRows(ids) {
       return this.$refs.table.unselectRows(ids);
+    },
+    toggleRow: function toggleRow(id) {
+      return this.$refs.table.toggleRow(id);
+    },
+    selectAllRows: function selectAllRows() {
+      return this.$refs.table.selectAllRows();
     }
   },
   provide: function provide() {
