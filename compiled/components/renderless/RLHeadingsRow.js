@@ -6,9 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLHeadingRow',
-  inject: ['opts', 'theme', 'hasChildRow', 'allColumns', 'toggleAllRows'],
+  inject: ['opts', 'theme', 'hasChildRow', 'allColumns', 'toggleAllRows', 'componentsOverride'],
   render: function render() {
     return this.$scopedSlots["default"]({
+      override: this.componentsOverride.headingsRow,
       theme: this.theme,
       opts: this.opts(),
       columns: this.allColumns(),
