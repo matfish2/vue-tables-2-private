@@ -107,7 +107,8 @@ export default {
         },
         selectAllRows() {
             return this.$refs.table.selectAllRows()
-        }
+        },
+        resetCustomFilters: require('../methods/reset-custom-filters')
     },
     provide() {
         return {

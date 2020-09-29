@@ -56,7 +56,6 @@ module.exports = function (table, hasChildRow, isChildRowTogglerFirst, resizeabl
     });
     document.addEventListener("mouseup", function (e) {
       if (e.target.nodeName === 'INPUT') return;
-      e.preventDefault();
       e.stopPropagation();
       curCol = undefined;
       nxtCol = undefined;
