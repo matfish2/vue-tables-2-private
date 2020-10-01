@@ -8,7 +8,7 @@ export default {
             {
                 default: function (props) {
                     return props.override ? h(props.override, {attrs:{props}}) : <tr class={props.class}>
-                        <td class="text-center" tabindex={props.tabIndex}
+                        <td class={`text-center ${props.tdClass}`} tabindex={props.tabIndex}
                             colspan={props.colspan}>
                             {props.message}
                         </td>

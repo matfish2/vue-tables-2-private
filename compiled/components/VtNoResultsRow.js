@@ -26,7 +26,7 @@ var _default2 = {
           }) : h("tr", {
             "class": props["class"]
           }, [h("td", {
-            "class": "text-center",
+            "class": "text-center ".concat(props.tdClass),
             attrs: {
               tabindex: props.tabIndex,
               colspan: props.colspan
