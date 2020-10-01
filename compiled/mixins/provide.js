@@ -116,6 +116,9 @@ module.exports = function () {
     },
     loadingError: function loadingError() {
       return _this.loadingError;
+    },
+    initialRequestSent: function initialRequestSent() {
+      return _this.initialRequestSent;
     }
   };
 };

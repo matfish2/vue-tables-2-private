@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLNoResultsRow',
-  inject: ['colspan', 'display', 'componentsOverride', 'loading', 'loadingError', 'tabIndex', 'opts'],
+  inject: ['colspan', 'display', 'componentsOverride', 'loading', 'loadingError', 'initialRequestSent', 'tabIndex', 'opts'],
   render: function render() {
     return this.$scopedSlots["default"]({
       opts: this.opts(),
@@ -16,7 +16,8 @@ var _default = {
       display: this.display,
       tabIndex: this.tabIndex(),
       "class": this.getClass(),
-      message: this.display(this.getMessage()),
+      initialRequestSent: this.initialRequestSent(),
+      message: this.display(this.message),
       override: this.componentsOverride.noResultsRow
     });
   },
@@ -31,14 +32,20 @@ var _default = {
       }
 
       return 'VueTables__no-results';
-    },
-    getMessage: function getMessage() {
+    }
+  },
+  computed: {
+    message: function message() {
       if (this.loadingError()) {
         return 'loadingError';
       }
 
       if (this.loading()) {
         return 'loading';
+      }
+
+      if (!this.opts().sendInitialRequest && !this.initialRequestSent()) {
+        return 'noRequest';
       }
 
       return 'noResults';
