@@ -33,7 +33,7 @@ var _default2 = {
           var headings = [];
 
           if (props.selectable) {
-            var checkbox = props.selectable === 'single' ? '' : h("input", {
+            var checkbox = props.opts.selectable.mode === 'single' ? '' : h("input", {
               attrs: {
                 id: "vt-toggle-all",
                 type: "checkbox"

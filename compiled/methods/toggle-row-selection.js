@@ -32,9 +32,9 @@ module.exports = function (e, row, index, disabled) {
         });
       }
     }
-
-    this.dispatch('select', this.selectedRows);
   }
+
+  this.dispatch('select', this.selectedRows);
 };
 
 var notInArr = function notInArr(item) {
