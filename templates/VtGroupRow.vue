@@ -5,8 +5,8 @@
             <!-- Togglable group (toggleGroups: true)-->
             <button v-if="props.canToggleGroup"
                     :class="props.theme.button"
-                    @click="props.toggleGroup.bind(this, props.groupValue)">{{props.groupValue}}
-                <span :class="`VueTables__group-toggler ${props.groupToggleIcon(props.groupValue)}`"></span>
+                    @click="props.toggleGroup.call(this, props.groupValue, $event)">{{props.groupValue}}
+                <span :class="props.groupToggleIcon(props.groupValue)"></span>
             </button>
             <!--  Non-togglable group (toggleGroups: false) -->
             <span v-else>{{props.groupValue}}</span>
