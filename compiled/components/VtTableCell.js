@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLTableCell = _interopRequireDefault(require("./renderless/RLTableCell"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -16,24 +20,16 @@ var _default2 = {
     RLTableCell: _RLTableCell["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-table-cell", {
-      attrs: {
-        column: this.column
-      },
-      scopedSlots: {
-        "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("td", {
-            attrs: {
-              tabindex: props.tabIndex
-            },
-            "class": props.classes
-          }, [props.content]);
-        }
+    return (0, _vue.h)(_RLTableCell["default"], {
+      column: this.column
+    }, {
+      "default": function _default(props) {
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("td", {
+          "tabindex": props.tabIndex,
+          "class": props.classes
+        }, [props.content]);
       }
     });
   }

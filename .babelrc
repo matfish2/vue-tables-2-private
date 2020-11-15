@@ -9,6 +9,6 @@
   ],
   "plugins": [
     "@babel/plugin-syntax-jsx",
-    "transform-vue-jsx"
+    "@vue/babel-plugin-jsx"
   ]
 }

@@ -1,31 +1,26 @@
 import RLPagination from "./renderless/RLPagination";
-import Pagination from "vue-pagination-2";
+import Pagination from "v-pagination-3";
+import {h} from 'vue'
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtPagination',
     components: {RLPagination, Pagination},
-    render(h) {
-        return <r-l-pagination scopedSlots={
-            {
-                default: function (props) {
-                    return props.override ? h(
-                        props.override,
-                        {
-                            attrs: {props}
-                        }
-                    ) : <pagination
-                        options={props.optionsObj}
-                        records={props.records}
-                        per-page={props.perPage}
-                        value={props.page}
-                        onInput={page=> props.setPage(page)}
-                        >
-                    </pagination>
-                }
+    render() {
+        return h(RLPagination, {}, {
+            default: function (props) {
+                return props.override ? h(
+                    props.override,
+                    {
+                        props:omit(props)
+                    }) : h(Pagination, {
+                    options: props.optionsObj,
+                    records: props.records,
+                    perPage: props.perPage,
+                    modelValue: props.page,
+                    "onUpdate:modelValue": (page) => props.setPage(page)
+                })
             }
-        }
-            >
-
-            </r-l-pagination>
-        }
+        })
+    }
 }

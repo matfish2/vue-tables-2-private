@@ -3,7 +3,9 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports["default"] = void 0;
+exports["default"] = _default2;
+
+var _vue = require("vue");
 
 var _VtPerPageSelector = _interopRequireDefault(require("./VtPerPageSelector"));
 
@@ -17,167 +19,125 @@ var _VtGenericFilter = _interopRequireDefault(require("./VtGenericFilter"));
 
 var _VtColumnsDropdown = _interopRequireDefault(require("./VtColumnsDropdown"));
 
-var _Observer = _interopRequireDefault(require("./Observer"));
-
-var _VtPaginationCount = _interopRequireDefault(require("./VtPaginationCount"));
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _default2 = {
-  name: 'VtClientTable',
-  components: {
-    VtPerPageSelector: _VtPerPageSelector["default"],
-    VtTable: _VtTable["default"],
-    VtPagination: _VtPagination["default"],
-    VtDropdownPagination: _VtDropdownPagination["default"],
-    VtColumnsDropdown: _VtColumnsDropdown["default"],
-    VtGenericFilter: _VtGenericFilter["default"],
-    VtPaginationCount: _VtPaginationCount["default"],
-    Observer: _Observer["default"]
-  },
-  props: {
-    columns: {
-      type: Array,
-      required: true
+function _default2(RLClientTable) {
+  return {
+    name: 'VtClientTable',
+    components: {
+      VtPerPageSelector: _VtPerPageSelector["default"],
+      VtTable: _VtTable["default"],
+      VtPagination: _VtPagination["default"],
+      VtDropdownPagination: _VtDropdownPagination["default"],
+      VtColumnsDropdown: _VtColumnsDropdown["default"],
+      VtGenericFilter: _VtGenericFilter["default"],
+      RLClientTable: RLClientTable
     },
-    data: {
-      type: Array,
-      required: true
-    },
-    name: {
-      type: String,
-      required: false
-    },
-    options: {
-      type: Object,
-      required: false,
-      "default": function _default() {
-        return {};
-      }
-    }
-  },
-  methods: {
-    setLoadingState: function setLoadingState(isLoading) {
-      this.$refs.table.loading = isLoading;
-    },
-    setFilter: function setFilter(val) {
-      this.$refs.table.setFilter(val);
-    },
-    setPage: function setPage(val) {
-      this.$refs.table.setPage(val);
-    },
-    setOrder: function setOrder(column, asc) {
-      this.$refs.table.setOrder(column, asc);
-    },
-    setLimit: function setLimit(limit) {
-      this.$refs.table.setLimit(limit);
-    },
-    toggleChildRow: function toggleChildRow(rowId) {
-      this.$refs.table.toggleChildRow(rowId);
-    },
-    getOpenChildRows: function getOpenChildRows() {
-      var rows = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-      return this.$refs.table.getOpenChildRows(rows);
-    },
-    resetQuery: function resetQuery() {
-      this.$refs.table.resetQuery();
-    },
-    resetSelectedRows: function resetSelectedRows() {
-      this.$refs.table.resetSelectedRows();
-    },
-    selectRow: function selectRow(id) {
-      return this.$refs.table.selectRow(id);
-    },
-    unselectRow: function unselectRow(id) {
-      return this.$refs.table.unselectRow(id);
-    },
-    selectRows: function selectRows(ids) {
-      return this.$refs.table.selectRows(ids);
-    },
-    unselectRows: function unselectRows(ids) {
-      return this.$refs.table.unselectRows(ids);
-    },
-    toggleRow: function toggleRow(id) {
-      return this.$refs.table.toggleRow(id);
-    },
-    selectAllRows: function selectAllRows() {
-      return this.$refs.table.selectAllRows();
-    }
-  },
-  computed: {
-    filteredData: function filteredData() {
-      return this.$refs.table.filteredData;
-    },
-    allFilteredData: function allFilteredData() {
-      return this.$refs.table.allFilteredData;
-    },
-    selectedRows: function selectedRows() {
-      return this.$refs.table.selectedRows;
-    }
-  },
-  provide: function provide() {
-    var _this = this;
-
-    return {
-      scopedSlots: function scopedSlots() {
-        return _this.$scopedSlots;
+    props: {
+      columns: {
+        type: Array,
+        required: true
       },
-      slots: function slots() {
-        return _this.$slots;
+      data: {
+        type: Array,
+        required: true
+      },
+      name: {
+        type: String,
+        required: false
+      },
+      options: {
+        type: Object,
+        required: false,
+        "default": function _default() {
+          return {};
+        }
       }
-    };
-  },
-  model: {
-    prop: "data"
-  },
-  render: function render(h) {
-    return h("r-l-client-table", {
-      attrs: {
+    },
+    methods: {
+      setLoadingState: function setLoadingState(isLoading) {
+        this.$refs.table.loading = isLoading;
+      },
+      setFilter: function setFilter(val) {
+        this.$refs.table.setFilter(val);
+      },
+      setPage: function setPage(val) {
+        this.$refs.table.setPage(val);
+      },
+      setOrder: function setOrder(column, asc) {
+        this.$refs.table.setOrder(column, asc);
+      },
+      setLimit: function setLimit(limit) {
+        this.$refs.table.setLimit(limit);
+      },
+      toggleChildRow: function toggleChildRow(rowId) {
+        this.$refs.table.toggleChildRow(rowId);
+      },
+      getOpenChildRows: function getOpenChildRows() {
+        var rows = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+        return this.$refs.table.getOpenChildRows(rows);
+      },
+      resetQuery: function resetQuery() {
+        this.$refs.table.resetQuery();
+      }
+    },
+    computed: {
+      filteredData: function filteredData() {
+        return this.$refs.table.filteredData;
+      },
+      allFilteredData: function allFilteredData() {
+        return this.$refs.table.allFilteredData;
+      },
+      filtersCount: function filtersCount() {
+        return this.$refs.table.filtersCount;
+      }
+    },
+    provide: function provide() {
+      var _this = this;
+
+      return {
+        slots: function slots() {
+          return _this.$slots;
+        }
+      };
+    },
+    model: {
+      prop: "data"
+    },
+    render: function render() {
+      return (0, _vue.h)(RLClientTable, {
         data: this.data,
         columns: this.columns,
         name: this.name,
-        options: this.options
-      },
-      ref: "table",
-      scopedSlots: {
+        options: this.options,
+        ref: 'table'
+      }, {
         "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("div", {
+          return props.override ? (0, _vue.h)(props.override, {
+            props: (0, _omit["default"])(props, 'override')
+          }) : (0, _vue.createVNode)("div", {
             "class": "VueTables VueTables--" + props.source
-          }, [h("div", {
+          }, [(0, _vue.createVNode)("div", {
             "class": props.theme.row
-          }, [h("div", {
+          }, [(0, _vue.createVNode)("div", {
             "class": props.theme.column
-          }, [!props.opts.filterByColumn && props.opts.filterable ? h("div", {
+          }, [!props.opts.filterByColumn && props.opts.filterable ? (0, _vue.createVNode)("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.left, " VueTables__search")
-          }, [props.slots.beforeFilter, h("vt-generic-filter", {
-            ref: "genericFilter"
-          }), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, (props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ? h("div", {
+          }, [props.slots.beforeFilter, (0, _vue.h)(_VtGenericFilter["default"]), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect ? (0, _vue.createVNode)("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.right, " VueTables__limit")
-          }, [props.slots.beforeLimit, h("vt-per-page-selector"), props.slots.afterLimit]) : '', props.opts.pagination.dropdown && props.totalPages > 1 ? h("div", {
+          }, [props.slots.beforeLimit, (0, _vue.h)(_VtPerPageSelector["default"]), props.slots.afterLimit]) : '', props.opts.pagination.dropdown && props.totalPages > 1 ? (0, _vue.createVNode)("div", {
             "class": "VueTables__pagination-wrapper"
-          }, [h("div", {
+          }, [(0, _vue.createVNode)("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.right, " VueTables__dropdown-pagination")
-          }, [h("vt-dropdown-pagination")])]) : '', props.opts.columnsDropdown ? h("div", {
+          }, [(0, _vue.h)(_VtDropdownPagination["default"])])]) : '', props.opts.columnsDropdown ? (0, _vue.createVNode)("div", {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
-          }, [h("vt-columns-dropdown")]) : ''])]), props.slots.beforeTable, h("div", {
-            "class": "table-responsive VueTables__wrapper",
-            style: props.styles()
-          }, [h("vt-table", {
-            ref: "vt_table"
-          }), props.opts.pagination.virtual ? h("observer", {
-            on: {
-              "intersect": function intersect() {
-                return props.setPage(props.page + 1);
-              }
-            }
-          }) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? '' : h("vt-pagination"), props.opts.pagination.virtual || props.opts.pagination.dropdown ? h("vt-pagination-count") : '']);
+          }, [(0, _vue.h)(_VtColumnsDropdown["default"])]) : ''])]), props.slots.beforeTable, (0, _vue.createVNode)("div", {
+            "class": "table-responsive"
+          }, [(0, _vue.h)(_VtTable["default"])]), props.slots.afterTable, props.opts.pagination.show ? (0, _vue.h)(_VtPagination["default"]) : '']);
         }
-      }
-    });
-  }
-};
-exports["default"] = _default2;
+      });
+    }
+  };
+}

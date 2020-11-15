@@ -1,33 +1,42 @@
 import RLTable from "./renderless/RLTable";
 import VtTableHead from "./VtTableHead";
 import VtTableBody from "./VtTableBody";
+import {h, ref, onMounted} from 'vue'
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtTable',
+    inject: ['setRef'],
     components: {RLTable, VtTableHead, VtTableBody},
+    setup() {
+        const table = ref(null);
+
+        return {
+            table,
+        };
+    },
+    mounted() {
+        this.setRef('table', this.$refs.table)
+    },
     render() {
-        return <r-l-table scopedSlots={
-            {
-                default: function (props) {
+        return h(RLTable, {}, {
+            default: function (props) {
 
-                    var caption = props.caption ? <caption>{props.caption}</caption> : '';
+                var caption = props.caption ? <caption>{props.caption}</caption> : '';
 
-                    return props.override ? h(props.override, {attrs: {props}}) :
-                        <table
-                            class={props.tableAttrs.class}
-                            summary={props.tableAttrs.summary}
-                            style={'border-collapse: collapse; width:100%'}
-                        >
-                            {caption}
-                            <vt-table-head/>
-                            {props.slots.beforeBody}
-                            <vt-table-body ref="vt_table_body"/>
-                            {props.slots.afterBody}
-                        </table>
-                }
+                return props.override ? h(props.override, {props: omit(props)}) :
+                    <table
+                        ref="table"
+                        class={props.tableAttrs.class}
+                        summary={props.tableAttrs.summary}
+                    >
+                        {caption}
+                        {h(VtTableHead)}
+                        {props.slots.beforeBody}
+                        {h(VtTableBody)}
+                        {props.slots.afterBody}
+                    </table>
             }
-        }
-            >
-            </r-l-table>
-        }
+        })
+    }
 }

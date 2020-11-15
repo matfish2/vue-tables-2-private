@@ -1,25 +1,23 @@
 import RLTableHead from "./renderless/RLTableHead";
 import VtHeadingsRow from "./VtHeadingsRow"
 import VtFiltersRow from "./VtFiltersRow";
+import {h} from "vue"
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtTableHead',
     components: {RLTableHead, VtHeadingsRow, VtFiltersRow},
     render() {
-        return <r-l-table-head scopedSlots={
-            {
-                default: function (props) {
-                    return props.override ? h(props.override, {attrs: {props}}) : <thead>
-                    {props.slots.prependHead}
-                    <vt-headings-row/>
+        return h(RLTableHead, {}, {
+            default: function (props) {
+                return props.override ? h(props.override, {props:omit(props)}) : <thead>
+                {props.slots.prependHead}
+                {h(VtHeadingsRow)}
                 {props.slots.beforeFilters}
-                    {props.opts.filterByColumn && props.opts.filterable ? <vt-filters-row/> : ''}
-                    {props.slots.afterFilters}
-                    </thead>
-                }
+                {props.opts.filterByColumn && props.opts.filterable ? h(VtFiltersRow) : ''}
+                {props.slots.afterFilters}
+                </thead>
             }
-        }
-            >
-            </r-l-table-head>
-        }
+        })
+    }
 }

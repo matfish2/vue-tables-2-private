@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLNoResultsRow = _interopRequireDefault(require("./renderless/RLNoResultsRow"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -15,24 +19,17 @@ var _default2 = {
     RLNoResultsRow: _RLNoResultsRow["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-no-results-row", {
-      scopedSlots: {
-        "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("tr", {
-            "class": props["class"]
-          }, [h("td", {
-            "class": "text-center ".concat(props.tdClass),
-            attrs: {
-              tabindex: props.tabIndex,
-              colspan: props.colspan
-            }
-          }, [props.message])]);
-        }
+    return (0, _vue.h)(_RLNoResultsRow["default"], {}, {
+      "default": function _default(props) {
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("tr", {
+          "class": "VueTables__no-results"
+        }, [(0, _vue.createVNode)("td", {
+          "class": "text-center",
+          "tabindex": props.tabIndex,
+          "colspan": props.colspan
+        }, [props.display(props.message)])]);
       }
     });
   }

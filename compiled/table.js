@@ -5,16 +5,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = _default;
 
-var methods = require("./mixins/methods");
+var _methods = _interopRequireDefault(require("./mixins/methods"));
 
-var computed = require("./mixins/computed");
+var _computed = _interopRequireDefault(require("./mixins/computed"));
 
-var beforeDestroy = require("./mixins/before-destroy");
+var _beforeDestroy = _interopRequireDefault(require("./mixins/before-destroy"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _default() {
   return {
-    methods: methods,
-    computed: computed,
-    beforeDestroy: beforeDestroy
+    methods: _methods["default"],
+    computed: _computed["default"],
+    beforeUnmount: _beforeDestroy["default"]
   };
 }

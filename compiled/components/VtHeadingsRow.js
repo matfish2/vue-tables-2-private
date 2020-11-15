@@ -5,9 +5,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLHeadingsRow = _interopRequireDefault(require("./renderless/RLHeadingsRow"));
 
 var _VtTableHeading = _interopRequireDefault(require("./VtTableHeading"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -18,60 +22,31 @@ var _default2 = {
     VtTableHeading: _VtTableHeading["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-headings-row", {
-      scopedSlots: {
-        "default": function _default(props) {
-          if (props.override) {
-            return h(props.override, {
-              attrs: {
-                props: props
-              }
-            });
-          }
-
-          var headings = [];
-
-          if (props.selectable) {
-            var checkbox = props.opts.selectable.mode === 'single' ? '' : h("input", {
-              attrs: {
-                id: "vt-toggle-all",
-                type: "checkbox"
-              },
-              on: {
-                "click": function click(e) {
-                  return props.toggleAll(e);
-                }
-              }
-            });
-            headings.push(h("th", {
-              "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th),
-              style: props.opts.stickyHeader ? 'position:sticky; top:0; background:white;' : ''
-            }, [checkbox]));
-          }
-
-          if (props.childRowTogglerFirst) {
-            headings.push(h("th", {
-              "class": props.theme.th
-            }));
-          }
-
-          props.columns.map(function (column) {
-            headings.push(h("vt-table-heading", {
-              attrs: {
-                column: column
-              }
-            }));
+    return (0, _vue.h)(_RLHeadingsRow["default"], {}, {
+      "default": function _default(props) {
+        if (props.override) {
+          return (0, _vue.h)(props.override, {
+            props: (0, _omit["default"])(props)
           });
-
-          if (props.childRowTogglerLast) {
-            headings.push(h("th", {
-              "class": props.theme.th
-            }));
-          }
-
-          return h("tr", [headings]);
         }
+
+        var headings = [];
+
+        if (props.childRowTogglerFirst) {
+          headings.push((0, _vue.createVNode)("th", null, null));
+        }
+
+        props.columns.map(function (column) {
+          headings.push((0, _vue.h)(_VtTableHeading["default"], {
+            column: column
+          }));
+        });
+
+        if (props.childRowTogglerLast) {
+          headings.push((0, _vue.createVNode)("th", null, null));
+        }
+
+        return (0, _vue.createVNode)("tr", null, [headings]);
       }
     });
   }

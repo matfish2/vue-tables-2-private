@@ -1,20 +1,20 @@
 import RLTableCell from "./renderless/RLTableCell";
+import {h} from 'vue'
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtTableCell',
     props: ['column'],
     components: { RLTableCell },
     render() {
-        return <r-l-table-cell column={this.column} scopedSlots={
-            {
+        return h(RLTableCell, {
+            column: this.column
+        }, {
                 default: (props) => {
-                    return props.override ? h(props.override, {attrs:{props}}) : <td tabindex={props.tabIndex} class={props.classes}>
+                    return props.override ? h(props.override, {props:omit(props)}) : <td tabindex={props.tabIndex} class={props.classes}>
                         {props.content}
                     </td>
                 }
-            }
-        }
-        >
-        </r-l-table-cell>
+        })
     }
 }

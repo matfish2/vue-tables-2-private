@@ -1,25 +1,26 @@
 import RLChildRow from "./renderless/RLChildRow";
+import {h} from "vue";
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtChildRow',
     props: ['row', 'index'],
     components: {RLChildRow},
     render() {
-        return <r-l-child-row row={this.row} index={this.index} scopedSlots={
-            {
-                default: function (props) {
+        return h(RLChildRow, {
+            row: this.row,
+            index: this.index
+        },{
+               default: function (props) {
                     return props.override ? h(props.override,
                         {
-                            attrs: { props }
+                            props: omit(props)
                         }) : <tr class={'VueTables__child-row ' + props.class}>
                         <td colspan={props.colspan}>
                             {props.childRow}
                         </td>
                     </tr>
                 }
-            }
-        }
-        >
-        </r-l-child-row>
+        })
     }
 }

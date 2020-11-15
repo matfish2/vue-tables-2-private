@@ -1,6 +1,8 @@
 "use strict";
 
-module.exports = function (h, row, index, scopedSlot) {
+var _vue = require("vue");
+
+module.exports = function (row, index, scopedSlot) {
   // scoped slot
   if (scopedSlot) return scopedSlot({
     row: row,
@@ -8,11 +10,9 @@ module.exports = function (h, row, index, scopedSlot) {
   });
   var childRow = this.opts.childRow; // function
 
-  if (typeof childRow === 'function') return childRow.apply(this, [h, row]); // component
+  if (typeof childRow === 'function') return childRow.apply(this, [_vue.h, row]); // component
 
-  return h(childRow, {
-    attrs: {
-      data: row
-    }
+  return (0, _vue.h)(childRow, {
+    data: row
   });
 };

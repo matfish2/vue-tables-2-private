@@ -1,19 +1,18 @@
 "use strict";
 
-var _bus = _interopRequireDefault(require("../bus"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-module.exports = function () {
+// import EventBus from '../bus';
+function _default() {
   var _this = this;
 
-  var el;
-
-  if (this.opts.destroyEventBus) {
-    _bus["default"].$off();
-
-    _bus["default"].$destroy();
-  }
+  var el; // if (this.opts.destroyEventBus) {
+  //     EventBus.$off();
+  //     EventBus.$destroy();
+  // }
 
   if (this.vuex && !this.opts.preserveState) {
     this.$store.unregisterModule(this.name);
@@ -25,4 +24,4 @@ module.exports = function () {
       if (el) el.remove();
     });
   }
-};
+}

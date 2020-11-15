@@ -1,54 +1,52 @@
 import RLColumnsDropdown from "./renderless/RLColumnsDropdown";
 import dropdownWrapper from "./dropdown-wrapper"
+import {h} from "vue"
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtColumnsDropdown',
     components: {RLColumnsDropdown},
-    render(h) {
-        return <r-l-columns-dropdown scopedSlots={
-            {
-                default: function (props) {
+    render() {
+        return h(RLColumnsDropdown, {}, {
+            default: function (props) {
 
-                    if (props.override) {
-                        return h(props.override, {
-                            attrs:{props}
-                        })
-                    }
+                if (props.override) {
+                    return h(props.override, {
+                        props: omit(props)
+                    })
+                }
 
-                    var content;
-                    var cols = props.origColumns.map(column => {
-                        content = <a class={props.theme.dropdown.item}
-                                     href="#"
-                                     onClick={() => props.toggleColumn(column)}>
-                            <input type="checkbox" value={column}
-                                   class={props.theme.dropdown.checkbox}
-                                   disabled={props.onlyColumn(column)}
-                                   checked={props.columns.includes(column)}/>
-                            <span class={props.theme.dropdown.text}>{props.getHeading(column)}</span>
-                        </a>;
+                var content;
+                var cols = props.origColumns.map(column => {
+                    content = <a class={props.theme.dropdown.item}
+                                 href="#"
+                                 onClick={() => props.toggleColumn(column)}>
+                        <input type="checkbox" value={column}
+                               disabled={props.onlyColumn(column)}
+                               checked={props.columns.includes(column)}/>
+                        {props.getHeading(column)}
+                    </a>;
 
-                        return props.theme.framework === 'bulma' ? content : <li>
-                            {content}
-                        </li>
-                    });
+                    return props.theme.framework === 'bulma' ? content : <li>
+                        {content}
+                    </li>
+                });
 
-                    return <div class="VueTables__columns-dropdown">
-                            <button type="button" class={`${props.theme.button} ${props.theme.dropdown.trigger}`}
-                                    on-click={props.toggleColumnsDropdown}>
-                                {props.display('columns')}
-                                <span class={`${props.theme.icon} ${props.theme.small}`}>
+                return <div class="VueTables__columns-dropdown">
+                    <button type="button" class={`${props.theme.button} ${props.theme.dropdown.trigger}`}
+                            onClick={props.toggleColumnsDropdown}>
+                        {props.display('columns')}
+                        <span class={`${props.theme.icon} ${props.theme.small}`}>
                                     <i class={props.theme.dropdown.caret}></i>
                                  </span>
-                            </button>
+                    </button>
 
-                            {dropdownWrapper(h, props.theme.dropdown, cols, props.displayColumnsDropdown)}
+                    {dropdownWrapper(h, props.theme.dropdown, cols, props.displayColumnsDropdown)}
 
-                        </div>
+                </div>
 
-                }
             }
-        }
-        >
-        </r-l-columns-dropdown>
+
+        })
     }
 }

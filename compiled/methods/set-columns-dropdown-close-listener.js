@@ -16,7 +16,7 @@ module.exports = function () {
 
     this.$refs.columnsdropdown.addEventListener('click', stopProp);
     document.addEventListener('click', handler);
-    this.$once('hook:beforeDestroy', function () {
+    this.$once('hook:beforeUnmount', function () {
       document.removeEventListener('click', handler);
 
       _this.$refs.columnsdropdown.removeEventListener('click', stopProp);

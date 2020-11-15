@@ -8,7 +8,7 @@ var _default = {
   name: 'RLColumnsDropdown',
   inject: ['getHeading', 'display', 'opts', 'theme', 'allColumns', 'onlyColumn', 'toggleColumn', 'toggleColumnsDropdown', 'displayColumnsDropdown', 'origColumns', 'componentsOverride'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       theme: this.theme,
       getHeading: this.getHeading,

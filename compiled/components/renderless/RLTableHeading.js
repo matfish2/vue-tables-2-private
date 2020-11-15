@@ -20,18 +20,17 @@ var _default = {
   render: function render(h) {
     var _this2 = this;
 
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       thAttrs: {
-        "class": "".concat(this.sortableClass(this.column), " ").concat(this.theme.th).trim(),
+        "class": this.sortableClass(this.column),
         tabIndex: this.tabIndex(),
-        style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : '',
         title: this.getHeadingTooltip(this.column)
       },
       thEvents: {
         keypress: function keypress(e) {
           if (e.key === "Enter") {
-            this.orderByColumn(this.column, e);
+            _this2.orderByColumn(_this2.column, e);
           }
         },
         click: function click(e) {

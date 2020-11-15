@@ -10,7 +10,7 @@ var _default = {
   render: function render() {
     var _this = this;
 
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       perPageValues: this.perPageValues(),
       theme: this.theme,
@@ -22,7 +22,7 @@ var _default = {
       selectAttrs: {
         id: "VueTables__limit_".concat(this.id),
         "class": this.theme.select,
-        value: this.limit()
+        value: Number(this.limit())
       },
       selectEvents: {
         change: function change(e) {

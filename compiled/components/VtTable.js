@@ -5,41 +5,46 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLTable = _interopRequireDefault(require("./renderless/RLTable"));
 
 var _VtTableHead = _interopRequireDefault(require("./VtTableHead"));
 
 var _VtTableBody = _interopRequireDefault(require("./VtTableBody"));
 
+var _omit = _interopRequireDefault(require("../helpers/omit"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default2 = {
   name: 'VtTable',
+  inject: ['setRef'],
   components: {
     RLTable: _RLTable["default"],
     VtTableHead: _VtTableHead["default"],
     VtTableBody: _VtTableBody["default"]
   },
+  setup: function setup() {
+    var table = (0, _vue.ref)(null);
+    return {
+      table: table
+    };
+  },
+  mounted: function mounted() {
+    this.setRef('table', this.$refs.table);
+  },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-table", {
-      scopedSlots: {
-        "default": function _default(props) {
-          var caption = props.caption ? h("caption", [props.caption]) : '';
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("table", {
-            "class": props.tableAttrs["class"],
-            attrs: {
-              summary: props.tableAttrs.summary
-            },
-            style: 'border-collapse: collapse; width:100%'
-          }, [caption, h("vt-table-head"), props.slots.beforeBody, h("vt-table-body", {
-            ref: "vt_table_body"
-          }), props.slots.afterBody]);
-        }
+    return (0, _vue.h)(_RLTable["default"], {}, {
+      "default": function _default(props) {
+        var caption = props.caption ? (0, _vue.createVNode)("caption", null, [props.caption]) : '';
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("table", {
+          "ref": "table",
+          "class": props.tableAttrs["class"],
+          "summary": props.tableAttrs.summary
+        }, [caption, (0, _vue.h)(_VtTableHead["default"]), props.slots.beforeBody, (0, _vue.h)(_VtTableBody["default"]), props.slots.afterBody]);
       }
     });
   }

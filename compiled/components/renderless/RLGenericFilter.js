@@ -8,7 +8,7 @@ var _default = {
   name: 'RLGenericFilter',
   inject: ['opts', 'theme', 'source', 'search', 'query', 'display', 'id', 'componentsOverride'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       theme: this.theme,
       search: this.search,

@@ -1,24 +1,26 @@
 "use strict";
 
+var _vue = require("vue");
+
 module.exports = function (h, classes, columns, display) {
   if (classes.framework === 'bulma') {
-    return h("div", {
+    return (0, _vue.createVNode)("div", {
       "class": classes.menu,
-      style: display ? 'display:block' : 'display:none'
-    }, [h("div", {
+      "style": display ? 'display:block' : 'display:none'
+    }, [(0, _vue.createVNode)("div", {
       "class": classes.content
     }, [columns])]);
   }
 
   if (classes.framework === 'bootstrap4') {
-    return h("div", {
+    return (0, _vue.createVNode)("div", {
       "class": classes.menu,
-      style: display ? 'display:block' : 'display:none'
+      "style": display ? 'display:block' : 'display:none'
     }, [columns]);
   }
 
-  return h("ul", {
+  return (0, _vue.createVNode)("ul", {
     "class": classes.menu,
-    style: display ? 'display:block' : 'display:none'
+    "style": display ? 'display:block' : 'display:none'
   }, [columns]);
 };

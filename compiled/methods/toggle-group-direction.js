@@ -1,9 +1,9 @@
 "use strict";
 
 module.exports = function () {
-  if (this.orderBy.column != this.groupBy[0]) {
-    this.setOrder(this.groupBy[0], true);
+  if (this.orderBy.column != this.opts.groupBy) {
+    this.setOrder(this.opts.groupBy, true);
   } else {
-    this.setOrder(this.groupBy[0], !this.orderBy.ascending);
+    this.setOrder(this.opts.groupBy, !this.orderBy.ascending);
   }
 };

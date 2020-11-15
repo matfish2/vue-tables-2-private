@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLGroupRow = _interopRequireDefault(require("./renderless/RLGroupRow"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -14,38 +18,25 @@ var _default2 = {
   components: {
     RLGroupRow: _RLGroupRow["default"]
   },
-  props: ['level', 'value'],
+  props: ['row'],
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-group-row", {
-      attrs: {
-        level: this.level,
-        value: this.value
-      },
-      scopedSlots: {
-        "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("tr", {
-            "class": "VueTables__group-row VueTables__group-row--".concat(props.level),
-            on: {
-              "click": props.toggleGroupDirection
-            }
-          }, [h("td", {
-            attrs: {
-              colspan: props.colspan
-            }
-          }, [props.canToggleGroup ? h("button", {
-            "class": props.theme.button,
-            on: {
-              "click": props.toggleGroup.bind(this, props.groupValue)
-            }
-          }, [props.groupValue, h("span", {
-            "class": "VueTables__group-toggler ".concat(props.groupToggleIcon(props.groupValue))
-          })]) : '', !props.canToggleGroup ? h("span", [props.groupValue]) : '', props.slot])]);
-        }
+    return (0, _vue.h)(_RLGroupRow["default"], {
+      row: this.row
+    }, {
+      "default": function _default(props) {
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("tr", {
+          "class": props.theme.groupTr,
+          "on-click": props.toggleGroupDirection
+        }, [(0, _vue.createVNode)("td", {
+          "colspan": props.colspan
+        }, [props.canToggleGroup ? (0, _vue.createVNode)("button", {
+          "class": props.theme.button,
+          "on-click": props.toggleGroup.bind(this, props.groupValue)
+        }, [props.groupValue, (0, _vue.createVNode)("span", {
+          "class": props.groupToggleIcon(props.groupValue)
+        }, null)]) : '', !props.canToggleGroup ? (0, _vue.createVNode)("span", null, [props.groupValue]) : '', props.slot])]);
       }
     });
   }

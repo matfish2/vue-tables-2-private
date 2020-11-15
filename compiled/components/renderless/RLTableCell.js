@@ -11,10 +11,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var _default = {
   name: 'RLTableCell',
-  inject: ['row', 'theme', 'scopedSlots', 'orderBy', 'opts', 'render', 'index', 'setEditingCell', 'updateValue', 'revertValue', 'editing', 'getValue', 'columnClass', 'cellClasses', 'componentsOverride', 'isListFilter', 'optionText', 'source', 'dateFormat', 'formatDate', 'tabIndex'],
+  inject: ['row', 'slots', 'theme', 'orderBy', 'opts', 'render', 'index', 'setEditingCell', 'updateValue', 'revertValue', 'editing', 'getValue', 'columnClass', 'cellClasses', 'componentsOverride', 'isListFilter', 'optionText', 'source', 'dateFormat', 'formatDate', 'tabIndex'],
   props: ['column'],
   render: function render(h) {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       row: this.Row,
       column: this.column,
@@ -38,7 +38,7 @@ var _default = {
         return this.render(this.Row, this.column, this.index, h);
       }
 
-      if (this.scopedSlots()[this.column]) {
+      if (this.slots()[this.column]) {
         var data = {
           row: this.Row,
           column: this.column,
@@ -49,7 +49,7 @@ var _default = {
           data = (0, _merge["default"])(data, this.getEditFunctions());
         }
 
-        return this.scopedSlots()[this.column](data);
+        return this.slots()[this.column](data);
       }
 
       return this.formatCellContent(this.getValue(this.Row, this.column), this.column);

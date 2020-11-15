@@ -8,7 +8,7 @@ var _default = {
   name: 'RLTable',
   inject: ['opts', 'theme', 'colspan', 'slots', 'componentsOverride'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       tableAttrs: {
         summary: this.opts().summary,

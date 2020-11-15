@@ -5,7 +5,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLChildRow = _interopRequireDefault(require("./renderless/RLChildRow"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -16,26 +20,18 @@ var _default2 = {
     RLChildRow: _RLChildRow["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-child-row", {
-      attrs: {
-        row: this.row,
-        index: this.index
-      },
-      scopedSlots: {
-        "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("tr", {
-            "class": 'VueTables__child-row ' + props["class"]
-          }, [h("td", {
-            attrs: {
-              colspan: props.colspan
-            }
-          }, [props.childRow])]);
-        }
+    return (0, _vue.h)(_RLChildRow["default"], {
+      row: this.row,
+      index: this.index
+    }, {
+      "default": function _default(props) {
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("tr", {
+          "class": 'VueTables__child-row ' + props["class"]
+        }, [(0, _vue.createVNode)("td", {
+          "colspan": props.colspan
+        }, [props.childRow])]);
       }
     });
   }

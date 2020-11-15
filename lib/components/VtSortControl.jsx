@@ -1,21 +1,17 @@
 import RLSortControl from './renderless/RLSortControl'
+import {h} from 'vue'
+import omit from "../helpers/omit"
 
 export default {
     name: 'VtSortControl',
     components: {RLSortControl},
     render() {
-        return <r-l-sort-control scopedSlots={
-            {
-                default: function (props) {
-                    return props.sortable ? (props.override ? h(props.override,{
-                        attrs:{
-                            props
-                        }
-                    }) : <span class={props.class}></span>) : ''
-                }
+        return h(RLSortControl, {}, {
+            default: function (props) {
+                return props.sortable ? (props.override ? h(props.override, {
+                    props: omit(props)
+                }) : <span class={props.class}></span>) : ''
             }
-        }
-        >
-        </r-l-sort-control>
+        })
     }
 }

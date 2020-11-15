@@ -5,11 +5,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLTableHead = _interopRequireDefault(require("./renderless/RLTableHead"));
 
 var _VtHeadingsRow = _interopRequireDefault(require("./VtHeadingsRow"));
 
 var _VtFiltersRow = _interopRequireDefault(require("./VtFiltersRow"));
+
+var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -21,16 +25,11 @@ var _default2 = {
     VtFiltersRow: _VtFiltersRow["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-table-head", {
-      scopedSlots: {
-        "default": function _default(props) {
-          return props.override ? h(props.override, {
-            attrs: {
-              props: props
-            }
-          }) : h("thead", [props.slots.prependHead, h("vt-headings-row"), props.slots.beforeFilters, props.opts.filterByColumn && props.opts.filterable ? h("vt-filters-row") : '', props.slots.afterFilters]);
-        }
+    return (0, _vue.h)(_RLTableHead["default"], {}, {
+      "default": function _default(props) {
+        return props.override ? (0, _vue.h)(props.override, {
+          props: (0, _omit["default"])(props)
+        }) : (0, _vue.createVNode)("thead", null, [props.slots.prependHead, (0, _vue.h)(_VtHeadingsRow["default"]), props.slots.beforeFilters, props.opts.filterByColumn && props.opts.filterable ? (0, _vue.h)(_VtFiltersRow["default"]) : '', props.slots.afterFilters]);
       }
     });
   }

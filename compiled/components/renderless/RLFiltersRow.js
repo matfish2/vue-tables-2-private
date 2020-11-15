@@ -8,7 +8,7 @@ var _default = {
   name: 'RLFiltersRow',
   inject: ['opts', 'theme', 'allColumns', 'filterable', 'filterType', 'slots', 'columnClass', 'hasChildRow', 'componentsOverride'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       columns: this.allColumns(),
       filterable: this.filterable,
@@ -16,8 +16,7 @@ var _default = {
       slots: this.slots(),
       columnClass: this.columnClass,
       hasChildRow: this.hasChildRow(),
-      override: this.componentsOverride.filtersRow,
-      theme: this.theme
+      override: this.componentsOverride.filtersRow
     });
   }
 };

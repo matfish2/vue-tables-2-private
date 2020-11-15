@@ -16,13 +16,7 @@ module.exports = function (promiseOnly) {
   }
 
   var keys = this.opts.requestKeys;
-  this.drawCounter++;
   var data = (_data = {}, _defineProperty(_data, keys.query, this.filteredQuery), _defineProperty(_data, keys.limit, this.limit), _defineProperty(_data, keys.ascending, this.orderBy.ascending ? 1 : 0), _defineProperty(_data, keys.page, parseInt(this.page)), _defineProperty(_data, keys.byColumn, this.opts.filterByColumn ? 1 : 0), _data);
-
-  if (this.opts.useDrawCounter) {
-    data[keys.draw] = this.drawCounter;
-  }
-
   if (this.orderBy.hasOwnProperty('column') && this.orderBy.column) data[keys.orderBy] = this.orderBy.column;
   data = merge(data, this.opts.params, this.customQueries, additionalData);
 
@@ -40,9 +34,7 @@ module.exports = function (promiseOnly) {
   if (promiseOnly) return promise;
   return promise.then(function (response) {
     if (typeof response !== 'undefined') {
-      this.cancelToken = null;
       this.loading = false;
-      this.loadingError = false;
       return this.setData(response);
     } else {
       return false;

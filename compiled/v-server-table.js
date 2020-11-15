@@ -14,8 +14,6 @@ var _resizeableColumns = _interopRequireDefault(require("./helpers/resizeable-co
 
 var _VtServerTable = _interopRequireDefault(require("./components/VtServerTable"));
 
-var _themes = _interopRequireDefault(require("./themes/themes"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -23,6 +21,12 @@ var _data = require("./mixins/data");
 var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
+
+var themes = {
+  bootstrap3: require('./themes/bootstrap3')(),
+  bootstrap4: require('./themes/bootstrap4')(),
+  bulma: require('./themes/bulma')()
+};
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
@@ -55,7 +59,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
     provide: provide,
     created: function created() {
       if (!this.opts.requestFunction && !this.url) {
-        throw 'vue-tables-2: you must provide either a "url" prop or a custom request function. Aborting';
+        throw 'vue-tables-3: you must provide either a "url" prop or a custom request function. Aborting';
       }
 
       _created(this);
@@ -87,7 +91,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
-        (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst, this.opts.resizableColumns, this.opts.stickyHeader);
+        (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst, this.opts.resizableColumns);
       } // this._setColumnsDropdownCloseListener();
 
 
@@ -103,7 +107,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
         lastKeyStrokeAt: false,
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
-        theme: typeof theme === 'string' ? _themes["default"][theme] : theme()
+        theme: typeof theme === 'string' ? themes[theme] : theme()
       }, (0, _data2["default"])(useVuex, "server", this.options.initialPage));
     },
     methods: {

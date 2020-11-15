@@ -13,11 +13,11 @@ var _default = {
   name: "RLPagination",
   inject: ['opts', 'count', 'limit', 'vuex', 'name', 'id', 'theme', 'page', 'setPage', 'totalPages', 'componentsOverride'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       opts: this.opts(),
       setPage: this.setPage,
       options: this.opts().pagination,
-      virtualScroll: this.opts().virtualScroll,
+      infiniteScroll: this.opts().infiniteScroll,
       page: this.page(),
       records: this.count(),
       perPage: parseInt(this.limit()),

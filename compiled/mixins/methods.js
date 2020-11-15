@@ -1,6 +1,10 @@
 "use strict";
 
-module.exports = {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _default = {
   initQuery: require('../methods/init-query'),
   resetQuery: require('../methods/reset-query'),
   initCustomFilters: require('../methods/init-custom-filters'),
@@ -26,7 +30,6 @@ module.exports = {
   formatDate: require('../filters/format-date'),
   hasDateFilters: require('../methods/has-date-filters'),
   optionText: require('../filters/option-text'),
-  render: require('../methods/render'),
   rowWasClicked: require('../methods/row-was-clicked'),
   setLimit: require('../methods/set-limit'),
   getOpenChildRows: require('../methods/get-open-child-rows'),
@@ -62,15 +65,6 @@ module.exports = {
   _revertValue: require('../methods/revert-value'),
   _updateValue: require('../methods/update-value'),
   _filterType: require('../methods/filter-type'),
-  _search: require('../methods/search'),
-  toggleRowSelection: require('../methods/toggle-row-selection'),
-  isRowSelected: require('../methods/is-row-selected'),
-  toggleAllRows: require('../methods/toggle-all-rows'),
-  resetSelectedRows: require('../methods/reset-selected-rows'),
-  selectRow: require('../methods/select-row'),
-  selectRows: require('../methods/select-rows'),
-  unselectRow: require('../methods/unselect-row'),
-  unselectRows: require('../methods/unselect-rows'),
-  toggleRow: require('../methods/toggle-row'),
-  selectAllRows: require('../methods/select-all-rows')
+  _search: require('../methods/search')
 };
+exports["default"] = _default;

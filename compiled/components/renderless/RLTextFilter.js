@@ -7,9 +7,14 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTextFilter',
   inject: ['opts', 'search', 'query', 'theme', 'getHeading', 'display', 'getColumnName', 'componentsOverride'],
-  props: ['column'],
-  render: function render(h) {
-    return this.$scopedSlots["default"]({
+  props: {
+    column: {
+      required: true,
+      type: String
+    }
+  },
+  render: function render() {
+    return this.$slots["default"]({
       opts: this.opts(),
       column: this.column,
       debounce: this.opts().debounce,
@@ -17,7 +22,7 @@ var _default = {
       search: this.search,
       query: this.query(),
       getHeading: this.getHeading,
-      getColumnName: this.getColumnName,
+      name: this.getColumnName(this.column),
       display: this.display,
       override: this.componentsOverride.textFilter
     });
