@@ -8,10 +8,10 @@ export default {
     render() {
         return h(RLNoResultsRow, {}, {
                 default: function (props) {
-                    return props.override ? h(props.override, {props:omit(props)}) : <tr class="VueTables__no-results">
-                        <td class="text-center" tabindex={props.tabIndex}
+                    return props.override ? h(props.override, {props:omit(props)}) : <tr class={props.class}>
+                        <td class={`text-center ${props.tdClass}`} tabindex={props.tabIndex}
                             colspan={props.colspan}>
-                            {props.display(props.message)}
+                            {props.message}
                         </td>
                     </tr>
                 }
