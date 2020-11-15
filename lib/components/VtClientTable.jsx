@@ -6,6 +6,7 @@ import VtGenericFilter from "./VtGenericFilter";
 import VtColumnsDropdown from "./VtColumnsDropdown";
 import {h} from 'vue'
 import omit from "../helpers/omit"
+import VtPaginationCount from "./VtPaginationCount"
 
 export default function (RLClientTable) {
     return {
@@ -17,7 +18,8 @@ export default function (RLClientTable) {
             VtDropdownPagination,
             VtColumnsDropdown,
             VtGenericFilter,
-            RLClientTable
+            RLClientTable,
+            VtPaginationCount
         },
         props: {
             columns: {
@@ -109,7 +111,7 @@ export default function (RLClientTable) {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect ? <div
+                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect)  && !props.opts.pagination.virtual  ? <div
                                     class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
                                     {props.slots.beforeLimit}
                                     {h(VtPerPageSelector)}
@@ -134,10 +136,16 @@ export default function (RLClientTable) {
                         {props.slots.beforeTable}
                         <div class="table-responsive">
                             {h(VtTable)}
+                              {props.opts.pagination.virtual ? h(Observer, {
+                                  onIntersect: () => {
+                                      props.setPage(props.page+1)
+                                  }
+                              }) : ''}
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.show ? h(VtPagination) : ''}
+                        {props.opts.pagination.virtual || !props.opts.pagination.show ? h(VtPagination) : ''}
+                          {props.opts.pagination.virtual || props.opts.pagination.dropdown ? h(VtPaginationCount) : ''}
                     </div>
 
                 }

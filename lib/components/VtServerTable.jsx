@@ -4,8 +4,8 @@ import VtPagination from "./VtPagination";
 import VtDropdownPagination from "./VtDropdownPagination";
 import VtGenericFilter from "./VtGenericFilter";
 import VtColumnsDropdown from "./VtColumnsDropdown";
-import {h} from 'vue'
-import omit from "../helpers/omit"
+import Observer from "./Observer";
+import VtPaginationCount from "./VtPaginationCount";
 
 export default {
     name: 'VtServerTable',
@@ -15,7 +15,9 @@ export default {
         VtPagination,
         VtDropdownPagination,
         VtColumnsDropdown,
-        VtGenericFilter
+        VtGenericFilter,
+        VtPaginationCount,
+        Observer
     },
     props: {
         columns: {
@@ -50,8 +52,8 @@ export default {
         data() {
             return this.$refs.table.tableData
         },
-        filtersCount() {
-            return this.$refs.table.filtersCount
+        selectedRows() {
+            return this.$refs.table.selectedRows
         }
     },
     methods: {
@@ -85,17 +87,39 @@ export default {
         resetQuery() {
             this.$refs.table.resetQuery()
         },
+        resetSelectedRows() {
+            this.$refs.table.resetSelectedRows()
+        },
+        selectRow(id) {
+            return this.$refs.table.selectRow(id)
+        },
+        unselectRow(id) {
+            return this.$refs.table.unselectRow(id)
+        },
+        selectRows(ids) {
+            return this.$refs.table.selectRows(ids)
+        },
+        unselectRows(ids) {
+            return this.$refs.table.unselectRows(ids)
+        },
+        toggleRow(id) {
+            return this.$refs.table.toggleRow(id)
+        },
+        selectAllRows() {
+            return this.$refs.table.selectAllRows()
+        },
         resetCustomFilters: require('../methods/reset-custom-filters')
     },
     provide() {
         return {
+            scopedSlots: () => this.$scopedSlots,
             slots: () => this.$slots
         }
     },
     model: {
         prop: "data"
     },
-    render() {
+    render(h) {
         return <r-l-server-table url={this.url} columns={this.columns} name={this.name} options={this.options}
                                  ref="table" scopedSlots={
             {
@@ -115,12 +139,13 @@ export default {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect ? <div
-                                    class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
-                                    {props.slots.beforeLimit}
-                                    <vt-per-page-selector/>
-                                    {props.slots.afterLimit}
-                                </div> : ''}
+                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ?
+                                    <div
+                                        class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
+                                        {props.slots.beforeLimit}
+                                        <vt-per-page-selector/>
+                                        {props.slots.afterLimit}
+                                    </div> : ''}
 
                                 {props.opts.pagination.dropdown && props.totalPages > 1 ?
                                     <div class="VueTables__pagination-wrapper">
@@ -138,12 +163,16 @@ export default {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive">
+                        <div class="table-responsive" style={props.styles()}>
                             <vt-table ref="vt_table"/>
+                            {props.opts.pagination.virtual && !props.loading ?
+                                <observer onIntersect={() => props.setPage(props.page + 1)}/> : ''}
+
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.show ? <vt-pagination/> : ''}
+                        {props.opts.pagination.virtual || !props.opts.pagination.show ? '' : <vt-pagination/>}
+                        {props.opts.pagination.virtual || props.opts.pagination.dropdown ? <vt-pagination-count/> : ''}
 
                     </div>
                 }
