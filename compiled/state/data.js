@@ -17,6 +17,7 @@ function _default(useVuex, source) {
     userColumnsDisplay: [],
     userControlsColumns: false,
     displayColumnsDropdown: false,
+    selectedRows: [],
     collapsedGroups: []
   };
   if (useVuex) return data;

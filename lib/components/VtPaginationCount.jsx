@@ -1,4 +1,5 @@
 import RLPaginationCount from "./renderless/RLPaginationCount";
+import {h} from "vue"
 
 export default {
     name: 'VtPaginationCount',

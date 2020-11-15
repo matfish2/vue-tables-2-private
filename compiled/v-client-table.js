@@ -19,6 +19,8 @@ var _VtClientTable = _interopRequireDefault(require("./components/VtClientTable"
 
 var _table = _interopRequireDefault(require("./table"));
 
+var _themes = _interopRequireDefault(require("./themes/themes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -26,12 +28,6 @@ var _data = require("./mixins/data");
 var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
-
-var themes = {
-  bootstrap3: require('./themes/bootstrap3')(),
-  bootstrap4: require('./themes/bootstrap4')(),
-  bulma: require('./themes/bulma')()
-};
 
 function install(app, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
@@ -79,7 +75,7 @@ function install(app, globalOptions, useVuex) {
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
-        (0, _resizeableColumns["default"])(this.refs.table, this.hasChildRow, this.opts.childRowTogglerFirst);
+        (0, _resizeableColumns["default"])(this.refs.table, this.hasChildRow, this.opts.childRowTogglerFirst, this.resizableColumns, this.opts.stickyHeader);
       }
 
       if (!this.vuex) {
@@ -112,7 +108,7 @@ function install(app, globalOptions, useVuex) {
       return _merge["default"].recursive(_data(), {
         source: "client",
         loading: false,
-        theme: typeof theme === 'string' ? themes[theme] : theme(),
+        theme: typeof theme === 'string' ? _themes["default"][theme] : theme(),
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
         currentlySorting: {},

@@ -7,7 +7,7 @@ module.exports = function () {
   this.opts.customFilters.forEach(function (filter) {// bus.$off(`${event}.filter::${filter.name}`);
     // bus.$on(`${event}.filter::${filter.name}`, value => {
     //  this.customQueries[filter.name] = value;
-    // this.updateState('customQueries', this.customQueries);
+    //  this.updateState('customQueries', this.customQueries);
     // });
   });
 };

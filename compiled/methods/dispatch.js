@@ -8,7 +8,8 @@ module.exports = function (event, payload) {
   }
 
   this.$parent.$emit(event, payload); // bus.$emit(`vue-tables.${event}`, payload);
-
-  if (this.name) {// bus.$emit(`vue-tables.${this.name}.${event}`, payload);
-  }
+  //
+  // if (this.name) {
+  //   bus.$emit(`vue-tables.${this.name}.${event}`, payload);
+  // }
 };

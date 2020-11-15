@@ -1,12 +1,7 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = _default;
-
 // import EventBus from '../bus';
-function _default() {
+module.exports = function () {
   var _this = this;
 
   var el; // if (this.opts.destroyEventBus) {
@@ -24,4 +19,4 @@ function _default() {
       if (el) el.remove();
     });
   }
-}
+};

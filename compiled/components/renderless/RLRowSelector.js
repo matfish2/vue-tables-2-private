@@ -8,7 +8,7 @@ var _default = {
   name: 'RLRowSelector',
   inject: ['opts', 'theme', 'colspan', 'slots', 'toggleRowSelection', 'isRowSelected', 'componentsOverride', 'row', 'index'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       tdClass: this.theme.td,
       mode: this.opts().selectable.mode,
       type: this.opts().selectable.mode === 'single' ? 'radio' : 'checkbox',

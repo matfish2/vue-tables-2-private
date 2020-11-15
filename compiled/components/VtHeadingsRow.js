@@ -32,6 +32,20 @@ var _default2 = {
 
         var headings = [];
 
+        if (props.selectable) {
+          var checkbox = props.opts.selectable.mode === 'single' ? '' : (0, _vue.createVNode)("input", {
+            "id": "vt-toggle-all",
+            "type": "checkbox",
+            "onClick": function onClick(e) {
+              return props.toggleAll(e);
+            }
+          }, null);
+          headings.push((0, _vue.createVNode)("th", {
+            "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th),
+            "style": props.opts.stickyHeader ? 'position:sticky; top:0; background:white;' : ''
+          }, [checkbox]));
+        }
+
         if (props.childRowTogglerFirst) {
           headings.push((0, _vue.createVNode)("th", null, null));
         }

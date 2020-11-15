@@ -9,6 +9,7 @@ module.exports = function () {
     },
     rowWasClicked: this.rowWasClicked,
     render: this.render,
+    groupBy: this.groupBy,
     opts: function opts() {
       return _this.opts;
     },
@@ -35,6 +36,9 @@ module.exports = function () {
     sortable: this.sortable,
     sortableChevronClass: this.sortableChevronClass,
     orderByColumn: this.orderByColumn,
+    allFilteredData: function allFilteredData() {
+      return _this.allFilteredData;
+    },
     filteredData: function filteredData() {
       return _this.filteredData;
     },
@@ -104,11 +108,17 @@ module.exports = function () {
     tabIndex: function tabIndex() {
       return _this.tabIndex;
     },
+    toggleRowSelection: this.toggleRowSelection,
+    toggleAllRows: this.toggleAllRows,
+    isRowSelected: this.isRowSelected,
     loading: function loading() {
       return _this.loading;
     },
+    loadingError: function loadingError() {
+      return _this.loadingError;
+    },
     initialRequestSent: function initialRequestSent() {
-      return _this.source === 'server' && _this.initialRequestSent;
+      return _this.initialRequestSent;
     },
     setRef: function setRef(key, el) {
       _this.refs[key] = el;

@@ -19,7 +19,9 @@ var _VtGenericFilter = _interopRequireDefault(require("./VtGenericFilter"));
 
 var _VtColumnsDropdown = _interopRequireDefault(require("./VtColumnsDropdown"));
 
-var _omit = _interopRequireDefault(require("../helpers/omit"));
+var _Observer = _interopRequireDefault(require("./Observer"));
+
+var _VtPaginationCount = _interopRequireDefault(require("./VtPaginationCount"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -31,7 +33,9 @@ var _default2 = {
     VtPagination: _VtPagination["default"],
     VtDropdownPagination: _VtDropdownPagination["default"],
     VtColumnsDropdown: _VtColumnsDropdown["default"],
-    VtGenericFilter: _VtGenericFilter["default"]
+    VtGenericFilter: _VtGenericFilter["default"],
+    VtPaginationCount: _VtPaginationCount["default"],
+    Observer: _Observer["default"]
   },
   props: {
     columns: {
@@ -66,8 +70,8 @@ var _default2 = {
     data: function data() {
       return this.$refs.table.tableData;
     },
-    filtersCount: function filtersCount() {
-      return this.$refs.table.filtersCount;
+    selectedRows: function selectedRows() {
+      return this.$refs.table.selectedRows;
     }
   },
   methods: {
@@ -102,12 +106,36 @@ var _default2 = {
     resetQuery: function resetQuery() {
       this.$refs.table.resetQuery();
     },
+    resetSelectedRows: function resetSelectedRows() {
+      this.$refs.table.resetSelectedRows();
+    },
+    selectRow: function selectRow(id) {
+      return this.$refs.table.selectRow(id);
+    },
+    unselectRow: function unselectRow(id) {
+      return this.$refs.table.unselectRow(id);
+    },
+    selectRows: function selectRows(ids) {
+      return this.$refs.table.selectRows(ids);
+    },
+    unselectRows: function unselectRows(ids) {
+      return this.$refs.table.unselectRows(ids);
+    },
+    toggleRow: function toggleRow(id) {
+      return this.$refs.table.toggleRow(id);
+    },
+    selectAllRows: function selectAllRows() {
+      return this.$refs.table.selectAllRows();
+    },
     resetCustomFilters: require('../methods/reset-custom-filters')
   },
   provide: function provide() {
     var _this = this;
 
     return {
+      scopedSlots: function scopedSlots() {
+        return _this.$scopedSlots;
+      },
       slots: function slots() {
         return _this.$slots;
       }
@@ -116,7 +144,7 @@ var _default2 = {
   model: {
     prop: "data"
   },
-  render: function render() {
+  render: function render(h) {
     return (0, _vue.createVNode)((0, _vue.resolveComponent)("r-l-server-table"), {
       "url": this.url,
       "columns": this.columns,
@@ -125,7 +153,7 @@ var _default2 = {
       "ref": "table",
       "scopedSlots": {
         "default": function _default(props) {
-          return props.override ? (0, _vue.h)(props.override, {
+          return props.override ? h(props.override, {
             attrs: {
               props: props
             }
@@ -139,7 +167,7 @@ var _default2 = {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.left, " VueTables__search")
           }, [props.slots.beforeFilter, (0, _vue.createVNode)((0, _vue.resolveComponent)("vt-generic-filter"), {
             "ref": "genericFilter"
-          }, null), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect ? (0, _vue.createVNode)("div", {
+          }, null), props.slots.afterFilter]) : '', props.slots.afterFilterWrapper, (props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ? (0, _vue.createVNode)("div", {
             "class": "".concat(props.theme.field, " ").concat(props.theme.inline, " ").concat(props.theme.right, " VueTables__limit")
           }, [props.slots.beforeLimit, (0, _vue.createVNode)((0, _vue.resolveComponent)("vt-per-page-selector"), null, null), props.slots.afterLimit]) : '', props.opts.pagination.dropdown && props.totalPages > 1 ? (0, _vue.createVNode)("div", {
             "class": "VueTables__pagination-wrapper"
@@ -148,10 +176,15 @@ var _default2 = {
           }, [(0, _vue.createVNode)((0, _vue.resolveComponent)("vt-dropdown-pagination"), null, null)])]) : '', props.opts.columnsDropdown ? (0, _vue.createVNode)("div", {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [(0, _vue.createVNode)((0, _vue.resolveComponent)("vt-columns-dropdown"), null, null)]) : ''])]), props.slots.beforeTable, (0, _vue.createVNode)("div", {
-            "class": "table-responsive"
+            "class": "table-responsive",
+            "style": props.styles()
           }, [(0, _vue.createVNode)((0, _vue.resolveComponent)("vt-table"), {
             "ref": "vt_table"
-          }, null)]), props.slots.afterTable, props.opts.pagination.show ? (0, _vue.createVNode)((0, _vue.resolveComponent)("vt-pagination"), null, null) : '']);
+          }, null), props.opts.pagination.virtual && !props.loading ? (0, _vue.createVNode)((0, _vue.resolveComponent)("observer"), {
+            "onIntersect": function onIntersect() {
+              return props.setPage(props.page + 1);
+            }
+          }, null) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? '' : (0, _vue.createVNode)((0, _vue.resolveComponent)("vt-pagination"), null, null), props.opts.pagination.virtual || props.opts.pagination.dropdown ? (0, _vue.createVNode)((0, _vue.resolveComponent)("vt-pagination-count"), null, null) : '']);
         }
       }
     }, null);

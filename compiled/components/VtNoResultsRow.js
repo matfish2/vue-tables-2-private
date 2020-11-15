@@ -24,12 +24,12 @@ var _default2 = {
         return props.override ? (0, _vue.h)(props.override, {
           props: (0, _omit["default"])(props)
         }) : (0, _vue.createVNode)("tr", {
-          "class": "VueTables__no-results"
+          "class": props["class"]
         }, [(0, _vue.createVNode)("td", {
-          "class": "text-center",
+          "class": "text-center ".concat(props.tdClass),
           "tabindex": props.tabIndex,
           "colspan": props.colspan
-        }, [props.display(props.message)])]);
+        }, [props.message])]);
       }
     });
   }

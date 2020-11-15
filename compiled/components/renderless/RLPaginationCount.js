@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   inject: ['page', 'limit', 'opts', 'allFilteredData', 'source', 'tableData', 'count'],
   render: function render() {
-    return this.$scopedSlots["default"]({
+    return this.$slots["default"]({
       from: this.opts().pagination.virtual ? 1 : (this.page() - 1) * this.limit() + 1,
       to: this.getTo(),
       total: this.source === 'client' ? this.allFilteredData().length : this.count()

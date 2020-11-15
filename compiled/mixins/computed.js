@@ -1,10 +1,6 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-var _default = {
+module.exports = {
   listColumnsObject: require('../computed/list-columns-object'),
   allColumns: require('../computed/all-columns'),
   templatesKeys: require('../computed/templates-keys'),
@@ -33,4 +29,3 @@ var _default = {
     return this.opts.tabbable ? 0 : -1;
   }
 };
-exports["default"] = _default;

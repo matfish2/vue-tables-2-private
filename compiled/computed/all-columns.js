@@ -3,8 +3,7 @@
 module.exports = function () {
   var _this = this;
 
-  var display = false; //this.columnsDisplay;
-  // default - return all columns
+  var display = this.columnsDisplay; // default - return all columns
 
   if (!display && !this.userControlsColumns) {
     return this.Columns.filter(function (col) {

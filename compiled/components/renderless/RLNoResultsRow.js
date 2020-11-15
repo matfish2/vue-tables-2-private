@@ -6,21 +6,41 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLNoResultsRow',
-  inject: ['colspan', 'display', 'componentsOverride', 'loading', 'initialRequestSent', 'tabIndex', 'opts'],
+  inject: ['colspan', 'display', 'theme', 'componentsOverride', 'loading', 'loadingError', 'initialRequestSent', 'tabIndex', 'opts'],
   render: function render() {
     return this.$slots["default"]({
       opts: this.opts(),
       colspan: this.colspan(),
+      loading: this.loading(),
+      loadingError: this.loadingError(),
       display: this.display,
       tabIndex: this.tabIndex(),
-      loading: this.loading(),
+      "class": this.getClass(),
+      tdClass: this.theme.td,
       initialRequestSent: this.initialRequestSent(),
-      message: this.message,
+      message: this.display(this.message),
       override: this.componentsOverride.noResultsRow
     });
   },
+  methods: {
+    getClass: function getClass() {
+      if (this.loadingError()) {
+        return 'VueTables__error';
+      }
+
+      if (this.loading()) {
+        return 'VueTables__loading';
+      }
+
+      return 'VueTables__no-results';
+    }
+  },
   computed: {
     message: function message() {
+      if (this.loadingError()) {
+        return 'loadingError';
+      }
+
       if (this.loading()) {
         return 'loading';
       }

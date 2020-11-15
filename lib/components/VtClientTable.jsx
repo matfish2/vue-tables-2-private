@@ -4,9 +4,10 @@ import VtPagination from "./VtPagination";
 import VtDropdownPagination from "./VtDropdownPagination";
 import VtGenericFilter from "./VtGenericFilter";
 import VtColumnsDropdown from "./VtColumnsDropdown";
-import {h} from 'vue'
-import omit from "../helpers/omit"
 import VtPaginationCount from "./VtPaginationCount"
+import Observer from "./Observer";
+import {h, ref} from 'vue'
+import omit from "../helpers/omit"
 
 export default function (RLClientTable) {
     return {
@@ -87,6 +88,13 @@ export default function (RLClientTable) {
         model: {
             prop: "data"
         },
+        setup() {
+          const tablewrapper = ref(null);
+
+          return {
+              tablewrapper
+          }
+        },
         render() {
             return h(RLClientTable, {
                 data: this.data,
@@ -111,7 +119,7 @@ export default function (RLClientTable) {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect)  && !props.opts.pagination.virtual  ? <div
+                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect)  && !props.opts.pagination.virtual ? <div
                                     class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
                                     {props.slots.beforeLimit}
                                     {h(VtPerPageSelector)}
@@ -134,7 +142,7 @@ export default function (RLClientTable) {
                         </div>
 
                         {props.slots.beforeTable}
-                        <div class="table-responsive">
+                        <div class="table-responsive" ref="tablewrapper">
                             {h(VtTable)}
                               {props.opts.pagination.virtual ? h(Observer, {
                                   onIntersect: () => {

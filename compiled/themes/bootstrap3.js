@@ -4,7 +4,11 @@ module.exports = function () {
   return {
     framework: 'bootstrap3',
     table: 'table table-striped table-bordered table-hover',
+    th: '',
     td: '',
+    tr: '',
+    trEven: '',
+    trOdd: '',
     row: 'row',
     column: 'col-md-12',
     label: '',

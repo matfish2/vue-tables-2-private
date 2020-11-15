@@ -1,14 +1,12 @@
 "use strict";
 
-var _vue = require("vue");
-
-module.exports = function (value, column, filterByColumn) {
-  var query = filterByColumn ? this.query[column] : this.query;
+module.exports = function (value, column, h) {
+  var query = this.opts.filterByColumn ? this.query[column] : this.query;
   if (!query) return value;
   query = new RegExp("(" + escapeRegex(query) + ")", "i");
-  return (0, _vue.h)("span", {
+  return h("span", {
     "class": 'VueTables__highlight'
-  }, matches(value, query, _vue.h));
+  }, matches(value, query, h));
 };
 
 function matches(value, query, h) {

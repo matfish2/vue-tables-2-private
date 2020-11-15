@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
+var _vue = require("vue");
+
 var _RLPaginationCount = _interopRequireDefault(require("./renderless/RLPaginationCount"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -15,17 +17,9 @@ var _default2 = {
     RLPaginationCount: _RLPaginationCount["default"]
   },
   render: function render() {
-    var h = arguments[0];
-    return h("r-l-pagination-count", {
-      scopedSlots: {
-        "default": function _default(props) {
-          return h("p", {
-            directives: [{
-              name: "show",
-              value: props.total
-            }]
-          }, ["Showing records ", props.from, " to ", props.to, " out of ", props.total]);
-        }
+    return (0, _vue.h)(_RLPaginationCount["default"], {}, {
+      "default": function _default(props) {
+        return (0, _vue.withDirectives)((0, _vue.createVNode)("p", null, [(0, _vue.createTextVNode)("Showing records "), props.from, (0, _vue.createTextVNode)(" to "), props.to, (0, _vue.createTextVNode)(" out of "), props.total]), [[_vue.vShow, props.total]]);
       }
     });
   }
