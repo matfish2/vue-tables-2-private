@@ -78,13 +78,21 @@ function install(app, globalOptions, useVuex) {
         (0, _resizeableColumns["default"])(this.refs.table, this.hasChildRow, this.opts.childRowTogglerFirst, this.resizableColumns, this.opts.stickyHeader);
       }
 
+      if (this.groupBy && this.groupBy.length > 1) {
+        this.options.multiSorting = {};
+        this.options.multiSorting[this.groupBy[0]] = [{
+          column: this.groupBy[1],
+          matchDir: true
+        }];
+      }
+
       if (!this.vuex) {
         this.registerClientFilters();
         if (this.options.initialPage) this.setPage(this.options.initialPage);
       }
 
-      if (this.opts.groupBy && !this.opts.orderBy) {
-        this.orderBy.column = this.opts.groupBy;
+      if (this.groupBy && !this.orderBy) {
+        this.orderBy.column = this.groupBy[0];
       }
 
       this.loadState();
@@ -120,6 +128,9 @@ function install(app, globalOptions, useVuex) {
       customQ: require("./computed/custom-q"),
       totalPages: require("./computed/total-pages"),
       filteredData: require("./computed/filtered-data"),
+      groupBy: function groupBy() {
+        return typeof this.opts.groupBy === 'string' ? [this.opts.groupBy] : this.opts.groupBy;
+      },
       hasMultiSort: function hasMultiSort() {
         return this.opts.clientMultiSorting;
       }

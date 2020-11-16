@@ -11,6 +11,7 @@ module.exports = function (self) {
     self.limit = self.opts.perPage;
   }
 
+  self.columnsDisplay = false;
   if (is_empty(self.opts.columnsDisplay) || typeof window === 'undefined') return;
   self.columnsDisplay = getColumnsDisplay(self.opts.columnsDisplay);
   window.addEventListener('resize', function () {

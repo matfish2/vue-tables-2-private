@@ -151,7 +151,7 @@ function _default2(RLClientTable) {
             onIntersect: function onIntersect() {
               props.setPage(props.page + 1);
             }
-          }) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? (0, _vue.h)(_VtPagination["default"]) : '', props.opts.pagination.virtual || props.opts.pagination.dropdown ? (0, _vue.h)(_VtPaginationCount["default"]) : '']);
+          }) : '']), props.slots.afterTable, props.opts.pagination.virtual || !props.opts.pagination.show ? '' : (0, _vue.h)(_VtPagination["default"]), props.opts.pagination.virtual || props.opts.pagination.dropdown ? (0, _vue.h)(_VtPaginationCount["default"]) : '']);
         }
       });
     }

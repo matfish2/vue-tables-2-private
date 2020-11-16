@@ -89,11 +89,11 @@ export default function (RLClientTable) {
             prop: "data"
         },
         setup() {
-          const tablewrapper = ref(null);
+            const tablewrapper = ref(null);
 
-          return {
-              tablewrapper
-          }
+            return {
+                tablewrapper
+            }
         },
         render() {
             return h(RLClientTable, {
@@ -101,11 +101,11 @@ export default function (RLClientTable) {
                 columns: this.columns,
                 name: this.name,
                 options: this.options,
-                ref:'table'
+                ref: 'table'
             }, {
                 default: function (props) {
                     return props.override ? h(props.override, {
-                        props: omit(props,'override')
+                        props: omit(props, 'override')
                     }) : <div class={"VueTables VueTables--" + props.source}>
 
                         <div class={props.theme.row}>
@@ -119,12 +119,13 @@ export default function (RLClientTable) {
                                     </div> : ''}
                                 {props.slots.afterFilterWrapper}
 
-                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect)  && !props.opts.pagination.virtual ? <div
-                                    class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
-                                    {props.slots.beforeLimit}
-                                    {h(VtPerPageSelector)}
-                                    {props.slots.afterLimit}
-                                </div> : ''}
+                                {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ?
+                                    <div
+                                        class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
+                                        {props.slots.beforeLimit}
+                                        {h(VtPerPageSelector)}
+                                        {props.slots.afterLimit}
+                                    </div> : ''}
 
                                 {props.opts.pagination.dropdown && props.totalPages > 1 ?
                                     <div class="VueTables__pagination-wrapper">
@@ -144,16 +145,16 @@ export default function (RLClientTable) {
                         {props.slots.beforeTable}
                         <div class="table-responsive" ref="tablewrapper">
                             {h(VtTable)}
-                              {props.opts.pagination.virtual ? h(Observer, {
-                                  onIntersect: () => {
-                                      props.setPage(props.page+1)
-                                  }
-                              }) : ''}
+                            {props.opts.pagination.virtual ? h(Observer, {
+                                onIntersect: () => {
+                                    props.setPage(props.page + 1)
+                                }
+                            }) : ''}
                         </div>
                         {props.slots.afterTable}
 
-                        {props.opts.pagination.virtual || !props.opts.pagination.show ? h(VtPagination) : ''}
-                          {props.opts.pagination.virtual || props.opts.pagination.dropdown ? h(VtPaginationCount) : ''}
+                        {props.opts.pagination.virtual || !props.opts.pagination.show ? '' : h(VtPagination)}
+                        {props.opts.pagination.virtual || props.opts.pagination.dropdown ? h(VtPaginationCount) : ''}
                     </div>
 
                 }
