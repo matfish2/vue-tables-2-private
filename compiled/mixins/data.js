@@ -12,6 +12,7 @@ module.exports = function () {
     loadingError: false,
     cancelToken: null,
     drawCounter: 0,
+    initialRequestSent: false,
     refs: {
       genericFilter: null,
       table: null,

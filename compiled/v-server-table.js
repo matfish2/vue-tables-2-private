@@ -103,7 +103,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
       return _merge["default"].recursive(_data(), {
         source: "server",
         loading: true,
-        initialRequestSent: false,
         lastKeyStrokeAt: false,
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
