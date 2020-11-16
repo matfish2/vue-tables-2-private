@@ -29,9 +29,10 @@ var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
 
-function install(app, globalOptions, useVuex) {
-  var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
-  var componentsOverride = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
+function install(app, globalOptions) {
+  var theme = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "bootstrap3";
+  var componentsOverride = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var useVuex = false;
   var state = useVuex ? (0, _vuex["default"])("server") : (0, _normal["default"])();
 
   var server = _merge["default"].recursive(true, (0, _table["default"])(), {
