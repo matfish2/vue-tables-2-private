@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    import VtTableCell from "vue-tables-2/compiled/components/VtTableCell";
-    import VtChildRowToggler from "vue-tables-2/compiled/components/VtChildRowToggler";
+    import VtTableCell from "v-tables-3/compiled/components/VtTableCell";
+    import VtChildRowToggler from "v-tables-3/compiled/components/VtChildRowToggler";
 
     export default {
         name: "MyTableRow",

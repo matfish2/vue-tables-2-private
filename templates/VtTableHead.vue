@@ -9,8 +9,8 @@
 </template>
 
 <script>
-    import VtHeadingsRow from "vue-tables-2/compiled/components/VtHeadingsRow";
-    import VtFiltersRow from "vue-tables-2/compiled/components/VtFiltersRow";
+    import VtHeadingsRow from "v-tables-3/compiled/components/VtHeadingsRow";
+    import VtFiltersRow from "v-tables-3/compiled/components/VtFiltersRow";
 
     export default {
         name: "MyTableHead",

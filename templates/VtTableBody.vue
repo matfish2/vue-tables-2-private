@@ -13,9 +13,9 @@
 </template>
 
 <script>
-    import VtNoResultsRow from 'vue-tables-2/compiled/components/VtNoResultsRow'
-    import VtTableRow from 'vue-tables-2/compiled/components/VtTableRow'
-    import VtChildRow from 'vue-tables-2/compiled/components/VtChildRow'
+    import VtNoResultsRow from 'v-tables-3/compiled/components/VtNoResultsRow'
+    import VtTableRow from 'v-tables-3/compiled/components/VtTableRow'
+    import VtChildRow from 'v-tables-3/compiled/components/VtChildRow'
 
     export default {
         name: "MyTableBody",

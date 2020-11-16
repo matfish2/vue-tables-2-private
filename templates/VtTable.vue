@@ -10,8 +10,8 @@
 </template>
 
 <script>
-    import VtTableHead from 'vue-tables-2/compiled/components/VtTableHead'
-    import VtTableBody from 'vue-tables-2/compiled/components/VtTableBody'
+    import VtTableHead from 'v-tables-3/compiled/components/VtTableHead'
+    import VtTableBody from 'v-tables-3/compiled/components/VtTableBody'
 
     export default {
         name: "MyTable",

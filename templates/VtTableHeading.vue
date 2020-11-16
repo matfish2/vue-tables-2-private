@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import VtSortControl from "vue-tables-2/compiled/components/VtSortControl";
+    import VtSortControl from "v-tables-3/compiled/components/VtSortControl";
 
     export default {
         name: "VtTableHeading",

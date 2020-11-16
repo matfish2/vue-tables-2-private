@@ -7,7 +7,7 @@
 </template>
 
 <script>
-    import VtTableHeading from 'vue-tables-2/compiled/components/VtTableHeading'
+    import VtTableHeading from 'v-tables-3/compiled/components/VtTableHeading'
 
     export default {
         name: "MyHeadingsRow",

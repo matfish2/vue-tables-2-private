@@ -47,14 +47,14 @@
 </template>
 
 <script>
-    import VtColumnsDropdown from 'vue-tables-2/compiled/components/VtColumnsDropdown'
-    import VtDropdownPagination from 'vue-tables-2/compiled/components/VtDropdownPagination'
-    import VtGenericFilter from 'vue-tables-2/compiled/components/VtGenericFilter'
-    import VtPerPageSelector from 'vue-tables-2/compiled/components/VtPerPageSelector'
-    import VtPagination from 'vue-tables-2/compiled/components/VtPagination'
-    import VtPaginationCount from 'vue-tables-2/compiled/components/VtPaginationCount'
-    import VtTable from 'vue-tables-2/compiled/components/VtTable'
-    import Observer from 'vue-tables-2/compiled/components/Observer'
+    import VtColumnsDropdown from 'v-tables-3/compiled/components/VtColumnsDropdown'
+    import VtDropdownPagination from 'v-tables-3/compiled/components/VtDropdownPagination'
+    import VtGenericFilter from 'v-tables-3/compiled/components/VtGenericFilter'
+    import VtPerPageSelector from 'v-tables-3/compiled/components/VtPerPageSelector'
+    import VtPagination from 'v-tables-3/compiled/components/VtPagination'
+    import VtPaginationCount from 'v-tables-3/compiled/components/VtPaginationCount'
+    import VtTable from 'v-tables-3/compiled/components/VtTable'
+    import Observer from 'v-tables-3/compiled/components/Observer'
 
     export default {
         name: "MyDataTable",
