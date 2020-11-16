@@ -30,6 +30,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 function _default2(RLServerTable) {
   return {
     name: 'VtServerTable',
+    emits: ['loading', 'loaded'],
     components: {
       VtPerPageSelector: _VtPerPageSelector["default"],
       VtTable: _VtTable["default"],

@@ -12,6 +12,7 @@ import omit from "../helpers/omit"
 export default function (RLServerTable) {
     return {
         name: 'VtServerTable',
+        emits:['loading','loaded'],
         components: {
             VtPerPageSelector,
             VtTable,
