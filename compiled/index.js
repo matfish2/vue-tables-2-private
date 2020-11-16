@@ -9,7 +9,15 @@ Object.defineProperty(exports, "ClientTable", {
     return _vClientTable["default"];
   }
 });
+Object.defineProperty(exports, "ServerTable", {
+  enumerable: true,
+  get: function get() {
+    return _vServerTable["default"];
+  }
+});
 
 var _vClientTable = _interopRequireDefault(require("./v-client-table"));
+
+var _vServerTable = _interopRequireDefault(require("./v-server-table"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

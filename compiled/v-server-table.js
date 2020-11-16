@@ -1,5 +1,10 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = install;
+
 var _merge = _interopRequireDefault(require("merge"));
 
 var _data2 = _interopRequireDefault(require("./state/data"));
@@ -14,6 +19,8 @@ var _resizeableColumns = _interopRequireDefault(require("./helpers/resizeable-co
 
 var _VtServerTable = _interopRequireDefault(require("./components/VtServerTable"));
 
+var _themes = _interopRequireDefault(require("./themes/themes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _data = require("./mixins/data");
@@ -22,13 +29,7 @@ var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
 
-var themes = {
-  bootstrap3: require('./themes/bootstrap3')(),
-  bootstrap4: require('./themes/bootstrap4')(),
-  bulma: require('./themes/bulma')()
-};
-
-exports.install = function (Vue, globalOptions, useVuex) {
+function install(app, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
   var componentsOverride = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
   var state = useVuex ? (0, _vuex["default"])("server") : (0, _normal["default"])();
@@ -106,7 +107,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
         lastKeyStrokeAt: false,
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
-        theme: typeof theme === 'string' ? themes[theme] : theme()
+        theme: typeof theme === 'string' ? _themes["default"][theme] : theme()
       }, (0, _data2["default"])(useVuex, "server", this.options.initialPage));
     },
     methods: {
@@ -176,4 +177,6 @@ exports.install = function (Vue, globalOptions, useVuex) {
   var comp = (0, _VtServerTable["default"])(server);
   Vue.component("v-server-table", comp);
   return _VtServerTable["default"];
-};
+}
+
+;
