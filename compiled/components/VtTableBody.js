@@ -61,7 +61,7 @@ var _default2 = {
         });
         return props.override ? (0, _vue.h)(props.override, {
           props: (0, _omit["default"])(props)
-        }) : (0, _vue.createVNode)("tbody", null, [props.slots.prependBody, props.data.length === 0 ? (0, _vue.h)(_VtNoResultsRow["default"]) : '', rows, props.slots.appendBody]);
+        }) : (0, _vue.createVNode)("tbody", null, [props.slots.prependBody ? props.slots.prependBody() : '', props.data.length === 0 ? (0, _vue.h)(_VtNoResultsRow["default"]) : '', rows, props.slots.appendBody ? props.slots.appendBody() : '']);
       }
     });
   }

@@ -32,9 +32,9 @@ export default {
                     >
                         {caption}
                         {h(VtTableHead)}
-                        {props.slots.beforeBody}
+                        {props.slots.beforeBody ? props.slots.beforeBody() : ''}
                         {h(VtTableBody)}
-                        {props.slots.afterBody}
+                        {props.slots.afterBody ? props.slots.afterBody() : ''}
                     </table>
             }
         })

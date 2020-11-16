@@ -42,7 +42,7 @@ var _default2 = {
           }
 
           if (typeof props.slots["filter__".concat(column)] !== 'undefined') {
-            filter = filter ? (0, _vue.createVNode)("div", null, [filter, props.slots["filter__".concat(column)]]) : props.slots["filter__".concat(column)];
+            filter = filter ? (0, _vue.createVNode)("div", null, [filter, props.slots["filter__".concat(column)]()]) : props.slots["filter__".concat(column)]();
           }
 
           filters.push((0, _vue.createVNode)("th", {

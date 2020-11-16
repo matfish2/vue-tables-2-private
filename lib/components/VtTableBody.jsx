@@ -37,10 +37,10 @@ export default {
                 return props.override ? h(props.override, {
                     props: omit(props)
                 }) : <tbody>
-                {props.slots.prependBody}
+                {props.slots.prependBody ? props.slots.prependBody() : ''}
                 {props.data.length === 0 ? h(VtNoResultsRow) : ''}
                 {rows}
-                {props.slots.appendBody}
+                {props.slots.appendBody ? props.slots.appendBody() : ''}
                 </tbody>
             }
         })

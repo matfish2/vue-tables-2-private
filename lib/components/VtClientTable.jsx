@@ -116,18 +116,18 @@ export default function (RLClientTable) {
                                 {!props.opts.filterByColumn && props.opts.filterable ?
                                     <div
                                         class={`${props.theme.field} ${props.theme.inline} ${props.theme.left} VueTables__search`}>
-                                        {props.slots.beforeFilter}
+                                        {props.slots.beforeFilter ? props.slots.beforeFilter() : ''}
                                         {h(VtGenericFilter)}
-                                        {props.slots.afterFilter}
+                                        {props.slots.afterFilter ? props.slots.afterFilter : ''}
                                     </div> : ''}
-                                {props.slots.afterFilterWrapper}
+                                {props.slots.afterFilterWrapper ? props.slots.afterFilterWrapper() : ''}
 
                                 {(props.perPageValues.length > 1 || props.opts.alwaysShowPerPageSelect) && !props.opts.pagination.virtual ?
                                     <div
                                         class={`${props.theme.field} ${props.theme.inline} ${props.theme.right} VueTables__limit`}>
-                                        {props.slots.beforeLimit}
+                                        {props.slots.beforeLimit ? props.slots.beforeLimit() : ''}
                                         {h(VtPerPageSelector)}
-                                        {props.slots.afterLimit}
+                                        {props.slots.afterLimit ? props.slots.afterLimit : ''}
                                     </div> : ''}
 
                                 {props.opts.pagination.dropdown && props.totalPages > 1 ?
@@ -145,7 +145,7 @@ export default function (RLClientTable) {
                             </div>
                         </div>
 
-                        {props.slots.beforeTable}
+                        {props.slots.beforeTable ? props.slots.beforeTable() : ''}
                         <div class="table-responsive" ref="tablewrapper">
                             {h(VtTable)}
                             {props.opts.pagination.virtual ? h(Observer, {
@@ -154,7 +154,7 @@ export default function (RLClientTable) {
                                 }
                             }) : ''}
                         </div>
-                        {props.slots.afterTable}
+                        {props.slots.afterTable ? props.slots.afterTable() : ''}
 
                         {props.opts.pagination.virtual || !props.opts.pagination.show ? '' : h(VtPagination)}
                         {props.opts.pagination.virtual || props.opts.pagination.dropdown ? h(VtPaginationCount) : ''}

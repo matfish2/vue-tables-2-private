@@ -29,7 +29,7 @@ export default {
 
                     if (typeof props.slots[`filter__${column}`] !== 'undefined') {
                         filter = filter ?
-                            <div>{filter}{props.slots[`filter__${column}`]}</div> : props.slots[`filter__${column}`];
+                            <div>{filter}{props.slots[`filter__${column}`]()}</div> : props.slots[`filter__${column}`]();
                     }
 
                     filters.push(<th class={props.columnClass(column)}>

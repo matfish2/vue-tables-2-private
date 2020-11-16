@@ -44,7 +44,7 @@ var _default2 = {
           "ref": "table",
           "class": props.tableAttrs["class"],
           "summary": props.tableAttrs.summary
-        }, [caption, (0, _vue.h)(_VtTableHead["default"]), props.slots.beforeBody, (0, _vue.h)(_VtTableBody["default"]), props.slots.afterBody]);
+        }, [caption, (0, _vue.h)(_VtTableHead["default"]), props.slots.beforeBody ? props.slots.beforeBody() : '', (0, _vue.h)(_VtTableBody["default"]), props.slots.afterBody ? props.slots.afterBody() : '']);
       }
     });
   }
