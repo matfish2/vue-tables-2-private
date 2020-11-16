@@ -92,7 +92,7 @@ function install(app, globalOptions, useVuex) {
       this._setFiltersDOM(this.query);
 
       if (this.opts.resizableColumns) {
-        (0, _resizeableColumns["default"])(this.$el.querySelector("table"), this.hasChildRow, this.opts.childRowTogglerFirst, this.resizableColumns, this.opts.stickyHeader);
+        (0, _resizeableColumns["default"])(this.refs.tablewrapper, this.hasChildRow, this.opts.childRowTogglerFirst, this.resizableColumns, this.opts.stickyHeader);
       } // this._setColumnsDropdownCloseListener();
 
 
@@ -175,7 +175,7 @@ function install(app, globalOptions, useVuex) {
   }, state);
 
   var comp = (0, _VtServerTable["default"])(server);
-  Vue.component("v-server-table", comp);
+  app.component("v-server-table", comp);
   return _VtServerTable["default"];
 }
 

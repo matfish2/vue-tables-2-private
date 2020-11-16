@@ -22,8 +22,9 @@
     "clone": "^2.1.1",
     "debounce": "^1.1",
     "merge": "^1.2.0",
-    "vue": "^3.0.0",
-    "v-pagination-3": "^0.1.2"
+    "mitt": "^2.1.0",
+    "v-pagination-3": "^0.1.2",
+    "vue": "^3.0.0"
   },
   "scripts": {
     "compile": "babel lib -d compiled",

@@ -5,10 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _vue = _interopRequireDefault(require("vue"));
+var _mitt = _interopRequireDefault(require("mitt"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var bus = new _vue["default"]();
-var _default = bus;
+var _default = (0, _mitt["default"])();
+
 exports["default"] = _default;

@@ -178,7 +178,7 @@ export default function (RLServerTable) {
 
                             {props.slots.beforeTable}
                             <div class="table-responsive" ref="tablewrapper" style={props.styles()}>
-                                <vt-table ref="vt_table"/>
+                                {h(VtTable)}
                                 {props.opts.pagination.virtual && !props.loading ? h(Observer, {
                                 onIntersect: () => {
                                     props.setPage(props.page + 1)

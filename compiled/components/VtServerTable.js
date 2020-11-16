@@ -181,9 +181,7 @@ function _default2(RLServerTable) {
             "class": "table-responsive",
             "ref": "tablewrapper",
             "style": props.styles()
-          }, [(0, _vue.createVNode)((0, _vue.resolveComponent)("vt-table"), {
-            "ref": "vt_table"
-          }, null), props.opts.pagination.virtual && !props.loading ? (0, _vue.h)(_Observer["default"], {
+          }, [(0, _vue.h)(_VtTable["default"]), props.opts.pagination.virtual && !props.loading ? (0, _vue.h)(_Observer["default"], {
             onIntersect: function onIntersect() {
               props.setPage(props.page + 1);
             }
