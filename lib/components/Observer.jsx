@@ -16,7 +16,7 @@ export default {
 
         this.observer.observe(this.$el);
     },
-    destroyed() {
+    unmounted() {
         this.observer.disconnect();
     },
 };

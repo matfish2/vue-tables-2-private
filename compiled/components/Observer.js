@@ -45,7 +45,7 @@ var _default = {
     });
     this.observer.observe(this.$el);
   },
-  destroyed: function destroyed() {
+  unmounted: function unmounted() {
     this.observer.disconnect();
   }
 };
