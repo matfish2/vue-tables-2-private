@@ -173,7 +173,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
     }
   }, state);
 
-  Vue.component("r-l-server-table", server);
-  Vue.component("v-server-table", _VtServerTable["default"]);
+  var comp = (0, _VtServerTable["default"])(server);
+  Vue.component("v-server-table", comp);
   return _VtServerTable["default"];
 };
