@@ -25,12 +25,14 @@ var _VtPaginationCount = _interopRequireDefault(require("./VtPaginationCount"));
 
 var _omit = _interopRequireDefault(require("../helpers/omit"));
 
+var _emittedEvents = _interopRequireDefault(require("../helpers/emitted-events"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _default2(RLServerTable) {
   return {
     name: 'VtServerTable',
-    emits: ['loading', 'loaded'],
+    emits: _emittedEvents["default"],
     components: {
       VtPerPageSelector: _VtPerPageSelector["default"],
       VtTable: _VtTable["default"],

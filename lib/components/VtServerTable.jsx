@@ -8,11 +8,12 @@ import Observer from "./Observer";
 import VtPaginationCount from "./VtPaginationCount";
 import {h, ref} from 'vue'
 import omit from "../helpers/omit"
+import emittedEvents from "../helpers/emitted-events"
 
 export default function (RLServerTable) {
     return {
         name: 'VtServerTable',
-        emits:['loading','loaded'],
+        emits: emittedEvents,
         components: {
             VtPerPageSelector,
             VtTable,
@@ -181,10 +182,10 @@ export default function (RLServerTable) {
                             <div class="table-responsive" ref="tablewrapper" style={props.styles()}>
                                 {h(VtTable)}
                                 {props.opts.pagination.virtual && !props.loading ? h(Observer, {
-                                onIntersect: () => {
-                                    props.setPage(props.page + 1)
-                                }
-                            }) : ''}
+                                    onIntersect: () => {
+                                        props.setPage(props.page + 1)
+                                    }
+                                }) : ''}
                             </div>
                             {props.slots.afterTable}
 

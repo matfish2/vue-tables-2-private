@@ -7,12 +7,14 @@ import VtColumnsDropdown from "./VtColumnsDropdown";
 import VtPaginationCount from "./VtPaginationCount"
 import Observer from "./Observer";
 import {h, ref} from 'vue'
+import emittedEvents from '../helpers/emitted-events'
+
 import omit from "../helpers/omit"
 
 export default function (RLClientTable) {
     return {
         name: 'VtClientTable',
-        emits: ['loading', 'loaded'],
+        emits: emittedEvents,
         components: {
             VtPerPageSelector,
             VtTable,
