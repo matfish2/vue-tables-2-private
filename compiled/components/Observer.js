@@ -20,6 +20,7 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var _default = {
+  emits: ['intersect'],
   data: function data() {
     return {
       observer: null

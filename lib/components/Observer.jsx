@@ -1,4 +1,5 @@
 export default {
+    emits:['intersect'],
     data: () => ({
         observer: null
     }),
