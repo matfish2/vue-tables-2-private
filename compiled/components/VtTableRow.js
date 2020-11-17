@@ -13,6 +13,8 @@ var _VtTableCell = _interopRequireDefault(require("./VtTableCell"));
 
 var _VtChildRowToggler = _interopRequireDefault(require("./VtChildRowToggler"));
 
+var _VtRowSelector = _interopRequireDefault(require("./VtRowSelector"));
+
 var _omit = _interopRequireDefault(require("../helpers/omit"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -23,7 +25,8 @@ var _default2 = {
   components: {
     RLTableRow: _RLTableRow["default"],
     VtTableCell: _VtTableCell["default"],
-    VtChildRowToggler: _VtChildRowToggler["default"]
+    VtChildRowToggler: _VtChildRowToggler["default"],
+    VtRowSelector: _VtRowSelector["default"]
   },
   render: function render() {
     return (0, _vue.h)(_RLTableRow["default"], {
@@ -37,7 +40,7 @@ var _default2 = {
           "class": "VueTables__row " + props.rowAttrs["class"]
         }, props.rowAttrs.attrs, {
           "on-click": props.rowEvents.click
-        }), [props.childRowTogglerFirst ? (0, _vue.h)(_VtChildRowToggler["default"], {
+        }), [props.selectable ? (0, _vue.h)(_VtRowSelector["default"]) : '', props.childRowTogglerFirst ? (0, _vue.h)(_VtChildRowToggler["default"], {
           rowId: props.rowId
         }) : '', props.columns.map(function (column) {
           return (0, _vue.h)(_VtTableCell["default"], {

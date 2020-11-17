@@ -31,6 +31,13 @@ var _default2 = {
     return (0, _vue.h)(_RLFiltersRow["default"], {}, {
       "default": function _default(props) {
         var filters = [];
+
+        if (props.opts.selectable.mode) {
+          filters.push((0, _vue.createVNode)("th", {
+            "class": "VueTables__select-row"
+          }, null));
+        }
+
         if (props.hasChildRow && props.opts.childRowTogglerFirst && props.opts.showChildRowToggler) filters.push((0, _vue.createVNode)("th", null, null));
         props.columns.map(function (column) {
           var filter = '';
