@@ -10,6 +10,7 @@ var _default = {
   render: function render() {
     return this.$slots["default"]({
       override: this.componentsOverride.headingsRow,
+      theme: this.theme,
       opts: this.opts(),
       columns: this.allColumns(),
       selectable: this.opts().selectable.mode && !this.opts().selectable.programmatic,
