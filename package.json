@@ -1,7 +1,7 @@
 {
   "name": "v-tables-3",
   "description": "Vue.js 3 grid components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
     "vue3",
     "vuex",

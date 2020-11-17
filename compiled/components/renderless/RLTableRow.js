@@ -7,7 +7,7 @@ exports["default"] = void 0;
 var _default = {
   name: 'RLTableRow',
   props: ['row', 'index'],
-  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'componentsOverride'],
+  inject: ['allColumns', 'opts', 'rowWasClicked', 'hasChildRow', 'theme', 'componentsOverride', 'isRowSelected'],
   provide: function provide() {
     var _this = this;
 
@@ -23,9 +23,10 @@ var _default = {
       opts: this.opts(),
       columns: this.allColumns(),
       hasChildRow: this.hasChildRow(),
+      selectable: this.opts().selectable.mode && !this.opts().selectable.programmatic,
       rowId: this.row[this.opts().uniqueKey],
       rowAttrs: {
-        "class": this.opts().rowClassCallback ? this.opts().rowClassCallback(this.row) : '',
+        "class": this.getClass(),
         attrs: this.opts().rowAttributesCallback ? this.opts().rowAttributesCallback(this.row) : {}
       },
       rowEvents: {
@@ -36,6 +37,29 @@ var _default = {
       childRowTogglerLast: this.hasChildRow() && this.opts().showChildRowToggler && !this.opts().childRowTogglerFirst,
       override: this.componentsOverride.tableRow
     });
+  },
+  methods: {
+    getClass: function getClass() {
+      var cls = [];
+
+      if (this.opts().rowClassCallback) {
+        cls.push(this.opts().rowClassCallback(this.row));
+      }
+
+      cls.push(this.theme.tr);
+
+      if (this.index % 2 === 0) {
+        cls.push(this.theme.trEven);
+      } else {
+        cls.push(this.theme.trOdd);
+      }
+
+      if (this.opts().selectable.mode && this.isRowSelected(this.row)) {
+        cls.push('VueTables__row--selected');
+      }
+
+      return cls.join(' ');
+    }
   }
 };
 exports["default"] = _default;
