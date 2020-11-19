@@ -133,6 +133,9 @@ function _default2(RLServerTable) {
       selectAllRows: function selectAllRows() {
         return this.$refs.table.selectAllRows();
       },
+      getRequestParams: function getRequestParams() {
+        return this.$refs.table.getRequestParams();
+      },
       resetCustomFilters: require('../methods/reset-custom-filters')
     },
     provide: function provide() {
