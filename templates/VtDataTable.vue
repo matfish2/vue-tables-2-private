@@ -55,6 +55,7 @@
     import VtPaginationCount from 'v-tables-3/compiled/components/VtPaginationCount'
     import VtTable from 'v-tables-3/compiled/components/VtTable'
     import Observer from 'v-tables-3/compiled/components/Observer'
+    import {h} from "vue"
 
     export default {
         name: "MyDataTable",
@@ -70,7 +71,7 @@
             Observer,
             vnodes: {
                 functional: true,
-                render: (h, ctx) => ctx.props.vnodes
+                render: (ctx) => h(ctx.$attrs.vnodes)
             }
         }
     }

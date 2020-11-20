@@ -17,13 +17,15 @@
 </template>
 
 <script>
+    import {h} from "vue"
+
     export default {
         name: "MyGroupRow",
         props: ['props'],
         components:{
              vnodes: {
                 functional: true,
-                render: (h, ctx) => ctx.props.vnodes
+                render: (ctx) => h(ctx.$attrs.vnodes)
             },
         }
     }

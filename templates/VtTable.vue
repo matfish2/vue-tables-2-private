@@ -12,6 +12,7 @@
 <script>
     import VtTableHead from 'v-tables-3/compiled/components/VtTableHead'
     import VtTableBody from 'v-tables-3/compiled/components/VtTableBody'
+    import {h} from "vue"
 
     export default {
         name: "MyTable",
@@ -21,7 +22,7 @@
             VtTableBody,
             vnodes: {
                 functional: true,
-                render: (h, ctx) => ctx.props.vnodes
+                render: (ctx) => h(ctx.$attrs.vnodes)
             }
         }
     }

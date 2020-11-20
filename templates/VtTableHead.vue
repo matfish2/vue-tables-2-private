@@ -11,7 +11,7 @@
 <script>
     import VtHeadingsRow from "v-tables-3/compiled/components/VtHeadingsRow";
     import VtFiltersRow from "v-tables-3/compiled/components/VtFiltersRow";
-
+    import {h} from "vue"
     export default {
         name: "MyTableHead",
         props:['props'],
@@ -20,7 +20,7 @@
             VtFiltersRow,
             vnodes: {
                 functional: true,
-                render: (h, ctx) => ctx.props.vnodes
+                render: (ctx) => ctx.$attrs.vnodes
             }
         }
     }
