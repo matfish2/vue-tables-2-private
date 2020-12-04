@@ -1,5 +1,5 @@
 <template>
-    <tbody>
+    <tbody :class="props.theme.tbody">
     <vnodes :vnodes="props.slots.prependBody"/>
     <vt-no-results-row v-if="props.data.length === 0"/>
     <table-rows v-for="(row,index) in props.data"

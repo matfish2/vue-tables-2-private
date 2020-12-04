@@ -4,6 +4,7 @@ module.exports = function () {
   return {
     framework: 'bulma',
     table: 'table is-bordered is-striped is-hoverable is-fullwidth',
+    tbody: '',
     row: 'columns',
     th: '',
     td: '',

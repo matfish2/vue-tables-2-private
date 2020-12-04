@@ -53,7 +53,7 @@ export default {
 
                     return props.override ? h(props.override, {
                         attrs: {props}
-                    }) : <tbody>
+                    }) : <tbody class={props.theme.tbody}>
                     {props.slots.prependBody}
                     {props.data.length === 0 ? <vt-no-results-row/> : ''}
                     {rows}

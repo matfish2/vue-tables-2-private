@@ -100,7 +100,9 @@ var _default2 = {
             attrs: {
               props: props
             }
-          }) : h("tbody", [props.slots.prependBody, props.data.length === 0 ? h("vt-no-results-row") : '', rows, props.slots.appendBody]);
+          }) : h("tbody", {
+            "class": props.theme.tbody
+          }, [props.slots.prependBody, props.data.length === 0 ? h("vt-no-results-row") : '', rows, props.slots.appendBody]);
         }
       }
     });

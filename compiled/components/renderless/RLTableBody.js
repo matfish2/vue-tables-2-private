@@ -10,6 +10,7 @@ var _default = {
   render: function render() {
     return this.$scopedSlots["default"]({
       opts: this.opts(),
+      theme: this.theme,
       source: this.source,
       canToggleGroups: this.opts().toggleGroups,
       collapsedGroups: this.collapsedGroups(),
