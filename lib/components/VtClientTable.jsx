@@ -85,7 +85,10 @@ export default {
         },
         selectAllRows() {
             return this.$refs.table.selectAllRows()
-        }
+        },
+        setCustomFilters(params, sendRequest = true) {
+          return this.$refs.table.setCustomFilters(params, sendRequest)
+        },
     },
     computed: {
         filteredData() {

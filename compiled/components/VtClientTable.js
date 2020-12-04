@@ -102,6 +102,10 @@ var _default2 = {
     },
     selectAllRows: function selectAllRows() {
       return this.$refs.table.selectAllRows();
+    },
+    setCustomFilters: function setCustomFilters(params) {
+      var sendRequest = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      return this.$refs.table.setCustomFilters(params, sendRequest);
     }
   },
   computed: {
