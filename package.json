@@ -1,7 +1,7 @@
 {
   "name": "vue-tables-2",
   "description": "Vue.js 2 grid components",
-  "version": "2.1.60",
+  "version": "2.1.61",
   "keywords": [
     "vue2",
     "vuex",
@@ -15,7 +15,8 @@
   },
   "files": [
     "compiled",
-    "dist"
+    "dist",
+    "templates"
   ],
   "dependencies": {
     "array-intersect": "^0.0.1",
