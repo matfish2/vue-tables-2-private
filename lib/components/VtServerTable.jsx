@@ -111,6 +111,9 @@ export default {
         getRequestParams() {
           return this.$refs.table.getRequestParams()
         },
+        setRequestParams(params, sendRequest = true) {
+            return this.$refs.table.setRequestParams(params, sendRequest)
+        },
         resetCustomFilters: require('../methods/reset-custom-filters')
     },
     provide() {
