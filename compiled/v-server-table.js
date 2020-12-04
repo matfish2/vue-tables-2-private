@@ -118,6 +118,7 @@ function install(app, globalOptions) {
       serverSearch: require("./methods/server-search"),
       registerServerFilters: require("./methods/register-server-filters"),
       getRequestParams: require("./methods/get-request-params"),
+      setRequestParams: require("./methods/set-request-params"),
       loadState: function loadState() {
         var _this = this;
 
