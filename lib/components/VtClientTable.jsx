@@ -70,7 +70,10 @@ export default function (RLClientTable) {
             },
             resetQuery() {
                 this.$refs.table.resetQuery()
-            }
+            },
+            setCustomFilters(params, sendRequest = false) {
+                return this.$refs.table.setCustomFilters(params, sendRequest)
+            },
         },
         computed: {
             filteredData() {
