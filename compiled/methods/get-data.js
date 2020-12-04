@@ -11,7 +11,6 @@ module.exports = function (promiseOnly) {
 
   var data = this.opts.requestAdapter(this.getRequestParams(additionalData));
   this.drawCounter++;
-  data = this.opts.requestAdapter(data);
 
   if (emitLoading) {
     this.dispatch('loading', data);
