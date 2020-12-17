@@ -37,7 +37,7 @@ module.exports = function () {
       text: 'text-left ml-1'
     },
     pagination: {
-      nav: 'mt-1',
+      nav: 'mt-1 text-center',
       count: 'text-center',
       wrapper: 'pagination',
       list: 'flex',
