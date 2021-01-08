@@ -158,6 +158,24 @@ exports.install = function (Vue, globalOptions, useVuex) {
         cls += this.collapsedGroups.indexOf(group) > -1 ? this.opts.sortIcon.down : this.opts.sortIcon.up;
         return cls;
       },
+      downloadCsv: function downloadCsv() {
+        var filename = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'table.csv';
+        var rows = [this.columns].concat(this.allFilteredData.map(function (row) {
+          return Object.values(row);
+        }));
+        var csvContent = "data:text/csv;charset=utf-8," + rows.map(function (e) {
+          return e.join(",");
+        }).join("\n");
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link); // Required for FF
+
+        link.click(); // This will download the data file
+
+        link.remove();
+      },
       loadState: function loadState() {
         if (!this.opts.saveState) return;
 

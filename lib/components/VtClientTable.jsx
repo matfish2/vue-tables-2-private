@@ -89,6 +89,9 @@ export default {
         setCustomFilters(params, sendRequest = true) {
           return this.$refs.table.setCustomFilters(params, sendRequest)
         },
+        downloadCsv(filename = 'table.csv') {
+            return this.$refs.table.downloadCsv(filename)
+        }
     },
     computed: {
         filteredData() {

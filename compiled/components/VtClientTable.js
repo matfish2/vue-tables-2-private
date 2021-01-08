@@ -106,6 +106,10 @@ var _default2 = {
     setCustomFilters: function setCustomFilters(params) {
       var sendRequest = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
       return this.$refs.table.setCustomFilters(params, sendRequest);
+    },
+    downloadCsv: function downloadCsv() {
+      var filename = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'table.csv';
+      return this.$refs.table.downloadCsv(filename);
     }
   },
   computed: {
