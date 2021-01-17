@@ -159,9 +159,18 @@ exports.install = function (Vue, globalOptions, useVuex) {
         return cls;
       },
       downloadCsv: function downloadCsv() {
+        var _this2 = this;
+
         var filename = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'table.csv';
+        var r;
         var rows = [this.columns].concat(this.allFilteredData.map(function (row) {
-          return Object.values(row);
+          r = {};
+
+          _this2.columns.forEach(function (column) {
+            r[column] = row[column];
+          });
+
+          return Object.values(r);
         }));
         var csvContent = "data:text/csv;charset=utf-8," + rows.map(function (e) {
           return e.join(",");
