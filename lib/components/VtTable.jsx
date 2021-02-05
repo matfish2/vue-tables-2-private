@@ -1,7 +1,7 @@
 import RLTable from "./renderless/RLTable";
 import VtTableHead from "./VtTableHead";
 import VtTableBody from "./VtTableBody";
-import {h, ref, onMounted} from 'vue'
+import {h, ref} from 'vue'
 import omit from "../helpers/omit"
 
 export default {

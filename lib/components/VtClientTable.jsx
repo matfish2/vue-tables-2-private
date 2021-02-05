@@ -74,6 +74,9 @@ export default function (RLClientTable) {
             setCustomFilters(params, sendRequest = false) {
                 return this.$refs.table.setCustomFilters(params, sendRequest)
             },
+            downloadCsv(filename = 'table.csv') {
+                return this.$refs.table.downloadCsv(filename)
+            }
         },
         computed: {
             filteredData() {

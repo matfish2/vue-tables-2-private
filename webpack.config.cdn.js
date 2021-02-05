@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: env === 'production' ? 'vue-tables-2.cdn.min.js' : 'vue-tables.cdn.js',
+        filename: env === 'production' ? 'vue-tables-3.cdn.min.js' : 'vue-tables-3.cdn.js',
         libraryTarget: 'var',
         library: 'VueTables'
     },

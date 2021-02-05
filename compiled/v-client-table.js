@@ -157,6 +157,33 @@ function install(app, globalOptions) {
         cls += this.collapsedGroups.indexOf(group) > -1 ? this.opts.sortIcon.down : this.opts.sortIcon.up;
         return cls;
       },
+      downloadCsv: function downloadCsv() {
+        var _this2 = this;
+
+        var filename = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'table.csv';
+        var r;
+        var rows = [this.columns].concat(this.allFilteredData.map(function (row) {
+          r = {};
+
+          _this2.columns.forEach(function (column) {
+            r[column] = row[column];
+          });
+
+          return Object.values(r);
+        }));
+        var csvContent = "data:text/csv;charset=utf-8," + rows.map(function (e) {
+          return e.join(",");
+        }).join("\n");
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", filename);
+        document.body.appendChild(link); // Required for FF
+
+        link.click(); // This will download the data file
+
+        link.remove();
+      },
       loadState: function loadState() {
         if (!this.opts.saveState) return;
 

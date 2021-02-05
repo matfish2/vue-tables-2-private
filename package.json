@@ -1,7 +1,7 @@
 {
   "name": "v-tables-3",
   "description": "Vue.js 3 grid components",
-  "version": "0.1.74",
+  "version": "0.2.0",
   "keywords": [
     "vue3",
     "vuex",
@@ -15,7 +15,8 @@
   },
   "files": [
     "compiled",
-    "dist"
+    "dist",
+    "templates"
   ],
   "dependencies": {
     "array-intersect": "^0.0.1",
