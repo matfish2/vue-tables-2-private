@@ -24,6 +24,8 @@ var _created = require("./mixins/created");
 
 var provide = require("./mixins/provide");
 
+var watch = require("./mixins/watch");
+
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "bootstrap3";
   var componentsOverride = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
@@ -158,11 +160,11 @@ exports.install = function (Vue, globalOptions, useVuex) {
         this.activeState = true;
       }
     },
-    watch: {
+    watch: (0, _merge["default"])({
       url: function url() {
         this.refresh();
       }
-    },
+    }, watch),
     computed: {
       totalPages: require("./computed/total-pages"),
       filteredQuery: require("./computed/filtered-query"),
