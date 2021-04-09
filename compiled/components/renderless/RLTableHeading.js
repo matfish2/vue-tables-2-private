@@ -4,6 +4,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
+
+var getThStyle = require('../../mixins/get-th-style');
+
 var _default = {
   name: 'RLTableHeading',
   props: ['column'],
@@ -17,6 +20,7 @@ var _default = {
     };
   },
   inject: ['opts', 'theme', 'sortableClass', 'getHeadingTooltip', 'getHeading', 'orderByColumn', 'componentsOverride', 'tabIndex'],
+  mixins: [getThStyle],
   render: function render(h) {
     var _this2 = this;
 
@@ -25,7 +29,7 @@ var _default = {
       thAttrs: {
         "class": this.sortableClass(this.column),
         tabIndex: this.tabIndex(),
-        style: this.opts().stickyHeader ? 'position:sticky; top:0; background:white;' : '',
+        style: this.getThStyle(),
         title: this.getHeadingTooltip(this.column)
       },
       thEvents: {

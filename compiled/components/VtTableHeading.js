@@ -34,7 +34,8 @@ var _default2 = {
           "onClick": props.thEvents.click,
           "class": props.thAttrs["class"],
           "title": props.thAttrs.title,
-          "tabindex": props.thAttrs.tabIndex
+          "tabindex": props.thAttrs.tabIndex,
+          "style": props.thAttrs.style
         }, [(0, _vue.createVNode)("span", {
           "class": "VueTables__heading",
           "title": props.title

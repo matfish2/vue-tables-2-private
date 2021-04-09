@@ -42,12 +42,14 @@ var _default2 = {
           }, null);
           headings.push((0, _vue.createVNode)("th", {
             "class": "VueTables__select-row VueTables__select-all ".concat(props.theme.th),
-            "style": props.opts.stickyHeader ? 'position:sticky; top:0; background:white;' : ''
+            "style": props.thStyle
           }, [checkbox]));
         }
 
         if (props.childRowTogglerFirst) {
-          headings.push((0, _vue.createVNode)("th", null, null));
+          headings.push((0, _vue.createVNode)("th", {
+            "style": props.thStyle
+          }, null));
         }
 
         props.columns.map(function (column) {
@@ -57,7 +59,9 @@ var _default2 = {
         });
 
         if (props.childRowTogglerLast) {
-          headings.push((0, _vue.createVNode)("th", null, null));
+          headings.push((0, _vue.createVNode)("th", {
+            "style": props.thStyle
+          }, null));
         }
 
         return (0, _vue.createVNode)("tr", null, [headings]);

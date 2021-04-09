@@ -16,6 +16,7 @@ export default {
                     class={props.thAttrs.class}
                     title={props.thAttrs.title}
                     tabindex={props.thAttrs.tabIndex}
+                    style={props.thAttrs.style}
                 >
             <span
                 class="VueTables__heading"

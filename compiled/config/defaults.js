@@ -73,6 +73,7 @@ module.exports = function () {
     headings: {},
     headingsTooltips: {},
     stickyHeader: false,
+    stickyHeaderBackground: 'white',
     selectable: {
       selectAllMode: 'all',
       programmatic: false
