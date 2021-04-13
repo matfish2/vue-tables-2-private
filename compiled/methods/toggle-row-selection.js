@@ -16,7 +16,7 @@ module.exports = function (e, row, index, disabled) {
     if (e.shiftKey && prevIndex !== this.selectedIndex) {
       // Get the subset of the message list between the
       // two indicies.
-      var subset = this.filteredData.slice(Math.min(prevIndex, this.selectedIndex), Math.max(prevIndex, this.selectedIndex)); // Determine the operation based on the checked state
+      var subset = this.filteredData.slice(Math.min(prevIndex, this.selectedIndex) - 1, Math.max(prevIndex, this.selectedIndex)); // Determine the operation based on the checked state
       // of the clicked checkbox.
 
       var toggleFn = !this.isRowSelected(row) ? addCheckedSubset : removeCheckedSubset;
