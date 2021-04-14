@@ -14,7 +14,7 @@ import omit from "../helpers/omit"
 export default function (RLClientTable) {
     return {
         name: 'VtClientTable',
-        emits: emittedEvents,
+        emits: emittedEvents.concat(['update','input']),
         components: {
             VtPerPageSelector,
             VtTable,
