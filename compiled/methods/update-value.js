@@ -8,11 +8,11 @@ module.exports = function _updateValue(row, column) {
   return function (e) {
     var _this = this;
 
-    var oldVal = this._getValue(row, column);
-
+    var oldVal = null;
     setDeep(row, column.split('.'), getValue(e));
     var data = clone(this.data).map(function (r) {
       if (r[_this.opts.uniqueKey] === row[_this.opts.uniqueKey]) {
+        oldVal = _this._getValue(r, column);
         return row;
       }
 
@@ -23,7 +23,7 @@ module.exports = function _updateValue(row, column) {
       row: row,
       column: column,
       oldVal: oldVal,
-      newVal: row[column]
+      newVal: this._getValue(row, column)
     });
   }.bind(this);
 };
