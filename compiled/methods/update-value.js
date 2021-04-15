@@ -2,12 +2,15 @@
 
 var clone = require('lodash.clonedeep');
 
+var setDeep = require('../helpers/set-deep');
+
 module.exports = function _updateValue(row, column) {
   return function (e) {
     var _this = this;
 
-    var oldVal = row[column];
-    row[column] = getValue(e);
+    var oldVal = this._getValue(row, column);
+
+    setDeep(row, column.split('.'), getValue(e));
     var data = clone(this.data).map(function (r) {
       if (r[_this.opts.uniqueKey] === row[_this.opts.uniqueKey]) {
         return row;
