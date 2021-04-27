@@ -7,6 +7,8 @@ exports["default"] = void 0;
 
 var _merge = _interopRequireDefault(require("merge"));
 
+var _debounce = _interopRequireDefault(require("debounce"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _default = {
@@ -81,6 +83,7 @@ var _default = {
     getEditFunctions: function getEditFunctions() {
       return {
         update: this.updateValue(this.Row, this.column),
+        debouncedUpdate: (0, _debounce["default"])(this.updateValue(this.Row, this.column), this.options.debounce),
         isEditing: this.isEditing(),
         setEditing: this.setEditingCell(this.Row, this.column),
         revertValue: this.revertValue(this.Row, this.column)
