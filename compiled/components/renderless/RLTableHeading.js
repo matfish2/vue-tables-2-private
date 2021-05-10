@@ -27,7 +27,7 @@ var _default = {
     return this.$slots["default"]({
       opts: this.opts(),
       thAttrs: {
-        "class": this.sortableClass(this.column),
+        "class": this.getClasses(),
         tabIndex: this.tabIndex(),
         style: this.getThStyle(),
         title: this.getHeadingTooltip(this.column)
@@ -50,6 +50,17 @@ var _default = {
       heading: this.getHeading(this.column, h),
       override: this.componentsOverride.tableHeading
     });
+  },
+  methods: {
+    getClasses: function getClasses() {
+      var cls = this.sortableClass(this.column);
+
+      if (this.theme.th) {
+        cls += ' ' + this.theme.th;
+      }
+
+      return cls;
+    }
   }
 };
 exports["default"] = _default;
