@@ -29,7 +29,9 @@ var _default2 = {
       "default": function _default(props) {
         return props.override ? (0, _vue.h)(props.override, {
           props: (0, _omit["default"])(props)
-        }) : (0, _vue.createVNode)("thead", null, [props.slots.prependHead ? props.slots.prependHead() : '', (0, _vue.h)(_VtHeadingsRow["default"]), props.slots.beforeFilters ? props.slots.beforeFilters() : '', props.opts.filterByColumn && props.opts.filterable ? (0, _vue.h)(_VtFiltersRow["default"]) : '', props.slots.afterFilters ? props.slots.afterFilters() : '']);
+        }) : (0, _vue.createVNode)("thead", {
+          "class": props["class"]
+        }, [props.slots.prependHead ? props.slots.prependHead() : '', (0, _vue.h)(_VtHeadingsRow["default"]), props.slots.beforeFilters ? props.slots.beforeFilters() : '', props.opts.filterByColumn && props.opts.filterable ? (0, _vue.h)(_VtFiltersRow["default"]) : '', props.slots.afterFilters ? props.slots.afterFilters() : '']);
       }
     });
   }

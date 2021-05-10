@@ -4,6 +4,7 @@ module.exports = function () {
   return {
     framework: 'tailwind',
     table: 'table-auto',
+    thead: '',
     th: 'border px-4 py-2',
     td: 'border px-4 py-2',
     tr: '',

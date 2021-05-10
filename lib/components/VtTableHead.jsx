@@ -10,7 +10,7 @@ export default {
     render() {
         return h(RLTableHead, {}, {
             default: function (props) {
-                return props.override ? h(props.override, {props:omit(props)}) : <thead>
+                return props.override ? h(props.override, {props:omit(props)}) : <thead class={props.class}>
                 {props.slots.prependHead ? props.slots.prependHead() : ''}
                 {h(VtHeadingsRow)}
                 {props.slots.beforeFilters ? props.slots.beforeFilters() : ''}

@@ -4,6 +4,7 @@ module.exports = function () {
   return {
     framework: 'bootstrap3',
     table: 'table table-striped table-bordered table-hover',
+    thead: '',
     th: '',
     td: '',
     tr: '',
