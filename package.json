@@ -1,7 +1,7 @@
 {
   "name": "v-tables-3",
   "description": "Vue.js 3 grid components",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "keywords": [
     "vue3",
     "vuex",
@@ -22,7 +22,7 @@
     "array-intersect": "^0.0.1",
     "debounce": "^1.1",
     "lodash.clonedeep": "^4.5.0",
-    "merge": "^1.2.0",
+    "merge": "^2.1.1",
     "mitt": "^2.1.0",
     "v-pagination-3": "^0.1.2",
     "vue": "^3.0.0"
