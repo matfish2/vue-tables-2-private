@@ -32,6 +32,7 @@ var provide = require("./mixins/provide");
 function install(app, globalOptions) {
   var theme = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "bootstrap3";
   var componentsOverride = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+  var themeOverride = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : {};
   var useVuex = false;
   var state = useVuex ? (0, _vuex["default"])("server") : (0, _normal["default"])();
 
@@ -102,13 +103,14 @@ function install(app, globalOptions) {
       if (this.options.initialPage) this.setPage(this.options.initialPage, true);
     },
     data: function data() {
+      var Theme = typeof theme === 'string' ? _themes["default"][theme] : theme();
       return _merge["default"].recursive(_data(), {
         source: "server",
         loading: true,
         lastKeyStrokeAt: false,
         globalOptions: globalOptions,
         componentsOverride: componentsOverride,
-        theme: typeof theme === 'string' ? _themes["default"][theme] : theme()
+        theme: _merge["default"].recursive(Theme, themeOverride)
       }, (0, _data2["default"])(useVuex, "server", this.options.initialPage));
     },
     methods: {
