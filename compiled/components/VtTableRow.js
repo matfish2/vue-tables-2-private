@@ -39,7 +39,7 @@ var _default2 = {
         }) : (0, _vue.createVNode)("tr", (0, _vue.mergeProps)({
           "class": "VueTables__row " + props.rowAttrs["class"]
         }, props.rowAttrs.attrs, {
-          "on-click": props.rowEvents.click
+          "onClick": props.rowEvents.click
         }), [props.selectable ? (0, _vue.h)(_VtRowSelector["default"]) : '', props.childRowTogglerFirst ? (0, _vue.h)(_VtChildRowToggler["default"], {
           rowId: props.rowId
         }) : '', props.columns.map(function (column) {

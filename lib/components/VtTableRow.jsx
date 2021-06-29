@@ -17,7 +17,7 @@ export default {
             default: function (props) {
                 return props.override ? h(props.override, {props: omit(props)}) :
                     <tr class={`VueTables__row ` + props.rowAttrs.class} {...props.rowAttrs.attrs}
-                        on-click={props.rowEvents.click}>
+                        onClick={props.rowEvents.click}>
                         {props.selectable ? h(VtRowSelector) : ''}
                         {props.childRowTogglerFirst ? h(VtChildRowToggler, {rowId: props.rowId}) : ''}
                         {props.columns.map(column => h(VtTableCell, {column}))}
