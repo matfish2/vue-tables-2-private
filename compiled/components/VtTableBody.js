@@ -42,7 +42,6 @@ var _default2 = {
             data.forEach(function (group) {
               rows.push((0, _vue.h)(_VtGroupRow["default"], {
                 level: level,
-                type: group.type,
                 value: group.value
               }));
 
@@ -71,7 +70,6 @@ var _default2 = {
             return rows;
           };
 
-          console.log(props.data);
           rows = addRows(props.data);
         } else {
           props.data.forEach(function (row, index) {

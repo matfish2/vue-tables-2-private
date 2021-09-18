@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = {
   name: 'RLGroupRow',
-  props: ['row'],
+  props: ['value', 'level'],
   inject: ['colspan', 'opts', 'theme', 'toggleGroupDirection', 'toggleGroup', 'groupToggleIcon', 'getGroupSlot', 'componentsOverride'],
   render: function render() {
     return this.$slots["default"]({
@@ -16,9 +16,10 @@ var _default = {
       toggleGroupDirection: this.toggleGroupDirection,
       canToggleGroup: this.opts().toggleGroups,
       toggleGroup: this.toggleGroup,
-      groupValue: this.row[this.opts().groupBy],
+      groupValue: this.value,
+      level: this.level,
       groupToggleIcon: this.groupToggleIcon,
-      slot: this.getGroupSlot(this.row[this.opts().groupBy]),
+      slot: this.getGroupSlot(this.value),
       override: this.componentsOverride.groupRow
     });
   }

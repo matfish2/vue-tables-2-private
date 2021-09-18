@@ -19,7 +19,6 @@ export default {
                         data.forEach(group => {
                             rows.push(h(VtGroupRow, {
                                 level,
-                                type: group.type,
                                 value: group.value
                             }))
 
@@ -43,7 +42,6 @@ export default {
 
                         return rows
                     }
-console.log(props.data)
                     rows = addRows(props.data);
                 } else {
                     props.data.forEach((row, index) => {

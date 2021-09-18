@@ -19,11 +19,22 @@ var _default = {
       hasChildRow: this.opts().childRow || this.slots()['child_row'],
       openChildRows: this.openChildRows(),
       uniqueRowId: this.opts().uniqueKey,
-      groupBy: this.opts().groupBy,
+      groupBy: this.getGroupBy(),
       slots: this.slots(),
       override: this.componentsOverride.tableBody,
       initialIndex: (this.page() - 1) * this.limit()
     });
+  },
+  methods: {
+    getGroupBy: function getGroupBy() {
+      var groupBy = this.opts().groupBy;
+
+      if (groupBy) {
+        return typeof groupBy === 'string' ? [groupBy] : groupBy;
+      }
+
+      return null;
+    }
   }
 };
 exports["default"] = _default;

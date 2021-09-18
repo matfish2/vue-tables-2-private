@@ -5,19 +5,22 @@ import omit from "../helpers/omit"
 export default {
     name: 'VtGroupRow',
     components: {RLGroupRow},
-    props: ['row'],
+    props: ['level', 'value'],
     render() {
         return h(RLGroupRow, {
-            row: this.row
+            level: this.level,
+            value: this.value
         }, {
             default: function (props) {
                 return props.override ? h(props.override, {props: omit(props)}) :
-                    <tr class={props.theme.groupTr} on-click={props.toggleGroupDirection}>
+                    <tr class={`VueTables__group-row VueTables__group-row--${props.level}`}
+                        onclick={props.toggleGroupDirection}>
                         <td colspan={props.colspan}>
                             {props.canToggleGroup ? <button
                                 class={props.theme.button}
-                                on-click={props.toggleGroup.bind(this, props.groupValue)}>{props.groupValue}<span
-                                class={props.groupToggleIcon(props.groupValue)}></span></button> : ''}
+                                onclick={props.toggleGroup.bind(this, props.groupValue)}>{props.groupValue}<span
+                                class={`VueTables__group-toggler ${props.groupToggleIcon(props.groupValue)}`}></span>
+                            </button> : ''}
                             {!props.canToggleGroup ? <span>{props.groupValue}</span> : ''}
                             {props.slot}
                         </td>
