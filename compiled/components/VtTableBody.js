@@ -34,31 +34,61 @@ var _default2 = {
     return (0, _vue.h)(_RLTableBody["default"], {}, {
       "default": function _default(props) {
         var rows = [];
-        var currentGroup;
-        props.data.forEach(function (row, index) {
-          if (props.groupBy && props.source === 'client' && row[props.groupBy] !== currentGroup) {
-            rows.push((0, _vue.h)(_VtGroupRow["default"], {
-              row: row
-            }));
-            currentGroup = row[props.groupBy];
-          }
 
-          if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {
-            return;
-          }
+        if (props.groupBy && props.source === 'client') {
+          var addRows = function addRows(data) {
+            var rows = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+            var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+            data.forEach(function (group) {
+              rows.push((0, _vue.h)(_VtGroupRow["default"], {
+                level: level,
+                type: group.type,
+                value: group.value
+              }));
 
-          rows.push((0, _vue.h)(_VtTableRow["default"], {
-            row: row,
-            index: props.initialIndex + index + 1
-          }));
+              if (level === props.groupBy.length) {
+                if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                  group.data.forEach(function (row, index) {
+                    rows.push((0, _vue.h)(_VtTableRow["default"], {
+                      row: row,
+                      index: props.initialIndex + index + 1
+                    }));
 
-          if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
-            rows.push((0, _vue.h)(_VtChildRow["default"], {
+                    if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                      rows.push((0, _vue.h)(_VtChildRow["default"], {
+                        row: row,
+                        index: props.initialIndex + index + 1
+                      }));
+                    }
+                  });
+                }
+              } else {
+                if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                  addRows(group.data, rows, level + 1);
+                }
+              }
+            });
+            return rows;
+          };
+
+          console.log(props.data);
+          rows = addRows(props.data);
+        } else {
+          props.data.forEach(function (row, index) {
+            rows.push((0, _vue.h)(_VtTableRow["default"], {
               row: row,
               index: props.initialIndex + index + 1
             }));
-          }
-        });
+
+            if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+              rows.push((0, _vue.h)(_VtChildRow["default"], {
+                row: row,
+                index: props.initialIndex + index + 1
+              }));
+            }
+          });
+        }
+
         return props.override ? (0, _vue.h)(props.override, {
           props: (0, _omit["default"])(props)
         }) : (0, _vue.createVNode)("tbody", null, [props.slots.prependBody ? props.slots.prependBody() : '', props.data.length === 0 ? (0, _vue.h)(_VtNoResultsRow["default"]) : '', rows, props.slots.appendBody ? props.slots.appendBody() : '']);

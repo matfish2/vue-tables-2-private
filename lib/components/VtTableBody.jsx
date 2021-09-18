@@ -13,26 +13,50 @@ export default {
         return h(RLTableBody, {}, {
             default: function (props) {
                 var rows = [];
-                var currentGroup;
 
-                props.data.forEach((row, index) => {
-                    if (props.groupBy && props.source === 'client' && row[props.groupBy] !== currentGroup) {
-                        rows.push(h(VtGroupRow, {row}))
-                        currentGroup = row[props.groupBy]
-                    }
+                if (props.groupBy && props.source === 'client') {
+                    function addRows(data, rows = [], level = 1) {
+                        data.forEach(group => {
+                            rows.push(h(VtGroupRow, {
+                                level,
+                                type: group.type,
+                                value: group.value
+                            }))
 
-                    if (props.canToggleGroups && props.collapsedGroups.includes(currentGroup)) {
-                        return;
+                            if (level === props.groupBy.length) {
+                                if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                                    group.data.forEach((row, index) => {
+                                        rows.push(h(VtTableRow, {row, index: props.initialIndex + index + 1}))
+                                        if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                                            rows.push(h(VtChildRow, {
+                                                row, index: props.initialIndex + index + 1
+                                            }))
+                                        }
+                                    })
+                                }
+                            } else {
+                                if (!props.canToggleGroups || !props.collapsedGroups.includes(group.value)) {
+                                    addRows(group.data, rows, level + 1)
+                                }
+                            }
+                        })
+
+                        return rows
                     }
-                    rows.push(h(VtTableRow, {row, index: props.initialIndex + index + 1}))
-                    if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
-                        rows.push(
-                            h(VtChildRow, {
-                              row, index:props.initialIndex + index + 1
-                            })
+console.log(props.data)
+                    rows = addRows(props.data);
+                } else {
+                    props.data.forEach((row, index) => {
+                        rows.push(h(VtTableRow, {row, index: props.initialIndex + index + 1}))
+                        if (props.hasChildRow && props.openChildRows.includes(row[props.uniqueRowId])) {
+                            rows.push(
+                                h(VtChildRow, {
+                                    row, index: props.initialIndex + index + 1
+                                })
                             )
-                    }
-                });
+                        }
+                    });
+                }
 
                 return props.override ? h(props.override, {
                     props: omit(props)
@@ -46,3 +70,4 @@ export default {
         })
     }
 }
+
