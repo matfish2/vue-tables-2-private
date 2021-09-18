@@ -152,7 +152,7 @@ export default function (RLClientTable) {
                         </div>
 
                         {props.slots.beforeTable ? props.slots.beforeTable() : ''}
-                        <div class="table-responsive" ref="tablewrapper">
+                        <div class="table-responsive VueTables__wrapper" ref="tablewrapper">
                             {h(VtTable)}
                             {props.opts.pagination.virtual ? h(Observer, {
                                 onIntersect: () => {

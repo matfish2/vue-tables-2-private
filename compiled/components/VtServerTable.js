@@ -192,7 +192,7 @@ function _default2(RLServerTable) {
           }, [(0, _vue.h)(_VtDropdownPagination["default"])])]) : '', props.opts.columnsDropdown ? (0, _vue.createVNode)("div", {
             "class": "VueTables__columns-dropdown-wrapper ".concat(props.theme.right, " ").concat(props.theme.dropdown.container)
           }, [(0, _vue.h)(_VtColumnsDropdown["default"])]) : ''])]), props.slots.beforeTable ? props.slots.beforeTable() : '', (0, _vue.createVNode)("div", {
-            "class": "table-responsive",
+            "class": "table-responsive VueTables__wrapper",
             "ref": "tablewrapper",
             "style": props.styles()
           }, [(0, _vue.h)(_VtTable["default"]), props.opts.pagination.virtual && !props.loading ? (0, _vue.h)(_Observer["default"], {
