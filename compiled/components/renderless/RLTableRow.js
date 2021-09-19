@@ -30,8 +30,7 @@ var _default = {
         attrs: this.opts().rowAttributesCallback ? this.opts().rowAttributesCallback(this.row) : {}
       },
       rowEvents: {
-        click: this.rowWasClicked.bind(this, this.row, this.index),
-        dblclick: this.rowWasClicked.bind(this, this.row, this.index)
+        click: this.rowWasClicked.bind(this, this.row, this.index)
       },
       childRowTogglerFirst: this.hasChildRow() && this.opts().showChildRowToggler && this.opts().childRowTogglerFirst,
       childRowTogglerLast: this.hasChildRow() && this.opts().showChildRowToggler && !this.opts().childRowTogglerFirst,
