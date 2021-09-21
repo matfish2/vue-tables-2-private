@@ -13,7 +13,8 @@ export default {
                 default: function (props) {
                     return props.override ? h(props.override, {attrs: {props}}) :
                         <tr class={`VueTables__row ` + props.rowAttrs.class} {...{attrs: props.rowAttrs.attrs}}
-                            onClick={props.rowEvents.click}>
+                            onClick={props.rowEvents.click}
+                            onDblclick={props.rowEvents.click}>
                             {props.selectable ? <vt-row-selector/> : ''}
                             {props.childRowTogglerFirst ? <vt-child-row-toggler row-id={props.rowId}/> : ''}
                             {props.columns.map(column => <vt-table-cell column={column}/>)}
