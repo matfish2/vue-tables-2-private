@@ -41,6 +41,8 @@ function getColumnsDisplay(columnsDisplay) {
 
 function getRange(device, operator) {
   var devices = {
+    desktopHuge: [1920, null],
+    desktopLarge: [1280, 1920],
     desktop: [1024, null],
     tablet: [480, 1024],
     mobile: [0, 480],
